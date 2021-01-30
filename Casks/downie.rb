@@ -1,6 +1,6 @@
 cask "downie" do
-  version "4.1.13,4193"
-  sha256 "e5577e4599669f9fb31db1d8a455ee03a19071164639b54af9bb3ba4297e1698"
+  version "4.1.15,4201"
+  sha256 "6b4da3c17f1ffa726d3442cc6a7af0e8a0453c25e7de84a29617acf1d0c01d55"
 
   url "https://charliemonroesoftware.com/trial/downie/v#{version.major}/Downie_#{version.major}_#{version.after_comma}.dmg",
       verified: "charliemonroesoftware.com/"
@@ -17,4 +17,11 @@ cask "downie" do
   depends_on macos: ">= :el_capitan"
 
   app "Downie #{version.major}.app"
+
+  zap trash: [
+    "~/Library/Caches/com.charliemonroe.Downie-#{version.major}",
+    "~/Library/Containers/com.charliemonroe.Downie-#{version.major}",
+    "~/Library/Containers/com.charliemonroe.Downie-#{version.major}-Downie-Extension",
+    "~/Library/Preferences/com.charliemonroe.Downie-#{version.major}.plist",
+  ]
 end

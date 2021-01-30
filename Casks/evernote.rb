@@ -15,10 +15,10 @@ cask "evernote" do
 
     url "https://cdn1.evernote.com/mac-smd/public/Evernote_RELEASE_#{version}.dmg"
   else
-    version "10.5.7,2171"
-    sha256 "ec4bb43e8b9d99d9469812bab67093a4ac5d4baf6255c0d9c3a0886bdec1226f"
+    version "10.7.6,2321"
+    sha256 "7ff1dac02e20e0f682f5d5537b20bdd7ec69ca21f7edd7fbd11932e9359778fa"
 
-    url "https://cdn1.evernote.com/boron/mac/builds/Evernote-#{version.before_comma}-#{version.after_comma}.dmg"
+    url "https://cdn1.evernote.com/boron/mac/builds/Evernote-#{version.before_comma}-mac-ddl-ga-#{version.after_comma}.dmg"
   end
 
   name "Evernote"
@@ -28,7 +28,7 @@ cask "evernote" do
   livecheck do
     url "https://evernote.s3.amazonaws.com/boron/mac/public/latest-mac.yml"
     strategy :page_match do |page|
-      match = page.match(/(\d+(?:\.\d+)*)-(\d+)\.zip/)
+      match = page.match(/(\d+(?:\.\d+)*)-mac-ddl-ga-(\d+)\.zip/)
       "#{match[1]},#{match[2]}"
     end
   end

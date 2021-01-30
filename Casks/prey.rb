@@ -1,6 +1,6 @@
 cask "prey" do
-  version "1.9.3"
-  sha256 "1ec301fa5c9f01831cafabe93c10c4c1f5e2ccf983d0c298449344fa56acc769"
+  version "1.9.9"
+  sha256 "e59d8315b635979cbc980208e04851355e3ef943810c51661d77e3227cce132c"
 
   url "https://downloads.preyproject.com/prey-client-releases/node-client/#{version}/prey-mac-#{version}-x64.pkg"
   appcast "https://github.com/prey/prey-node-client/releases.atom"

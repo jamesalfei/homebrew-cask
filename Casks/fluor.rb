@@ -4,9 +4,13 @@ cask "fluor" do
 
   url "https://resources.pyrolyse.it/distrib/Fluor/Fluor%20#{version}.dmg",
       verified: "pyrolyse.it/"
-  appcast "https://fluorapp.net/"
   name "Fluor"
   homepage "https://fluorapp.net/"
+
+  livecheck do
+    url :homepage
+    regex(/href=.*?Fluor(?:%20|[._-])v?(\d+(?:\.\d+)+)\.dmg/i)
+  end
 
   auto_updates true
   depends_on macos: ">= :sierra"
