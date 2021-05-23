@@ -1,6 +1,6 @@
 cask "anki" do
-  version "2.1.40"
-  sha256 "711bdf543513ab526a36e3ece555820c5aa1d03f6f02c5498f789804d3d5c091"
+  version "2.1.44"
+  sha256 "6a4a7ad89a81182ae434a55581edb882e454f80540380d1001036b99098c2dff"
 
   url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac.dmg",
       verified: "github.com/ankitects/anki/"
@@ -13,7 +13,7 @@ cask "anki" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :high_sierra"
 
   app "Anki.app"
 

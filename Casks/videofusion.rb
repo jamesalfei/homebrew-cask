@@ -1,6 +1,6 @@
 cask "videofusion" do
-  version "1.2.1.0"
-  sha256 "8bfb284a01d66b35399e311236a2ebbeabd268157e9e8099523716ab9c70ee88"
+  version "1.2.5.0"
+  sha256 "ba68157a96763f2547ae4e710c3bf64f6eea5bff96d603ad272302cd92e2672c"
 
   url "https://lf3-faceucdn-tos.pstatp.com/obj/faceu-packages/Jianying_Pro_#{version.dots_to_underscores}.pkg",
       verified: "lf3-faceucdn-tos.pstatp.com/obj/faceu-packages/"
@@ -8,6 +8,10 @@ cask "videofusion" do
   name "剪映专业版"
   desc "Video editor"
   homepage "https://lv.ulikecam.com/"
+
+  livecheck do
+    skip "No version information available"
+  end
 
   depends_on macos: ">= :mojave"
 

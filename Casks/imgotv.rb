@@ -1,10 +1,11 @@
 cask "imgotv" do
-  version "6.3.8"
-  sha256 "3bfaf56e9bb91e47e99ee8f730ac9fdda37ce608a511abd069ccd605f3908d48"
+  version "6.4.1"
+  sha256 "3e9a1a0716d1253a2167af8d1022029d40225802cc77df97ff3aeb5feba3d8d4"
 
   url "https://download.imgo.tv/app/mac/#{version}/mgtv-mango-#{version}.dmg",
       verified: "download.imgo.tv/"
   name "芒果TV"
+  desc "Mango TV video app"
   homepage "https://www.mgtv.com/app/"
 
   livecheck do

@@ -1,10 +1,9 @@
 cask "moonlight" do
-  version "3.0.0"
-  sha256 "bf3bd9739ce12191658ef688a0ed0f7777966b9e5d765012555d6a7a34011b78"
+  version "3.1.3"
+  sha256 "c1bcc67d3b767d514a2d594aaf531a684709fd8516e39607f22a332cf0435302"
 
   url "https://github.com/moonlight-stream/moonlight-qt/releases/download/v#{version}/Moonlight-#{version}.dmg",
       verified: "github.com/moonlight-stream/moonlight-qt/"
-  appcast "https://github.com/moonlight-stream/moonlight-qt/releases.atom"
   name "Moonlight"
   desc "GameStream client"
   homepage "https://moonlight-stream.org/"

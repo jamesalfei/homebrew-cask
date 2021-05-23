@@ -3,8 +3,8 @@ cask "geekbench" do
     version "4.4.2"
     sha256 "3c46e630a28a0752afd702fc1cd379edd2420001be22302c932e61751284c0cc"
   else
-    version "5.3.2,503747"
-    sha256 "33805d2d01ddd32e77c7ad32093e4abe2305a1258309838aa4a5a11757ace883"
+    version "5.4.1,503823"
+    sha256 "b2e4f6dc82a5cc3675b7ea0ad57bb2754ebea3b8bfddcfa4b5aa739e34d36e28"
   end
 
   url "https://cdn.geekbench.com/Geekbench-#{version.before_comma}-Mac.zip"

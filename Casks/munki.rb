@@ -1,10 +1,11 @@
 cask "munki" do
-  version "5.2.2.4287"
-  sha256 "b03611a201134b1e2fc3c630eed0e1ae2472579ee4a30ede75ffef18ec7e879c"
+  version "5.4.0.4348"
+  sha256 "312faccca992e1bb806a647e4c4e18929cea07d1a939ce5cc99dddb3dac24660"
 
   url "https://github.com/munki/munki/releases/download/v#{version.major_minor_patch}/munkitools-#{version}.pkg",
       verified: "github.com/munki/munki/"
   name "Munki"
+  desc "Software installation manager"
   homepage "https://www.munki.org/munki/"
 
   livecheck do

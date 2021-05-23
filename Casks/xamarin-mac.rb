@@ -1,9 +1,10 @@
 cask "xamarin-mac" do
-  version "7.4.0.10"
-  sha256 "4fd76a2686bfdda62911f80faa6d214912e50464f82c295eddac6b517652d8a4"
+  version "7.10.0.5"
+  sha256 "d29cef50d1bf817d332af6bbbeb6f2d4f0cb92e642eaaf419ce26b3f82355a60"
 
   url "https://dl.xamarin.com/XamarinforMac/Mac/xamarin.mac-#{version}.pkg"
   name "Xamarin Mac"
+  desc "Gives C# and .NET developers access to Objective-C and Swift API's"
   homepage "https://www.xamarin.com/platform"
 
   livecheck do

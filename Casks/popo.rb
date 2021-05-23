@@ -1,12 +1,17 @@
 cask "popo" do
-  version "3.18.1"
-  sha256 "3840799e24ad33079eecd9134070189560a58b25e46f6f4539d112859a733139"
+  version "3.23.0"
+  sha256 "bc7517758ea1512ed348a78c2a05817361183fc3df231b1eebd342b7ac770675"
 
   url "https://popo.netease.com/file/popomac/POPO_Mac_V#{version.dots_to_underscores}.dmg"
-  appcast "http://http.popo.netease.com:8080/api/open/jsonp/check_version?device=4",
-          must_contain: version.dots_to_underscores
   name "NetEase POPO"
+  desc "Instant messaging platform"
   homepage "https://popo.netease.com/"
+
+  livecheck do
+    url "http://http.popo.netease.com:8080/api/open/jsonp/check_version?device=4"
+    strategy :page_match
+    regex(/"version"\s*:\s*"(\d+(?:\.\d+)*)"/i)
+  end
 
   app "popo_mac.app"
 

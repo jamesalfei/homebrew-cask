@@ -1,9 +1,10 @@
 cask "middle" do
-  version "1.5.18,52"
-  sha256 "05f4c73140a4cd2ee018e1f26eacde0b2a61cc95fb3ae22c2a83c09dbcb7eeae"
+  version "1.5.26,60"
+  sha256 "fdeb23656da1ca263c87c8922934352dc8a3498286f58df03f1c165d46adc1a1"
 
   url "https://middleclick.app/downloads/Middle#{version.before_comma}.dmg"
   name "Middle"
+  desc "Add middle click for Trackpad and Magic Mouse"
   homepage "https://middleclick.app/"
 
   livecheck do

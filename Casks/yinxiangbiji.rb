@@ -1,14 +1,18 @@
 cask "yinxiangbiji" do
-  version "9.4.11_462458"
-  sha256 "28cd321597e6477cccd13c9429982ac12fa30dd840a939dceee6569ea0a64bca"
+  version "9.5.0_463452"
+  sha256 "abea5af9dd346aeae2c6e9429c6243b3eb9c11f2cfae388f0b871349ea5187f5"
 
   url "https://cdn.yinxiang.com/mac-smd/public/YinxiangBiji_RELEASE_#{version}.zip"
-  appcast "https://update.yinxiang.com/public/ENMacSMD/EvernoteMacUpdate.xml",
-          must_contain: version.sub("_", " ")
   name "Evernote"
   name "印象笔记"
   desc "Note taking app"
   homepage "https://www.yinxiang.com/"
+
+  livecheck do
+    url "https://www.yinxiang.com/download/get.php?file=EvernoteMac"
+    strategy :header_match
+    regex(/YinxiangBiji_RELEASE_(\d+(?:.\d+)*).dmg/i)
+  end
 
   auto_updates true
   depends_on macos: ">= :sierra"

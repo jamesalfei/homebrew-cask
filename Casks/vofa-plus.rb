@@ -1,9 +1,9 @@
 cask "vofa-plus" do
-  version "1.3.8"
-  sha256 "73c590cbe3c69a41464b0739abe5a1064b7ffe3bc7194f774a114cd0fbc07bab"
+  version "1.3.10"
+  sha256 "376575ccfa82866c3fdaa989d1d0d19a927797789d246ccdba737f4e3fec4d7d"
 
-  url "https://gutega.gitee.io/vofa_plus_res/downloads/vofa+_#{version}_amd64.dmg",
-      verified: "gutega.gitee.io/"
+  url "https://je00.github.io/downloads/vofa+_#{version}_amd64.dmg",
+      verified: "je00.github.io/"
   name "VOFA+"
   desc "Serial port console that is driven by the plugin"
   homepage "https://www.vofa.plus/"

@@ -1,6 +1,6 @@
 cask "iriunwebcam" do
-  version "2.4.4"
-  sha256 "aaf672549ea765da71366159d7b699e0749dd853818b01f10afe8956d5c0d2eb"
+  version "2.5"
+  sha256 "490ed74e962a848906eacdac7fadb576a3bfd860ad5d38a3ae40b2720cf915db"
 
   url "https://1758658189.rsc.cdn77.org/IriunWebcam-#{version}.pkg",
       verified: "1758658189.rsc.cdn77.org/"
@@ -17,5 +17,10 @@ cask "iriunwebcam" do
 
   uninstall quit:      "com.iriun.webcam",
             pkgutil:   "com.iriun.*",
-            launchctl: "com.iriun.cmio.DPA.camera"
+            launchctl: [
+              "com.iriun.cmio.DPA.camera",
+              "com.iriun.cmio.DPA.camerb",
+              "com.iriun.cmio.DPA.camerc",
+              "com.iriun.cmio.DPA.camerd",
+            ]
 end

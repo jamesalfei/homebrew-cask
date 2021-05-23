@@ -1,9 +1,8 @@
 cask "lx-music" do
-  version "1.7.1"
-  sha256 "77e18ab33a152ba56891a019ea154f06dce8f1f8a4194cb3a1cb7fcf8feaeea5"
+  version "1.9.0"
+  sha256 "d3a362b12afe2660cfcb1579fb97330a546f127e94fb01bd47e205936d5d76c0"
 
   url "https://github.com/lyswhut/lx-music-desktop/releases/download/v#{version}/lx-music-desktop-#{version}.dmg"
-  appcast "https://github.com/lyswhut/lx-music-desktop/releases.atom"
   name "LX Music Assistant Desktop Edition"
   name "洛雪音乐助手桌面版"
   desc "Music app base on Electron & Vue"

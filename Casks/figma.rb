@@ -1,11 +1,16 @@
 cask "figma" do
-  version "95.7.0"
-  sha256 "97ac619f54f30edfecbd876d4185927191cd16b1e4de64b577ba945c64bcce41"
+  version "98.11.0"
+  sha256 "e9899d8dafdb752414c8fe0e070d6f81b32bc713f220618b4fc90b380e345a72"
 
   url "https://desktop.figma.com/mac/Figma-#{version}.zip"
-  appcast "https://desktop.figma.com/mac/RELEASE.json"
   name "Figma"
+  desc "Collaborative team software"
   homepage "https://www.figma.com/"
+
+  livecheck do
+    url "https://desktop.figma.com/mac/RELEASE.json"
+    regex(%r{/Figma[._-]v?(\d+(?:\.\d+)+)\.zip}i)
+  end
 
   auto_updates true
 

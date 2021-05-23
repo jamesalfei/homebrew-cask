@@ -1,12 +1,17 @@
 cask "microsoft-powerpoint" do
-  version "16.46.21021202"
-  sha256 "03fd150e79f1c2dc485b0369658df4f60f733085c2b582abcba3ed88fda11ba6"
+  version "16.49.21050901"
+  sha256 "d8f32fc1031f6f7dc35efa660fb81ce17ab6fcf6e6b861028fbe4a9faa34acea"
 
   url "https://officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_PowerPoint_#{version}_Installer.pkg",
       verified: "officecdn-microsoft-com.akamaized.net/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/"
-  appcast "https://docs.microsoft.com/en-us/officeupdates/update-history-office-for-mac"
   name "Microsoft PowerPoint"
+  desc "Presentation software"
   homepage "https://products.office.com/en-US/powerpoint"
+
+  livecheck do
+    url "https://go.microsoft.com/fwlink/p/?linkid=525136"
+    strategy :header_match
+  end
 
   auto_updates true
   conflicts_with cask: "microsoft-office"

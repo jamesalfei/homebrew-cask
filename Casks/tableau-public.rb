@@ -1,9 +1,10 @@
 cask "tableau-public" do
-  version "2020.4.1"
-  sha256 "b521d74d9a543d8322f4e7a0196eb1a42d99eea683b167300565e1cbb80f0be6"
+  version "2021.1.1"
+  sha256 "a72d0d828a1f4cd38a77649440550e14f1228fb15852539eed6578f912a640e8"
 
   url "https://downloads.tableau.com/public/TableauPublic-#{version.dots_to_hyphens}.dmg"
   name "Tableau Public"
+  desc "Explore, create and publicly share data visualizations online"
   homepage "https://public.tableau.com/s/"
 
   livecheck do

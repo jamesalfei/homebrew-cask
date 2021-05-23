@@ -1,9 +1,10 @@
 cask "tiny-player" do
-  version "1.4.0,164"
-  sha256 "c55ced0db548e77284f285b6c223ff13876c90026cb11ff327e37da78e476ee3"
+  version "1.4.3,169"
+  sha256 "9958407826c70c1694fce0d0d2d6f9d8fc344b4a6e9512c75ee2cda1b4a7822b"
 
   url "https://download.catnapgames.com/TinyPlayer-#{version.before_comma}.zip"
   name "Tiny Player for Mac"
+  desc "Media player"
   homepage "https://www.catnapgames.com/tiny-player-for-mac/"
 
   livecheck do
