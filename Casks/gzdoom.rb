@@ -1,6 +1,6 @@
 cask "gzdoom" do
-  version "4.6.0"
-  sha256 "2e6789b95129e7984d1629301121dc55cb3c94f2575219553c2675504dfc501b"
+  version "4.8.2"
+  sha256 "0583a2e5b1636a631060a8ef0ae9acb51e0b145e34193d9e2fcdf0d833c4b908"
 
   url "https://github.com/coelckers/gzdoom/releases/download/g#{version}/gzdoom-#{version.dots_to_hyphens}-macOS.zip",
       verified: "github.com/coelckers/gzdoom/"
@@ -10,7 +10,7 @@ cask "gzdoom" do
 
   livecheck do
     url :url
-    regex(/^g?(\d+(?:\.\d+)+)$/)
+    regex(/^g?(\d+(?:\.\d+)+)$/i)
   end
 
   app "GZDoom.app"

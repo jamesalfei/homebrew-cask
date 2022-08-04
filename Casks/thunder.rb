@@ -1,22 +1,21 @@
 cask "thunder" do
-  version "4.0.1.14502"
-  sha256 "21fb18ad48dcacfe4d8953c2397261830e17d01b56e64a07a063e32c64be2e43"
+  version "5.0.2.65548"
+  sha256 "659920891c110a75131777a398a635b346cf5ef0d39ea400ae07996c421c2c49"
 
   url "https://down.sandai.net/mac/thunder_#{version}.dmg",
-      verified: "down.sandai.net/"
+      verified: "down.sandai.net/mac/"
   name "Thunder"
   name "迅雷"
   desc "VPN and WiFi proxy"
   homepage "https://www.xunlei.com/"
 
   livecheck do
-    url :homepage
-    strategy :page_match
-    regex(/thunder_(\d+(?:\.\d+)*)\.dmg/i)
+    url "https://dl.xunlei.com"
+    regex(/thunder[._-](\d+(?:\.\d+)+)\.dmg/i)
   end
 
   auto_updates true
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :high_sierra"
 
   app "Thunder.app"
 

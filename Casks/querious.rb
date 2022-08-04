@@ -1,15 +1,15 @@
 cask "querious" do
-  version "3.0.11"
-  sha256 "43426c65d9134d949a34f916fed544f2bf04be62f4844a8ab7379ae6f2d8a215"
+  version "3.2.2"
+  sha256 "f091ebddf677835273d6e0450aae5c246be290a9b5d0a77e6e83d50ea5be1acf"
 
   url "https://www.araelium.com/querious/downloads/versions/Querious#{version}.zip"
   name "Querious #{version.major}"
+  desc "MySQL and compatible databases tool"
   homepage "https://www.araelium.com/querious/"
 
   livecheck do
     url "https://arweb-assets.s3.amazonaws.com/downloads/querious/updates.json"
-    strategy :page_match
-    regex(/Querious(\d+(?:\.\d+)*)\.zip/i)
+    regex(/Queriousv?(\d+(?:\.\d+)+)\.zip/i)
   end
 
   auto_updates true

@@ -4,7 +4,13 @@ cask "launchy" do
 
   url "https://www.launchy.net/downloads/mac/Launchy#{version}.dmg"
   name "Launchy"
+  desc "Utility desktop shortcut utility"
   homepage "https://www.launchy.net/"
+
+  livecheck do
+    url "https://www.launchy.net/download.php"
+    regex(%r{href=.*?/Launchy(\d+(?:\.\d+)*)\.dmg}i)
+  end
 
   app "Launchy.app"
 end

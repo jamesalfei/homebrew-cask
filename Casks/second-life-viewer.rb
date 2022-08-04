@@ -1,6 +1,6 @@
 cask "second-life-viewer" do
-  version "6.4.18.558266"
-  sha256 "1888d09dd7f9a0f5eaeb84d263ef13f4b615bf07c6958d5a1d23ea747a353aa9"
+  version "6.6.2.573358"
+  sha256 "36f94de036ee0382d100f597d1527e231946bd67602aeba720a320fa8ef5a668"
 
   url "http://download.cloud.secondlife.com/Viewer_#{version.major}/Second_Life_#{version.dots_to_underscores}_x86_64.dmg"
   name "Linden Lab Second Life Viewer"
@@ -10,10 +10,14 @@ cask "second-life-viewer" do
   livecheck do
     url "https://secondlife.com/support/downloads/"
     strategy :page_match do |page|
-      v = page[%r{href=.*?/Second_Life_(\d+(?:_\d+)*)_x86_64\.dmg}i, 1]
+      v = page[%r{href=.*?/Second_Life_(\d+(?:_\d+)+)_x86_64\.dmg}i, 1]
+      next if v.blank?
+
       v.tr("_", ".")
     end
   end
+
+  depends_on macos: ">= :sierra"
 
   app "Second Life Viewer.app"
 

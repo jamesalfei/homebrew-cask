@@ -1,24 +1,24 @@
 cask "easyeda" do
-  version "6.4.19.4"
-  sha256 "268b252c4454e84a6e2c9ce4c0962165f3e80ed693ec2457a533de55630f2ed7"
+  version "6.5.8"
+  sha256 "06bc354e438b03a6824bb4100032d87509aee09d111b6edb646e96bcfb6e76d8"
 
-  url "https://image.easyeda.com/files/easyeda-mac-darwin-#{version}.zip"
+  url "https://image.easyeda.com/files/easyeda-mac-x64-#{version}.zip"
   name "EasyEDA"
+  desc "PCB design tool"
   homepage "https://easyeda.com/"
 
   livecheck do
     url "https://easyeda.com/page/download"
-    strategy :page_match
-    regex(%r{href=.*?/easyeda-mac-darwin-(\d+(?:\.\d+)*)\.zip}i)
+    regex(%r{href=.*?/easyeda[._-]mac[._-]x64[._-]v?(\d+(?:\.\d+)+)\.zip}i)
   end
 
   app "EasyEDA.app"
 
-  uninstall delete: [
+  zap trash: [
+    "~/Library/Application Support/EasyEDA",
+    "~/Library/Logs/EasyEDA",
     "~/Library/Preferences/com.easyeda.editor.helper.plist",
     "~/Library/Preferences/com.easyeda.editor.plist",
     "~/Library/Saved Application State/com.easyeda.editor.savedState",
-    "~/Library/Application Support/EasyEDA",
-    "~/Library/Logs/EasyEDA",
   ]
 end

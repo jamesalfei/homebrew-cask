@@ -1,6 +1,6 @@
 cask "raze" do
-  version "1.1.2"
-  sha256 "65c0ab6cf3a72812fb74229f95b3395b3fdb0c7672f5974dbb51e44f550ec49e"
+  version "1.5.0"
+  sha256 "1099033d952e206eded8aad367cf34e55295816c366a99bcf1d6cb3f523158e4"
 
   url "https://github.com/coelckers/Raze/releases/download/#{version}/raze-macos-#{version}.zip"
   name "Raze"
@@ -8,8 +8,9 @@ cask "raze" do
   homepage "https://github.com/coelckers/Raze"
 
   livecheck do
-    url :url
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    url "https://github.com/coelckers/Raze/releases"
+    strategy :page_match
+    regex(/raze[._-]macos[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
   app "Raze.app"
@@ -17,9 +18,9 @@ cask "raze" do
   zap trash: [
     "~/Documents/Raze",
     "~/Library/Application Support/Raze",
-    "~/Library/Preferences/raze.ini",
     "~/Library/Preferences/org.drdteam.raze.plist",
     "~/Library/Preferences/org.zdoom.raze.plist",
+    "~/Library/Preferences/raze.ini",
     "~/Library/Saved Application State/org.drdteam.raze.savedState",
     "~/Library/Saved Application State/org.zdoom.raze.savedState",
   ]

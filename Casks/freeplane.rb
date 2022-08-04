@@ -1,21 +1,19 @@
 cask "freeplane" do
-  version "1.9.1"
+  arch = Hardware::CPU.intel? ? "intel" : "apple"
+
+  version "1.10.3"
 
   if Hardware::CPU.intel?
-    sha256 "8dfedf459be9d36fbaf473cee2ac78680a1cb95f58b36d48cfd03c27851a2291"
-
-    url "https://downloads.sourceforge.net/freeplane/Freeplane-#{version}-intel.dmg",
-        verified: "downloads.sourceforge.net/freeplane/"
+    sha256 "841a337c1b291920e177e3f37992aa932c7859a12d9237a0c372124c8159fae3"
   else
-    sha256 "255734becd2d6e2d4781ae0dc24b399c86172e92f3b6359b5c0f4c3f34b72ea7"
-
-    url "https://downloads.sourceforge.net/freeplane/Freeplane-#{version}-apple.dmg",
-        verified: "downloads.sourceforge.net/freeplane/"
+    sha256 "7ba4dbf56cb1f62c55ffde17f6c979f07ba403bdb6a33e26f10768248009ad84"
   end
 
+  url "https://downloads.sourceforge.net/freeplane/Freeplane-#{version}-#{arch}.dmg",
+      verified: "downloads.sourceforge.net/freeplane/"
   name "Freeplane"
   desc "Mind mapping and knowledge management software"
-  homepage "https://freeplane.sourceforge.io/"
+  homepage "https://www.freeplane.org/wiki/index.php/Home"
 
   livecheck do
     url "https://sourceforge.net/projects/freeplane/rss?path=/freeplane%20stable"

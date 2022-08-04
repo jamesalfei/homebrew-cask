@@ -1,6 +1,6 @@
 cask "epichrome" do
-  version "2.4.8"
-  sha256 "6df7c1e458848acbf54fce1b5ff78a03d13f6b8afc1ad65ecc166ff260a4bc12"
+  version "2.4.26"
+  sha256 "690df70b5c8fc7104ad44965dfc509e61f5c2238638d793befdae19c1210a8d3"
 
   url "https://github.com/dmarmor/epichrome/releases/download/v#{version}/epichrome-#{version}.pkg"
   name "Epichrome"
@@ -10,4 +10,8 @@ cask "epichrome" do
   pkg "epichrome-#{version}.pkg"
 
   uninstall pkgutil: "org.epichrome.Epichrome"
+
+  caveats do
+    discontinued
+  end
 end

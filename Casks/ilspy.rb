@@ -1,17 +1,20 @@
 cask "ilspy" do
-  version "7.0-rc1"
-  sha256 "27c1b43359a80933b8eae0b90fdc03e0d9a0c911e087f678d37fb8448f1d7433"
+  version "7.2-rc"
+  sha256 "480f0fe2b5dc6ad4d0df3d4c9ecd44429b97e0c8b5bac8bc99c2ac2a8e3025ff"
 
-  url "https://github.com/icsharpcode/AvaloniaILSpy/releases/download/v#{version}/osx-x64.zip"
+  url "https://github.com/icsharpcode/AvaloniaILSpy/releases/download/v#{version}/macOS.x64.Release.zip"
   name "ILSpy"
   desc "Avalonia-based .NET decompiler"
   homepage "https://github.com/icsharpcode/AvaloniaILSpy"
 
+  # This cask uses an unstable version and this `livecheck` block is only used
+  # to prevent livecheck from skipping pre-release versions by default. This
+  # should be removed/updated if the cask is updated to a stable version.
   livecheck do
     url :url
   end
 
-  app "ILSpy.app"
+  app "artifacts/osx-x64/ILSpy.app"
 
   zap trash: [
     "~/Library/Preferences/ilspy.plist",

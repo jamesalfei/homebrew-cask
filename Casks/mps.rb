@@ -1,16 +1,15 @@
 cask "mps" do
-  version "2021.1,211.7142.1222"
+  arch = Hardware::CPU.intel? ? "macos" : "macos-aarch64"
+
+  version "2021.3.1,213.7172.958"
 
   if Hardware::CPU.intel?
-    sha256 "3bf2b747cbaea592a9fee7b099df4243016071bc1af911b8e62e991d9e5bd129"
-
-    url "https://download.jetbrains.com/mps/#{version.major_minor}/MPS-#{version.before_comma}-macos.dmg"
+    sha256 "06f06e121a552a7c4ee89ecbdecb4ac7d1978ae87d6c80d04837a19e92e4f90d"
   else
-    sha256 "f8b120ac2e240f59857b888582a2cb59a7d7026210db68b0567434b248403283"
-
-    url "https://download.jetbrains.com/mps/#{version.major_minor}/MPS-#{version.before_comma}-macos-aarch64.dmg"
+    sha256 "3104eb7b2a363ef9602b86a8fdca02d9b55264127f481f3eabbed65979b34791"
   end
 
+  url "https://download.jetbrains.com/mps/#{version.major_minor}/MPS-#{version.csv.first}-#{arch}.dmg"
   name "JetBrains MPS"
   desc "Create your own domain-specific language"
   homepage "https://www.jetbrains.com/mps/"
@@ -31,7 +30,7 @@ cask "mps" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "mps") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -39,10 +38,10 @@ cask "mps" do
   end
 
   zap trash: [
-    "~/MPSSamples.#{version.before_comma.major_minor}",
-    "~/Library/Application Support/MPS#{version.before_comma.major_minor}",
-    "~/Library/Caches/MPS#{version.before_comma.major_minor}",
-    "~/Library/Logs/MPS#{version.before_comma.major_minor}",
-    "~/Library/Preferences/MPS#{version.before_comma.major_minor}",
+    "~/Library/Application Support/MPS#{version.csv.first.major_minor}",
+    "~/Library/Caches/MPS#{version.csv.first.major_minor}",
+    "~/Library/Logs/MPS#{version.csv.first.major_minor}",
+    "~/Library/Preferences/MPS#{version.csv.first.major_minor}",
+    "~/MPSSamples.#{version.csv.first.major_minor}",
   ]
 end

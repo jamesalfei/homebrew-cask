@@ -1,8 +1,8 @@
 cask "visual-paradigm-ce" do
-  version "16.3,20210517"
-  sha256 "b45c85e3072f87574d7c544f654682dfaed5f6191665a53b9f2fd8b2529db1ce"
+  version "17.0,20220801"
+  sha256 "f7d4db8b65982054ea2ee803b3c92e60ea5e7b9816fa4536f763e7061e17458c"
 
-  url "https://www.visual-paradigm.com/downloads/vpce/Visual_Paradigm_CE_#{version.before_comma.dots_to_underscores}_#{version.after_comma}_OSX_WithJRE.dmg"
+  url "https://www.visual-paradigm.com/downloads/vpce/Visual_Paradigm_CE_#{version.csv.first.dots_to_underscores}_#{version.csv.second}_OSX_WithJRE.dmg"
   name "Visual Paradigm Community Edition"
   desc "All-in-one UML, SysML, BPMN Modeling Platform for Agile"
   homepage "https://www.visual-paradigm.com/"
@@ -10,7 +10,9 @@ cask "visual-paradigm-ce" do
   livecheck do
     url "https://www.visual-paradigm.com/downloads/vpce/checksum.html"
     strategy :header_match do |headers|
-      match = headers["location"].match(%r{/vpce(\d+(?:\.\d+)*)/(\d+)/checksum\.html}i)
+      match = headers["location"].match(%r{/vpce(\d+(?:\.\d+)+)/(\d+)/checksum\.html}i)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end

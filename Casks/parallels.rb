@@ -1,28 +1,25 @@
 cask "parallels" do
-  if Hardware::CPU.intel?
-    version "16.5.0-49183"
-    sha256 "e23af6f6ba6213e6f60e34f97df03d66287c17e8c8c7f0913216e8a6dafa52c5"
-
-    livecheck do
-      url "https://www.parallels.com/directdownload/pd#{version.major}/intel/"
-      strategy :header_match
-    end
-  else
-    version "16.5.0-50692"
-    sha256 "029eceae6e348e3257112aa59b63bc5db96288a0846effaa14f4a1e87d77b6c3"
-
-    livecheck do
-      url "https://www.parallels.com/directdownload/pd#{version.major}/m1/"
-      strategy :header_match
-    end
-  end
+  version "17.1.4-51567"
+  sha256 "8232f140e4c5b95821bf5063fb37db356f7bab520ddabbab4a73d08b5de0cd10"
 
   url "https://download.parallels.com/desktop/v#{version.major}/#{version}/ParallelsDesktop-#{version}.dmg"
   name "Parallels Desktop"
   desc "Desktop virtualization software"
   homepage "https://www.parallels.com/products/desktop/"
 
+  livecheck do
+    url "https://www.parallels.com/directdownload/pd#{version.major}/image/"
+    strategy :header_match
+  end
+
   auto_updates true
+  conflicts_with cask: [
+    "homebrew/cask-versions/parallels12",
+    "homebrew/cask-versions/parallels13",
+    "homebrew/cask-versions/parallels14",
+    "homebrew/cask-versions/parallels15",
+    "homebrew/cask-versions/parallels16",
+  ]
   depends_on macos: ">= :high_sierra"
 
   app "Parallels Desktop.app"
@@ -45,23 +42,30 @@ cask "parallels" do
   end
 
   uninstall delete: [
-    "/usr/local/bin/prl_convert",
-    "/usr/local/bin/prl_disk_tool",
-    "/usr/local/bin/prl_perf_ctl",
-    "/usr/local/bin/prlcore2dmp",
-    "/usr/local/bin/prlctl",
-    "/usr/local/bin/prlexec",
-    "/usr/local/bin/prlsrvctl",
-  ]
+              "/usr/local/bin/prl_convert",
+              "/usr/local/bin/prl_disk_tool",
+              "/usr/local/bin/prl_perf_ctl",
+              "/usr/local/bin/prlcore2dmp",
+              "/usr/local/bin/prlctl",
+              "/usr/local/bin/prlexec",
+              "/usr/local/bin/prlsrvctl",
+              "/Library/Preferences/Parallels",
+            ],
+            signal: ["TERM", "com.parallels.desktop.console"]
 
   zap trash: [
     "~/.parallels_settings",
+    "~/Applications (Parallels)",
+    "~/Library/Application Scripts/*.com.parallels.Desktop",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.parallels.desktop.console.sfl*",
     "~/Library/Application Scripts/com.parallels.desktop*",
     "~/Library/Caches/com.apple.helpd/Generated/com.parallels.desktop.console.help*",
     "~/Library/Caches/com.parallels.desktop.console",
     "~/Library/Caches/Parallels Software/Parallels Desktop",
     "~/Library/Containers/com.parallels.desktop*",
+    "~/Library/Group Containers/*.com.parallels.Desktop",
     "~/Library/Logs/parallels.log",
+    "~/Library/Parallels/Applications Menus",
     "~/Library/Parallels/Parallels Desktop",
     "~/Library/Preferences/com.parallels.desktop.console.LSSharedFileList.plist",
     "~/Library/Preferences/com.parallels.desktop.console.plist",
@@ -70,5 +74,12 @@ cask "parallels" do
     "~/Library/Preferences/com.parallels.Parallels Desktop.plist",
     "~/Library/Preferences/com.parallels.Parallels.plist",
     "~/Library/Preferences/com.parallels.PDInfo.plist",
+    "~/Library/Preferences/Parallels",
+    "~/Library/Saved Application State/com.parallels.desktop.console.savedState",
+  ], rmdir: [
+    "/Users/Shared/Parallels",
+    "~/Library/Caches/Parallels Software",
+    "~/Library/Parallels",
+    "~/Parallels",
   ]
 end

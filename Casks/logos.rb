@@ -1,6 +1,6 @@
 cask "logos" do
-  version "9.5.0.0019"
-  sha256 "19094c8206af727a245953865b1ec69ed1cda0e86beb7fb0dbdff5c06dc88a1a"
+  version "9.15.0.0005"
+  sha256 "b1896eadd955e94bcdc028a48ad1e0a686cf911489d2b2f11d5de103021c2cd9"
 
   url "https://downloads.logoscdn.com/LBS#{version.major}/Installer/#{version}/LogosMac.dmg",
       verified: "downloads.logoscdn.com/"
@@ -10,8 +10,7 @@ cask "logos" do
 
   livecheck do
     url "https://clientservices.logos.com/update/v1/feed/logos#{version.major}-mac/stable.xml"
-    strategy :page_match
-    regex(%r{<logos:version[^>]*>(\d+(?:\.\d+)*)</logos:version>}i)
+    regex(%r{<logos:version[^>]*>(\d+(?:\.\d+)+)</logos:version>}i)
   end
 
   auto_updates true
@@ -23,8 +22,8 @@ cask "logos" do
             quit:      "com.logos.Logos"
 
   zap trash: [
-    "~/Library/Preferences/com.logos.LogosIndexer.plist",
-    "~/Library/Preferences/com.logos.LogosCEF.plist",
     "~/Library/Preferences/com.logos.Logos.plist",
+    "~/Library/Preferences/com.logos.LogosCEF.plist",
+    "~/Library/Preferences/com.logos.LogosIndexer.plist",
   ]
 end

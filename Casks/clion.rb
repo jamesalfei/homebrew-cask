@@ -1,16 +1,15 @@
 cask "clion" do
-  version "2021.1.2,211.7442.42"
+  arch = Hardware::CPU.intel? ? "" : "-aarch64"
+
+  version "2022.2,222.3345.126"
 
   if Hardware::CPU.intel?
-    sha256 "27a1cbf8c19d7a3d31450fd8049c6a4a7e9e23f142f862786b92e678c43a7876"
-
-    url "https://download.jetbrains.com/cpp/CLion-#{version.before_comma}.dmg"
+    sha256 "27f92a2513ff55a3c354e46e0562c900dbab68e26455be51c3eeb42995aa2ac1"
   else
-    sha256 "89851e0eaf223a133fd4b6a8326e599df7231281ebd4aba7299d3747510d0aec"
-
-    url "https://download.jetbrains.com/cpp/CLion-#{version.before_comma}-aarch64.dmg"
+    sha256 "b25375ef2d6daa75c83d624633e18850529f0a6a72ae54bbb6a22f9343cc2c86"
   end
 
+  url "https://download.jetbrains.com/cpp/CLion-#{version.csv.first}#{arch}.dmg"
   name "CLion"
   desc "C and C++ IDE"
   homepage "https://www.jetbrains.com/clion/"
@@ -31,7 +30,7 @@ cask "clion" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "clion") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -39,9 +38,12 @@ cask "clion" do
   end
 
   zap trash: [
-    "~/Library/Application Support/CLion#{version.major_minor}",
-    "~/Library/Caches/CLion#{version.major_minor}",
-    "~/Library/Logs/CLion#{version.major_minor}",
+    "~/Library/Application Support/JetBrains/CLion#{version.major_minor}",
+    "~/Library/Caches/JetBrains/CLion#{version.major_minor}",
+    "~/Library/Logs/JetBrains/CLion#{version.major_minor}",
     "~/Library/Preferences/CLion#{version.major_minor}",
+    "~/Library/Preferences/com.jetbrains.CLion.plist",
+    "~/Library/Preferences/jetbrains.clion.*.plist",
+    "~/Library/Saved Application State/com.jetbrains.CLion.savedState",
   ]
 end

@@ -1,6 +1,6 @@
 cask "accordance" do
-  version "13.1.7"
-  sha256 "a115c50fabddfb4b7d6b940db8fcf729d2b06817f60bc5c2fbe4d52e6496d3b2"
+  version "13.3.2"
+  sha256 "d425e73ab3d15aee0e57f4226e08d3d884f2dfd33956e5e612e3b3b03da07790"
 
   url "https://accordancefiles1.com/products/Accordance_#{version}.dmg",
       verified: "accordancefiles1.com/"
@@ -9,8 +9,8 @@ cask "accordance" do
   homepage "https://www.accordancebible.com/"
 
   livecheck do
-    url "https://accordancefiles1.com/xml/appcast_#{version.major}.xml"
-    strategy :sparkle
+    url "https://accordancebible.com/accordance-installers/"
+    regex(/href=.*?Accordance[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
   auto_updates true

@@ -1,23 +1,37 @@
 cask "qcad" do
-  version "3.26.2"
+  version "3.27.6"
 
-  if MacOS.version <= :high_sierra
-    sha256 "d1c06bf0f2fc7df0bbe2f428e159c7aa12f13537141bc69d8e5dee1c793047b6"
-    url "https://www.qcad.org/archives/qcad/qcad-#{version}-trial-macos-10.10-10.13.dmg"
+  if Hardware::CPU.intel?
+    if MacOS.version <= :high_sierra
+      sha256 "589a84168c38bf57435441511b19fa081b622e009719c4be7cc1385b7dc55eeb"
+      url "https://www.qcad.org/archives/qcad/qcad-#{version}-trial-macos-10.10-10.13.dmg"
+
+      livecheck do
+        url "https://www.qcad.org/en/download"
+        regex(/qcad[._-]v?(\d+(?:\.\d+)+)[._-]trial[._-]macos[._-]10\.10[._-]10\.13\.dmg/i)
+      end
+    else
+      sha256 "b3861329672b1a44d72de8fe02cc696a955dad6cd7c1cd18da9e064b7ef0f816"
+      url "https://www.qcad.org/archives/qcad/qcad-#{version}-trial-macos-10.14-12.dmg"
+
+      livecheck do
+        url "https://www.qcad.org/en/download"
+        regex(/qcad[._-]v?(\d+(?:\.\d+)+)[._-]trial[._-]macos[._-]10\.14[._-]12\.dmg/i)
+      end
+    end
   else
-    sha256 "46fb356960449ae4addf0ce1555872bad5d1b70aaf8f94c10793f5f61e429695"
-    url "https://www.qcad.org/archives/qcad/qcad-#{version}-trial-macos-10.14-11.2.dmg"
+    sha256 "a49ffa3adf3087ad9ac59de7fc54c7ea5ef131d6ca2950265916bacc86d3c405"
+    url "https://www.qcad.org/archives/qcad/qcad-#{version}-trial-macos-11-12-arm64.dmg"
+
+    livecheck do
+      url "https://www.qcad.org/en/download"
+      regex(/qcad[._-]v?(\d+(?:\.\d+)+)[._-]trial[._-]macos[._-]11[._-]12[._-]arm64\.dmg/i)
+    end
   end
 
   name "QCAD"
   desc "Free, open source application for computer aided drafting in 2D"
   homepage "https://www.qcad.org/"
-
-  livecheck do
-    url "https://www.qcad.org/en/download"
-    strategy :page_match
-    regex(%r{href=.*?/qcad-(\d+(?:\.\d+)*)-trial-macos-10\.14-11\.2\.dmg}i)
-  end
 
   app "QCAD.app"
 end

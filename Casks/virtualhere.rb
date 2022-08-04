@@ -1,5 +1,5 @@
 cask "virtualhere" do
-  version "5.2.0"
+  version "5.3.5"
   sha256 :no_check
 
   url "https://www.virtualhere.com/sites/default/files/usbclient/VirtualHere.dmg"
@@ -9,9 +9,10 @@ cask "virtualhere" do
 
   livecheck do
     url :homepage
-    strategy :page_match
-    regex(/Version\s*(\d+(?:\.\d+)*)/i)
+    regex(/Version\s*(\d+(?:\.\d+)+)/i)
   end
 
   app "VirtualHere.app"
+
+  zap trash: "~/Library/Preferences/com.virtualhere.vhui.plist"
 end

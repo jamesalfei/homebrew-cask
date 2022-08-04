@@ -1,17 +1,25 @@
 cask "ddnet" do
-  version "15.4"
-  sha256 "fe062e3df2170ad23c59d1714d1321ec74e5bfca939220a798638355bdba036c"
+  version "16.2.2"
+  sha256 "013fee5a19d701842e77f6bd30063bb323ff0fccacf511eb695df4c4d8203489"
 
-  url "https://ddnet.tw/downloads/DDNet-#{version}-osx.dmg"
+  url "https://ddnet.tw/downloads/DDNet-#{version}-macos.dmg"
   name "DDNet"
-  desc "Teeworlds version of DDRace"
+  desc "Cooperative online platform game based on Teeworlds"
   homepage "https://ddnet.tw/"
 
   livecheck do
-    url "https://github.com/ddnet/ddnet/releases"
-    strategy :github_latest
+    url "https://ddnet.tw/downloads/"
+    regex(/href=.*?DDNet[._-]v?(\d+(?:\.\d+)+)[^"' >]*?\.dmg/i)
   end
+
+  auto_updates true
 
   app "DDNet.app"
   app "DDNet-Server.app"
+
+  zap trash: [
+    "~/Library/Preferences/DDNet-Server-Launcher.plist",
+    "~/Library/Saved Application State/org.DDNetClient.app.savedState",
+    # "~/Library/Application Support/Teeworlds/" is left out on purpose because teeworlds uses it as well.
+  ]
 end

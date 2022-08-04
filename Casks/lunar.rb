@@ -1,27 +1,26 @@
 cask "lunar" do
-  version "4.0.5"
-  sha256 "e9b4d8ec4d9bef81212b5362d49abdec0dd1057c01fc8b58fc51ced9efc644eb"
+  version "5.7.3"
+  sha256 "0ba12f3ae35a862226f0b23f471f3d7a0bd101ece61f6df0f029e8a95a26a7cc"
 
-  url "https://static.lunar.fyi/releases/Lunar-#{version}.pkg"
+  url "https://static.lunar.fyi/releases/Lunar-#{version}.dmg"
   name "Lunar"
   desc "Adaptive brightness for external displays"
   homepage "https://lunar.fyi/"
 
   livecheck do
-    url "https://static.lunar.fyi/appcast.xml"
+    url "https://static.lunar.fyi/appcast-stable.xml"
     strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
-  pkg "Lunar-#{version}.pkg"
-
-  uninstall pkgutil: "fyi.lunar.Lunar"
+  app "Lunar.app"
 
   zap trash: [
-    "~/Library/Application Support/Lunar",
     "~/Library/Application Support/fyi.lunar.Lunar",
+    "~/Library/Application Support/Lunar",
+    "~/Library/Caches/Lunar",
     "~/Library/Preferences/fyi.lunar.Lunar.plist",
   ]
 end

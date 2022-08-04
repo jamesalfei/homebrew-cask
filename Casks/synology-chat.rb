@@ -1,15 +1,14 @@
 cask "synology-chat" do
-  version "1.1.1-57"
-  sha256 "1f61431ab0e7ac5646bfedec610e2ca6be527f5ab4001789a14990ebd9aab78c"
+  version "1.2.1-0207"
+  sha256 "782cb4c67d5beb3d2157566ab066ca69ad877c343d5ba9892303a7930cc4383e"
 
-  url "https://global.download.synology.com/download/Tools/ChatClient/#{version}/Mac/Installer/Chat-#{version}.dmg"
+  url "https://global.download.synology.com/download/Utility/ChatClient/#{version}/Mac/Installer/Synology%20Chat%20Client-#{version}.dmg"
   name "Synology Chat"
   desc "Messaging service that runs on Synology NAS"
   homepage "https://www.synology.com/en-us/dsm/feature/chat"
 
   livecheck do
     url "https://www.synology.com/en-us/releaseNote/ChatClient"
-    strategy :page_match
     regex(/Version:\s*(\d+(?:\.\d+)*-\d+)/i)
   end
 

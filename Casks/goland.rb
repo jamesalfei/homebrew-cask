@@ -1,16 +1,15 @@
 cask "goland" do
-  version "2021.1.2,211.7442.27"
+  arch = Hardware::CPU.intel? ? "" : "-aarch64"
+
+  version "2022.2,222.3345.118"
 
   if Hardware::CPU.intel?
-    sha256 "bd451d441bf909d795252cd82f61166556d93c92fb043d929736ee9da7d3c7f3"
-
-    url "https://download.jetbrains.com/go/goland-#{version.before_comma}.dmg"
+    sha256 "88278249c9a4abf610eee14e98de2503393d3d871fa56d8c2818ded642bb893c"
   else
-    sha256 "e1a8d0e4d8bb2ae3904a16de2465c3a865e76c512bab0258be692f1ed1908f68"
-
-    url "https://download.jetbrains.com/go/goland-#{version.before_comma}-aarch64.dmg"
+    sha256 "e320f61730c3f088200937574e94a8aa145486f14e237e7c74806f8cd16c2c16"
   end
 
+  url "https://download.jetbrains.com/go/goland-#{version.csv.first}#{arch}.dmg"
   name "Goland"
   desc "Go (golang) IDE"
   homepage "https://www.jetbrains.com/go/"
@@ -31,7 +30,7 @@ cask "goland" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "goland") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -43,8 +42,8 @@ cask "goland" do
     "~/Library/Application Support/JetBrains/GoLand#{version.major_minor}",
     "~/Library/Caches/JetBrains/GoLand#{version.major_minor}",
     "~/Library/Logs/JetBrains/GoLand#{version.major_minor}",
-    "~/Library/Preferences/GoLand#{version.major_minor}",
     "~/Library/Preferences/com.jetbrains.goland.plist",
+    "~/Library/Preferences/GoLand#{version.major_minor}",
     "~/Library/Saved Application State/com.jetbrains.goland.SavedState",
   ]
 end

@@ -1,9 +1,9 @@
 cask "cleanmymac" do
-  version "4.8.4,40804.0.2105261318"
-  sha256 "5228b30ded89fbcd5458e2a27f2066dd2f726ce70ed1a4cdc6b7bc171ace51bc"
+  version "4.11.1,41101.0.2207131611"
+  sha256 "a0f7f0788f1cc2b95c218128721ffeede45feeb4a0a40fc85b96f3c72008c2c1"
 
   url "https://dl.devmate.com/com.macpaw.CleanMyMac#{version.major}/CleanMyMacX.dmg",
-      verified: "dl.devmate.com/com.macpaw.CleanMyMac"
+      verified: "dl.devmate.com/"
   name "CleanMyMac X"
   desc "Tool to remove unnecessary files and folders from disk"
   homepage "https://macpaw.com/cleanmymac"
@@ -14,13 +14,14 @@ cask "cleanmymac" do
   end
 
   auto_updates true
+  conflicts_with cask: "cleanmymac-zh"
 
   app "CleanMyMac X.app"
 
   uninstall delete:     [
-    "/Library/PrivilegedHelperTools/com.macpaw.CleanMyMac#{version.major}.Agent",
-    "/private/var/run/com.macpaw.CleanMyMac#{version.major}.Agent.socket",
-  ],
+              "/Library/LaunchDaemons/com.macpaw.CleanMyMac#{version.major}.Agent.plist",
+              "/Library/PrivilegedHelperTools/com.macpaw.CleanMyMac#{version.major}.Agent",
+            ],
             launchctl:  [
               "com.macpaw.CleanMyMac#{version.major}.Agent",
               "com.macpaw.CleanMyMac#{version.major}.HealthMonitor",
@@ -36,20 +37,23 @@ cask "cleanmymac" do
             ]
 
   zap trash: [
-    "/Users/Shared/CleanMyMac X",
     "/Users/Shared/CleanMyMac X Menu",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.macpaw.cleanmymac#{version.major}.sfl*",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.macpaw.cleanmymac#{version.major}.scheduler.sfl*",
-    "~/Library/Application Support/CleanMyMac X",
+    "/Users/Shared/CleanMyMac X",
+    "~/Library/Application Scripts/com.macpaw.CleanMyMac#{version.major}.CleanMyMacWidget",
     "~/Library/Application Support/CleanMyMac X Menu",
+    "~/Library/Application Support/CleanMyMac X",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.macpaw.cleanmymac#{version.major}.scheduler.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.macpaw.cleanmymac#{version.major}.sfl*",
     "~/Library/Caches/CleanMyMac #{version.major}",
     "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/com.macpaw.CleanMyMac#{version.major}.help*",
-    "~/Library/Caches/com.macpaw.CleanMyMac#{version.major}",
     "~/Library/Caches/com.macpaw.CleanMyMac#{version.major}.HealthMonitor",
     "~/Library/Caches/com.macpaw.CleanMyMac#{version.major}.KnowledgeBase",
     "~/Library/Caches/com.macpaw.CleanMyMac#{version.major}.Menu",
     "~/Library/Caches/com.macpaw.CleanMyMac#{version.major}.Scheduler",
     "~/Library/Caches/com.macpaw.CleanMyMac#{version.major}.Updater",
+    "~/Library/Caches/com.macpaw.CleanMyMac#{version.major}",
+    "~/Library/Containers/com.macpaw.CleanMyMac#{version.major}.CleanMyMacWidget",
+    "~/Library/Group Containers/*.com.macpaw.CleanMyMac#{version.major}",
     "~/Library/LaunchAgents/com.macpaw.CleanMyMac#{version.major}.HealthMonitor.plist",
     "~/Library/LaunchAgents/com.macpaw.CleanMyMac#{version.major}.Updater.plist",
     "~/Library/Logs/CleanMyMac #{version.major}.log",
@@ -59,8 +63,9 @@ cask "cleanmymac" do
     "~/Library/Preferences/com.macpaw.CleanMyMac#{version.major}.HealthMonitor.plist",
     "~/Library/Preferences/com.macpaw.CleanMyMac#{version.major}.KnowledgeBase.plist",
     "~/Library/Preferences/com.macpaw.cleanmymac#{version.major}.Menu.plist",
-    "~/Library/Preferences/com.macpaw.CleanMyMac#{version.major}.Scheduler.plist",
     "~/Library/Preferences/com.macpaw.CleanMyMac#{version.major}.plist",
+    "~/Library/Preferences/com.macpaw.CleanMyMac#{version.major}.Scheduler.plist",
+    "~/Library/WebKit/com.macpaw.CleanMyMac#{version.major}",
     "~/Pictures/Photos Library.photoslibrary/private/com.macpaw.CleanMyMac#{version.major}",
   ]
 end

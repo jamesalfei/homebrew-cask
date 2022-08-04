@@ -1,6 +1,6 @@
 cask "batteries" do
-  version "2.1.2"
-  sha256 "402c2c5f088dabe374c2c7a21888e1606e6d1417e08ce6c9af0f91ec31db3452"
+  version "2.2.4"
+  sha256 "72f4a54e1f65b6afd4e366a56172cb2d755adeca44c28d7b5ce8564625a82b04"
 
   url "https://github.com/ronyfadel/BatteriesReleases/releases/download/v#{version}/Batteries.dmg",
       verified: "github.com/ronyfadel/BatteriesReleases/"
@@ -13,12 +13,12 @@ cask "batteries" do
   app "Batteries.app"
 
   zap trash: [
+    "~/Library/Application Scripts/io.fadel.Batteries.BatteriesTodayExtension",
     "~/Library/Caches/io.fadel.Batteries",
     "~/Library/Caches/io.fadel.Batteries.Helper",
     "~/Library/Containers/io.fadel.Batteries.BatteriesTodayExtension",
+    "~/Library/Group Containers/KUC6B4JW25.io.fadel.Batteries",
     "~/Library/Preferences/io.fadel.Batteries.Helper.plist",
     "~/Library/Preferences/io.fadel.Batteries.plist",
-    "~/Library/Group Containers/KUC6B4JW25.io.fadel.Batteries",
-    "~/Library/Application Scripts/io.fadel.Batteries.BatteriesTodayExtension",
   ]
 end

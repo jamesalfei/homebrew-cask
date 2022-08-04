@@ -1,11 +1,11 @@
 cask "clocker" do
-  version "21.03.01"
-  sha256 "0644d6f5873a332e43e67a1aa8ca84fe98d9e7975b08dd58b0e06b8017a85455"
+  version "22.06"
+  sha256 "683ab58e3d4636a5200c3a31982185abe02adedc60fc07ddc7dfd30db8a5acba"
 
-  url "https://github.com/n0shake/Clocker/releases/download/v#{version}/Clocker.app.zip",
+  url "https://github.com/n0shake/Clocker/releases/download/#{version}/Clocker.zip",
       verified: "github.com/n0shake/Clocker/"
   name "Clocker"
-  desc "Track timezones from your menubar"
+  desc "Menu bar timezone tracker and compact calendar"
   homepage "https://abhishekbanthia.com/clocker"
 
   app "Clocker.app"

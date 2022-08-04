@@ -1,6 +1,6 @@
 cask "qt-creator" do
-  version "4.15.0"
-  sha256 "94d5e2a85d68beae77d3026b562fd30fff9a928b0b7889f58d0a31121e16c7c5"
+  version "8.0.0"
+  sha256 "dfc398a4406bc936da123312a12fde4beb121f8e985fd1ddb96b3c9c251ab957"
 
   url "https://download.qt.io/official_releases/qtcreator/#{version.major_minor}/#{version}/qt-creator-opensource-mac-x86_64-#{version}.dmg"
   name "Qt Creator"
@@ -22,7 +22,7 @@ cask "qt-creator" do
         next if versions.blank?
 
         versions
-      end.reject(&:nil?).first
+      end.compact_blank.first
     end
   end
 

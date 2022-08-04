@@ -6,11 +6,11 @@ cask "itsycal" do
     version "0.11.17"
     sha256 "fda1ba5611deaf4d5b834118b3af37ea9c5d08d1f8c813d04e7dd0552a270e11"
   else
-    version "0.12.6,2052"
-    sha256 "ff9f219d67813dcc27b85c1fefa934725bf857f4c77a52ecde15739ba2d39fb6"
+    version "0.13.2,2203"
+    sha256 "4dc971e5275e5eda8d4c48c5c7cbab3483c5c64ef2873f162aad002524c69c9c"
   end
 
-  url "https://itsycal.s3.amazonaws.com/Itsycal-#{version.before_comma}.zip",
+  url "https://itsycal.s3.amazonaws.com/Itsycal-#{version.csv.first}.zip",
       verified: "itsycal.s3.amazonaws.com/"
   name "Itsycal"
   desc "Menu bar calendar"

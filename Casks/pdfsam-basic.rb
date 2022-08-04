@@ -1,11 +1,11 @@
 cask "pdfsam-basic" do
-  version "4.2.5"
-  sha256 "9ea8365d5df0205cddc08363d21032d9110b03b8eac89d2242578efe1e52d1cc"
+  version "4.3.3"
+  sha256 "0f2dfcab1fefce5579ffbac035cef220c97840d0c6d494c6e7e4d88f08d1d3ff"
 
   url "https://github.com/torakiki/pdfsam/releases/download/v#{version}/PDFsam-#{version}.dmg",
       verified: "github.com/torakiki/pdfsam/"
   name "PDFsam Basic"
-  desc "Extractas pages, splits, merges, mixes and rotates PDF files"
+  desc "Extracts pages, splits, merges, mixes and rotates PDF files"
   homepage "https://pdfsam.org/"
 
   app "PDFsam Basic.app"

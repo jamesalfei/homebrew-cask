@@ -8,26 +8,25 @@ cask "mysqlworkbench" do
     sha256 "3478800290e2797d294e3721fdaea4c41ddc1917f2b59ec94a935e16c18dc5d2"
     url "https://downloads.mysql.com/archives/get/p/#{version.major}/file/mysql-workbench-community-#{version}-macos-x86_64.dmg"
   elsif MacOS.version <= :mojave
-    version "8.0.22"
-    sha256 "4e27de82d869043cf80e803f1a57cc041a91cabddf0aa6a6c054d68af1837d48"
+    version "8.0.21"
+    sha256 "7d812551cc1cc38e1d5f588e6c91b07f1778c78a04bfe94dafac3a23ea425e88"
     url "https://downloads.mysql.com/archives/get/p/#{version.major}/file/mysql-workbench-community-#{version}-macos-x86_64.dmg"
   elsif MacOS.version <= :catalina
-    version "8.0.23"
-    sha256 "4c8664f5686a449a9760bda9b85d7e8c6beb1367d35f668048ffe534652da7b3"
+    version "8.0.22"
+    sha256 "4e27de82d869043cf80e803f1a57cc041a91cabddf0aa6a6c054d68af1837d48"
     url "https://downloads.mysql.com/archives/get/p/#{version.major}/file/mysql-workbench-community-#{version}-macos-x86_64.dmg"
 
     livecheck do
       skip "newer versions only available for Big Sur or higher"
     end
   else
-    version "8.0.25"
-    sha256 "8da15d32d0c3cc8d43e49f8d3580ddec0d8dcd718153da7c934acf26f83ea0c5"
+    version "8.0.30"
+    sha256 "5a71b8c859fbfdbcfc2df1a2a40824e28e12b0b41ff8929fa0b3bcbd24f00774"
     url "https://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-#{version}-macos-x86_64.dmg"
 
     livecheck do
       url "https://dev.mysql.com/downloads/workbench/"
-      strategy :page_match
-      regex(/MySQL\s*Workbench\s*(\d+(?:\.\d+)*)/i)
+      regex(/MySQL\s*Workbench\s*(\d+(?:\.\d+)+)/i)
     end
   end
 

@@ -1,12 +1,18 @@
 cask "sunloginclient" do
-  version "11.0.0.34335"
-  sha256 "1fb36df640cc789bb89be8877c7add77af3ce565197740d56f39c6057229a9d7"
+  version "12.5.1.46673"
+  sha256 "bee6c4dd52c1d300b012bce1b70cc3bcce29c0feccdfb57ba6cb248e4433468f"
 
-  url "https://dl-cdn.oray.com/sunlogin/mac/SunloginClient_#{version}.dmg"
-  name "Sunlogin X"
-  name "向日葵 X"
+  url "https://down.oray.com/sunlogin/mac/SunloginClient#{version}.dmg"
+  name "Sunlogin Client"
+  name "向日葵个人版"
   desc "Remote desktop control and monitoring tool"
   homepage "https://sunlogin.oray.com/"
+
+  livecheck do
+    url "https://sunlogin.oray.com/zh_CN/download/download?id=89"
+    strategy :header_match
+    regex(/SunloginClient[._-]?(\d+(?:\.\d+)+)\.dmg/i)
+  end
 
   pkg "SunloginClient.pkg"
 

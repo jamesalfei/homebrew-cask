@@ -1,8 +1,15 @@
 cask "bitcoin-core" do
-  version "0.21.1"
-  sha256 "2df15131cd18fd1941adc26f014012b437ccaadab39f1f5dc10282a68e8f9923"
+  arch = Hardware::CPU.intel? ? "x86_64" : "arm64"
 
-  url "https://bitcoincore.org/bin/bitcoin-core-#{version}/bitcoin-#{version}-osx.dmg"
+  version "23.0"
+
+  if Hardware::CPU.intel?
+    sha256 "52eefbaf8cfd292822e470a48a51e1eb51081d43a0a16db7441f34a017ff6097"
+  else
+    sha256 "a3059280451d17a77d2260e4671c884be93a14dbff6b6cd19a3c9c8c54421e97"
+  end
+
+  url "https://bitcoincore.org/bin/bitcoin-core-#{version}/bitcoin-#{version}-#{arch}-apple-darwin.dmg"
   name "Bitcoin Core"
   desc "Bitcoin client and wallet"
   homepage "https://bitcoincore.org/"

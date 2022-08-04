@@ -1,16 +1,21 @@
 cask "publii" do
-  version "0.38.2"
-  sha256 "2c66402946c96ac14c805c4738775208fbde257185427355f17061298082a07c"
+  arch = Hardware::CPU.intel? ? "intel" : "apple-silicon"
+  version "0.40.2"
 
-  url "https://cdn.getpublii.com/Publii-#{version}.dmg"
+  if Hardware::CPU.intel?
+    sha256 "c5826a1e570ca626df913d72b70a55b5df745a6801991fa2f3707fb68a43cf80"
+  else
+    sha256 "eeb32bfd07375bbc5227e6c0e04268683411eaf19583bba75c0a2114fddc04f2"
+  end
+
+  url "https://cdn.getpublii.com/Publii-#{version}-#{arch}.dmg"
   name "Publii"
   desc "Static website generator"
   homepage "https://getpublii.com/"
 
   livecheck do
     url "https://getpublii.com/download/"
-    strategy :page_match
-    regex(%r{href=.*?/Publii-(\d+(?:\.\d+)*)\.dmg}i)
+    regex(/href=.*?Publii[._-]v?(\d+(?:\.\d+)+)(?:[._-]#{arch})?\.dmg/i)
   end
 
   app "Publii.app"

@@ -1,6 +1,6 @@
 cask "visualvm" do
-  version "2.0.7"
-  sha256 "50352c34f76ea7ab9368d2e381b499bfbe7f9d8ba96feb49ad436e33084647cc"
+  version "2.1.4"
+  sha256 "699908db22c09378a27e03587c1d8b51e1c0138e0df3dcba823a66950b9f664d"
 
   url "https://github.com/oracle/visualvm/releases/download/#{version}/VisualVM_#{version.no_dots}.dmg",
       verified: "github.com/oracle/visualvm/"

@@ -1,8 +1,9 @@
 cask "protonmail-bridge" do
-  version "1.8.3"
-  sha256 :no_check
+  version "2.1.3"
+  sha256 "a23c55657f81da6cc2d3f7d7b5fa4e31e035e80f60c08b1d9aecdecce20b11ca"
 
-  url "https://protonmail.com/download/Bridge-Installer.dmg"
+  url "https://github.com/ProtonMail/proton-bridge/releases/download/v#{version}/Bridge-Installer.dmg",
+      verified: "github.com/ProtonMail/proton-bridge/"
   name "ProtonMail Bridge"
   desc "Bridges ProtonMail to email clients supporting IMAP and SMTP protocols"
   homepage "https://protonmail.com/bridge/"

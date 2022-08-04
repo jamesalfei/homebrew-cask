@@ -1,8 +1,8 @@
 cask "specter" do
-  version "1.4.0"
-  sha256 "952434ccb20b9d86640f0bffd1b8b63e51ca5c570749978fc792fe6611226b2f"
+  version "1.10.5"
+  sha256 "03f393dc129a8b23e8eeaef7abdc9b80b6542f053ec8e7f4da7930b3470b1f46"
 
-  url "https://github.com/cryptoadvance/specter-desktop/releases/download/v#{version}/SpecterDesktop-v#{version}.dmg",
+  url "https://github.com/cryptoadvance/specter-desktop/releases/download/v#{version}/Specter-v#{version}.dmg",
       verified: "github.com/cryptoadvance/specter-desktop/"
   name "Specter"
   desc "Desktop GUI for Bitcoin Core optimised to work with hardware wallets"
@@ -12,6 +12,8 @@ cask "specter" do
     url :url
     strategy :github_latest
   end
+
+  depends_on macos: ">= :catalina"
 
   app "Specter.app"
 

@@ -1,12 +1,23 @@
 cask "dupeguru" do
-  version "4.0.3"
-  sha256 "805fa0e2ddf57ac7d7e79cebe893a3a505f24c28500a204d22eb2b6d3d889454"
+  version "4.3.1"
+  sha256 "eb8583f1a678325ac263e59c81144b021cac323ceb2743454a8eec2c20c21a7a"
 
-  url "https://github.com/arsenetar/dupeguru/releases/download/#{version}/dupeguru_osx_#{version.dots_to_underscores}.dmg",
+  url "https://github.com/arsenetar/dupeguru/releases/download/#{version}/dupeguru_macOS_Qt_#{version}.zip",
       verified: "github.com/arsenetar/dupeguru/"
   name "dupeGuru"
   desc "Finds duplicate files in a computer system"
   homepage "https://dupeguru.voltaicideas.net/"
 
-  app "dupeGuru.app"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  app "dupeguru.app"
+
+  zap trash: [
+    "~/Library/Application Support/dupeGuru",
+    "~/Library/Preferences/com.hardcoded-software.dupeguru.plist",
+    "~/Library/Saved Application State/com.hardcoded-software.dupeguru.savedState",
+  ]
 end

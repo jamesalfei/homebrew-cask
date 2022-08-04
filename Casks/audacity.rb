@@ -1,12 +1,17 @@
 cask "audacity" do
-  version "3.0.2"
-  sha256 "57895aad20a5512aeb44d1ab5b7d01a68a5303d4225351528f377eb7686f281e"
+  version "3.1.3"
+  sha256 "0e940c1c31213ea3c8c3cd3d56e893f74a595b3bae29456827f6c34173eabb1b"
 
-  url "https://github.com/audacity/audacity/releases/download/Audacity-#{version}/audacity-macos-#{version}.dmg",
+  url "https://github.com/audacity/audacity/releases/download/Audacity-#{version}/audacity-macos-#{version}-Intel.dmg",
       verified: "github.com/audacity/audacity/"
   name "Audacity"
   desc "Multi-track audio editor and recorder"
   homepage "https://www.audacityteam.org/"
+
+  livecheck do
+    url :url
+    regex(/^Audacity[._-]v?(\d+(?:\.\d+)+)$/i)
+  end
 
   app "Audacity.app"
 

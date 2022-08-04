@@ -1,5 +1,5 @@
 cask "sync" do
-  version "2.0.15"
+  version "2.1.2"
   sha256 :no_check
 
   url "https://www.sync.com/download/apple/Sync.dmg"
@@ -9,8 +9,7 @@ cask "sync" do
 
   livecheck do
     url "https://www.sync.com/install/"
-    strategy :page_match
-    regex(/(\d+(?:\.\d+)*)\n.*release\s*notes/i)
+    regex(/(\d+(?:\.\d+)+)\n.*release\s*notes/i)
   end
 
   app "Sync.app"

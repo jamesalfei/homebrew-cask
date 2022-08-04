@@ -1,6 +1,6 @@
 cask "bluej" do
-  version "5.0.1"
-  sha256 "94dbfb5ca4da48bf0cfd2b5679fb36be432161b4fabc00376f05e992bdfe2f63"
+  version "5.0.3"
+  sha256 "54a6cb9c2013529c3526d42b797004d6e9330d67eb05bde82da2db74606c4ab5"
 
   url "https://www.bluej.org/download/files/BlueJ-mac-#{version.no_dots}.zip"
   name "BlueJ"
@@ -10,10 +10,15 @@ cask "bluej" do
   livecheck do
     url "https://www.bluej.org"
     strategy :page_match do |page|
-      match = page.match(%r{href=.*?/BlueJ-mac-(\d+)(\d+)(\d+)\.zip}i)
-      "#{match[1]}.#{match[2]}.#{match[3]}"
+      match = page.match(%r{href=.*?/BlueJ-mac-(\d+)(\d+)(\d+)(a)?\.zip}i)
+      next if match.blank?
+
+      "#{match[1]}.#{match[2]}.#{match[3]}" unless match[4]
+      "#{match[1]}.#{match[2]}.#{match[3]}#{match[4]}"
     end
   end
 
   app "BlueJ #{version}/BlueJ.app"
+
+  zap trash: "~/Library/Preferences/org.bluej"
 end

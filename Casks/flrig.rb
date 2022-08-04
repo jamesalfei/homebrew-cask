@@ -1,8 +1,14 @@
 cask "flrig" do
-  version "1.3.54"
-  sha256 "76e4fc5dd3f83dd4e91462ec706be0397be45a92f9f51fe3a7444b7c72c301c5"
+  version "1.4.7"
 
-  url "https://downloads.sourceforge.net/fldigi/fldigi/flrig-#{version}_x86_64.dmg"
+  if MacOS.version <= :catalina
+    sha256 "aacbef604d070d16493f0b22d9a02772314fe25fd8131b19604ae5621a1d9211"
+    url "https://downloads.sourceforge.net/fldigi/fldigi/flrig-#{version}_HS.dmg"
+  else
+    sha256 "e83e95e004778b66ea9079d608cda009c1996a0ac975a4258fcd68ae0d23479b"
+    url "https://downloads.sourceforge.net/fldigi/fldigi/flrig-#{version}_BS.dmg"
+  end
+
   name "flrig"
   desc "Ham radio rig control"
   homepage "https://sourceforge.net/projects/fldigi/files/flrig/"
@@ -10,7 +16,7 @@ cask "flrig" do
   livecheck do
     url "https://sourceforge.net/projects/fldigi/rss?path=/flrig"
     strategy :page_match
-    regex(/flrig-(\d+(?:\.\d+)*)_x86_64\.dmg/i)
+    regex(/flrig[._-]v?(\d+(?:\.\d+)+)\w*\.dmg/i)
   end
 
   app "flrig.app"

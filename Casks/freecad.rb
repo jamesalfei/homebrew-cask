@@ -1,21 +1,16 @@
 cask "freecad" do
-  version "0.19.2,24291"
-  sha256 :no_check # required as upstream package is updated in-place
+  version "0.20.0"
+  sha256 "fc62c10c408a00ed9c5c688f559464e4831f2a8aec6c9c374a024ba188f0e0af"
 
-  url "https://github.com/FreeCAD/FreeCAD/releases/download/#{version.before_comma}/FreeCAD_#{version.major_minor}-#{version.after_comma}-macOS-x86_64-conda.dmg",
+  url "https://github.com/FreeCAD/FreeCAD/releases/download/#{version.major_minor}/FreeCAD-#{version}-OSX-i386.dmg",
       verified: "github.com/FreeCAD/FreeCAD/"
   name "FreeCAD"
   desc "3D parametric modeler"
   homepage "https://www.freecadweb.org/"
 
   livecheck do
-    url "https://github.com/FreeCAD/FreeCAD/releases"
-    strategy :page_match do |page|
-      match = page.match(
-        %r{href=.*?/(\d+(?:\.\d+)*)/FreeCAD_(?:\d+(?:\.\d+)*)-(\d+(?:-rev\d+)?)-macOS-x86_64-conda\.dmg}i,
-      )
-      "#{match[1]},#{match[2]}"
-    end
+    url "https://www.freecadweb.org/downloads.php"
+    regex(/href=.*?FreeCAD[._-]v?(\d+(?:\.\d+)+)-OSX-i386\.dmg/i)
   end
 
   conflicts_with cask: "homebrew/cask-versions/freecad-pre"

@@ -1,17 +1,18 @@
 cask "eudic" do
-  version "4.0.2,1051"
-  sha256 "ca8a9de73f9d856ed7bf67e9576a597dc29710b28d195358d4164467f221ca15"
+  version "4.2.1,1071"
+  sha256 :no_check
 
-  url "https://static.frdic.com/pkg/eudicmac.dmg?v=#{version.after_comma}",
+  url "https://static.frdic.com/pkg/eudicmac.dmg",
       verified:   "static.frdic.com/",
       user_agent: :fake
   name "Eudic"
   name "欧路词典"
+  desc "European dictionary"
   homepage "https://www.eudic.net/v4/en/app/eudic"
 
   livecheck do
-    url "https://www.eudic.net/update/eudic_mac.xml"
-    strategy :sparkle
+    url :url
+    strategy :extract_plist
   end
 
   app "Eudic.app"
@@ -26,6 +27,7 @@ cask "eudic" do
     "~/Library/Application Support/com.eusoft.eudic",
     "~/Library/Caches/com.eusoft.eudic",
     "~/Library/Caches/com.eusoft.eudic.LightPeek",
+    "~/Library/Containers/com.eusoft.eudic.QuickLook",
     "~/Library/Eudb_en",
     "~/Library/Preferences/com.eusoft.eudic.plist",
     "~/Library/Preferences/com.eusoft.eudic.LightPeek.plist",

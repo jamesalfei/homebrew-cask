@@ -1,6 +1,6 @@
 cask "katalon-studio" do
-  version "8.0.1"
-  sha256 "4442d734730aa37f59a466e51bfc3ab805373a70220fcf18b690df9ce197a216"
+  version "8.4.0"
+  sha256 "9a8e3e2184f4523220ac7c0a8088bce660120e869bee9834db71072dfa008907"
 
   url "https://download.katalon.com/#{version}/Katalon%20Studio.dmg"
   name "Katalon Studio"
@@ -9,8 +9,14 @@ cask "katalon-studio" do
 
   livecheck do
     url "https://github.com/katalon-studio/katalon-studio"
-    regex(/^v?(\d+(?:\.\d+)*)$/i)
+    strategy :github_latest
   end
 
   app "Katalon Studio.app"
+
+  zap trash: [
+    "~/.katalon",
+    "~/Library/Preferences/com.kms.katalon.product.product.plist",
+    "~/Library/Saved Application State/com.kms.katalon.product.product.savedState",
+  ]
 end

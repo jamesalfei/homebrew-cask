@@ -1,8 +1,15 @@
 cask "vscodium" do
-  version "1.56.2"
-  sha256 "5dc85ef87f943142e1233eb1933d3fa235dedeed93ccc04e7a04afe220e01117"
+  arch = Hardware::CPU.intel? ? "x64" : "arm64"
 
-  url "https://github.com/VSCodium/vscodium/releases/download/#{version}/VSCodium.x64.#{version}.dmg"
+  version "1.69.2"
+
+  if Hardware::CPU.intel?
+    sha256 "c77aa39d405ee627dbd671a0514eb97bf7aae9206fee113c9253c552719ef0d2"
+  else
+    sha256 "5ba6bbbb5e89a8ffc0100913493fc525278eafa7431fafcff33cc7fe2e16de09"
+  end
+
+  url "https://github.com/VSCodium/vscodium/releases/download/#{version}/VSCodium.#{arch}.#{version}.dmg"
   name "VSCodium"
   desc "Binary releases of VS Code without MS branding/telemetry/licensing"
   homepage "https://github.com/VSCodium/vscodium"
@@ -13,12 +20,12 @@ cask "vscodium" do
   binary "#{appdir}/VSCodium.app/Contents/Resources/app/bin/codium"
 
   zap trash: [
-    "~/Library/Application Support/VSCodium",
+    "~/.vscode-oss",
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.visualstudio.code.oss.sfl*",
+    "~/Library/Application Support/VSCodium",
     "~/Library/Logs/VSCodium",
     "~/Library/Preferences/com.visualstudio.code.oss.helper.plist",
     "~/Library/Preferences/com.visualstudio.code.oss.plist",
     "~/Library/Saved Application State/com.visualstudio.code.oss.savedState",
-    "~/.vscode-oss",
   ]
 end

@@ -1,6 +1,6 @@
 cask "greenfoot" do
-  version "3.6.1"
-  sha256 "9afbc077f6454d83749224cc62b5192eae96edf4d7d6beaee880712bb17e8646"
+  version "3.7.1"
+  sha256 "10e26c6a010896806a2a4c20bf9dba95b0d5f4bb1b8774c7a11998fc69d580f6"
 
   url "https://www.greenfoot.org/download/files/Greenfoot-mac-#{version.no_dots}.zip"
   name "Greenfoot"
@@ -9,8 +9,7 @@ cask "greenfoot" do
 
   livecheck do
     url "https://www.greenfoot.org/download"
-    strategy :page_match
-    regex(/Version:\s*(\d+(?:\.\d+)*)/i)
+    regex(/Version:\s*(\d+(?:\.\d+)+)/i)
   end
 
   app "Greenfoot #{version}/Greenfoot.app"

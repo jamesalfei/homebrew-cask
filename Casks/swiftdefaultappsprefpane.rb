@@ -4,7 +4,9 @@ cask "swiftdefaultappsprefpane" do
 
   url "https://github.com/Lord-Kamina/SwiftDefaultApps/releases/download/v#{version}/SwiftDefaultApps-v#{version}.zip"
   name "SwiftDefaultApps"
+  desc "Replacement for RCDefaultApps, written in Swift"
   homepage "https://github.com/Lord-Kamina/SwiftDefaultApps"
 
-  prefpane "SwiftDefaultApps.prefPane"
+  binary "swda"
+  prefpane "SwiftDefaultApps.prefpane"
 end

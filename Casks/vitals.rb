@@ -1,6 +1,6 @@
 cask "vitals" do
-  version "0.3"
-  sha256 "5618987b45cc1f77a704ccfa38f2103ea3cdf22578898451aed405f0293ffbad"
+  version "0.9"
+  sha256 "18206b666b7629bc56cf2154b001112a67cdf06222a03049ab0823d088180ed7"
 
   url "https://github.com/hmarr/vitals/releases/download/v#{version}/vitals-v#{version}.zip"
   name "Vitals"

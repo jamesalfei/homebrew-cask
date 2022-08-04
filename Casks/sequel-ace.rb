@@ -1,19 +1,19 @@
 cask "sequel-ace" do
-  version "3.3.2,3030"
-  sha256 "5bc0404b3410765e7e4318977caad824ae4e00aa6dd3b01ea9b15537a6ecfd84"
+  version "3.5.2,20033"
+  sha256 "e70f2983852e4d05f69ee7676c38ad0cb4214e3e252887cbc053ea973bd27568"
 
-  url "https://github.com/Sequel-Ace/Sequel-Ace/releases/download/production/#{version.before_comma}-#{version.after_comma}/Sequel-Ace-#{version.before_comma}.zip"
+  url "https://github.com/Sequel-Ace/Sequel-Ace/releases/download/production/#{version.csv.first}-#{version.csv.second}/Sequel-Ace-#{version.csv.first}.zip"
   name "Sequel Ace"
   desc "MySQL/MariaDB database management"
   homepage "https://github.com/Sequel-Ace/Sequel-Ace"
 
   livecheck do
     url :url
-    strategy :git do |tags|
-      tags.map do |tag|
-        match = tag.match(%r{^production/(\d+(?:\.\d+)*)-(\d+)$}i)
-        "#{match[1]},#{match[2]}" if match
-      end.compact
+    strategy :github_latest do |page|
+      match = page.match(%r{href=.*?/tag/production/v?(\d+(?:\.\d+)+)-(\d+)["' >]}i)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]}"
     end
   end
 

@@ -1,6 +1,6 @@
 cask "sipgate-softphone" do
-  version "1.16.2"
-  sha256 "3e0add0ef764dab7994e78f55dd97292b931dc2e46e332184a911898f64088ce"
+  version "1.17.3"
+  sha256 "67b83049e46a253adcc7af627e2654ba805a2ca3b61fb605fc7934e4a2a2d7ef"
 
   url "https://sipgate-desktop-app-dev.s3.amazonaws.com/sipgate-softphone-#{version}.dmg",
       verified: "sipgate-desktop-app-dev.s3.amazonaws.com/"
@@ -18,6 +18,5 @@ cask "sipgate-softphone" do
   zap trash: [
     "~/Library/Saved Application State/com.sipgate.desktop.savedState",
     "~/Library/Preferences/com.sipgate.desktop.plist",
-    "~/Library/Saved Application State/com.sipgate.desktop.savedState",
   ]
 end

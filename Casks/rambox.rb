@@ -1,12 +1,14 @@
 cask "rambox" do
-  version "0.7.7"
-  sha256 "b73accdc18e20b285dbf280d9db539cfdd8ccffa0ab4ccddc26bd596ab56a8df"
+  version "2.0.6"
+  sha256 "fe88e03035fa02c3cf74e2b3a752cff2df5a3fdeaed0e3587abdc928b60962fc"
 
-  url "https://github.com/ramboxapp/community-edition/releases/download/#{version}/Rambox-#{version}-mac.zip",
-      verified: "github.com/ramboxapp/community-edition/"
+  url "https://github.com/ramboxapp/download/releases/download/v#{version}/Rambox-#{version}-mac.zip",
+      verified: "github.com/ramboxapp/download/"
   name "Rambox"
   desc "Free and Open Source messaging and emailing app"
   homepage "https://rambox.pro/"
+
+  conflicts_with cask: "homebrew/cask-versions/rambox-ce"
 
   app "Rambox.app"
 
@@ -14,8 +16,8 @@ cask "rambox" do
     "~/Library/Application Support/CrashReporter/Rambox Helper_*.plist",
     "~/Library/Application Support/CrashReporter/Rambox_*.plist",
     "~/Library/Application Support/Rambox",
-    "~/Library/Caches/com.grupovrs.ramboxce",
     "~/Library/Caches/com.grupovrs.ramboxce.ShipIt",
+    "~/Library/Caches/com.grupovrs.ramboxce",
     "~/Library/Caches/com.saenzramiro.rambox",
     "~/Library/Logs/Rambox",
     "~/Library/Preferences/ByHost/com.grupovrs.ramboxce.ShipIt.*.plist",

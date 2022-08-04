@@ -1,12 +1,16 @@
 cask "understand" do
-  version "6.0.1063"
-  sha256 "542cbef81f846767105d6e971cff226087b34f938f60267cc5ad65a0bed5a99c"
+  version "6.2.1112"
+  sha256 "06355f4b47efea9930822358eb919b6214829d7c6c575e76eaa397becf8bb99e"
 
-  url "http://builds.scitools.com/all_builds/b#{version.patch}/Understand/Understand-#{version}-MacOSX-x86.dmg"
-  appcast "https://licensing.scitools.com/download/getChecksums/Understand/#{version.patch}"
+  url "https://latest.scitools.com/Understand/Understand-#{version}-MacOSX-x86.dmg"
   name "SciTools Understand"
   desc "Code visualization and exploration tool"
   homepage "https://scitools.com/features/"
+
+  livecheck do
+    url "https://licensing.scitools.com/download/thanks/MacOSX-x86.dmg"
+    regex(/Understand[._-]v?(\d+(?:\.\d+)+)[._-]MacOSX[._-]x86\.dmg/i)
+  end
 
   app "Understand.app"
 end

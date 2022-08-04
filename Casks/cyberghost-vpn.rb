@@ -1,14 +1,14 @@
 cask "cyberghost-vpn" do
-  version "7.1.0.92"
-  sha256 "70cd118a860cd0504a29dfb3f45245c4c62777063f0c7280b22c7727cd205799"
+  version "8.3.7,160"
+  sha256 "79fabc0908a2edfae07a1c29f874c40c9be3727db3ef6e7c68615f7ac3ef6a4b"
 
-  url "https://download.cyberghostvpn.com/mac/updates/v#{version.major}/cg#{version.major}mac_#{version}.dmg"
+  url "https://download.cyberghostvpn.com/mac/updates/v7/CyberGhost-#{version.csv.first}.#{version.csv.second}.dmg"
   name "CyberGhost"
   desc "VPN client"
   homepage "https://www.cyberghostvpn.com/"
 
   livecheck do
-    url "https://download.cyberghostvpn.com/mac/updates/v#{version.major}/cyberghost_mac_update.inf"
+    url "https://download.cyberghostvpn.com/mac/updates/v7/cyberghost_mac_update_v3.inf"
     strategy :sparkle
   end
 

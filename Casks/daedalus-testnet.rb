@@ -1,8 +1,8 @@
 cask "daedalus-testnet" do
-  version "4.0.5,17596"
-  sha256 "95be61247ea760eb7961ed6d3c13d22ec7a84271a53b2381e64a1c6b4426f55e"
+  version "4.12.0,22058"
+  sha256 "afe54c0a371445dbac5517c484e43434151707c08a925196c58b01d2f8984f65"
 
-  url "https://updates-cardano-testnet.s3.amazonaws.com/daedalus-#{version.before_comma}-testnet-#{version.after_comma}.pkg",
+  url "https://updates-cardano-testnet.s3.amazonaws.com/daedalus-#{version.csv.first}-testnet-#{version.csv.second}-x86_64-darwin.pkg",
       verified: "updates-cardano-testnet.s3.amazonaws.com/"
   name "Daedalus Testnet"
   desc "Cryptocurrency wallet for test ada on the Cardano Testnet blockchain"
@@ -10,10 +10,11 @@ cask "daedalus-testnet" do
 
   livecheck do
     url "https://updates-cardano-testnet.s3.amazonaws.com/daedalus-latest-version.json"
-
     strategy :page_match do |page|
-      version = page.match(/"version":"(.+?)"/)[1]
-      build = page.match(/-(\d+(?:\.\d+)*)\.pkg/)[1]
+      version = page.match(/"version":"(\d+(?:\.\d+)+)"/)[1]
+      build = page.match(/testnet-(\d+(?:\.\d+)*).*?\.pkg/)[1]
+      next if version.blank? || build.blank?
+
       "#{version},#{build}"
     end
   end
@@ -21,7 +22,7 @@ cask "daedalus-testnet" do
   auto_updates true
   depends_on macos: ">= :high_sierra"
 
-  pkg "daedalus-#{version.before_comma}-testnet-#{version.after_comma}.pkg"
+  pkg "daedalus-#{version.csv.first}-testnet-#{version.csv.second}-x86_64-darwin.pkg"
 
   uninstall pkgutil: "org.Daedalustestnet.pkg"
 

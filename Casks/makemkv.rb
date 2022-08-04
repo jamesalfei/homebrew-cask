@@ -1,6 +1,6 @@
 cask "makemkv" do
-  version "1.16.3"
-  sha256 "a62b0b22a52622e8591bf936efc26fee41787fe618f062698870e775642c00d3"
+  version "1.17.1"
+  sha256 "8bcb532b95192023fb78ec4d4c19deba8e9f525bcce21834e548b4ae3c118eb6"
 
   url "https://www.makemkv.com/download/makemkv_v#{version}_osx.dmg"
   name "MakeMKV"
@@ -9,15 +9,16 @@ cask "makemkv" do
 
   livecheck do
     url "https://www.makemkv.com/download/"
-    strategy :page_match
-    regex(%r{href=.*?/makemkv_v?(\d+(?:\.\d+)*)_osx\.dmg}i)
+    regex(%r{href=.*?/makemkv[._-]v?(\d+(?:\.\d+)+)[._-]osx\.dmg}i)
   end
 
   app "MakeMKV.app"
   binary "#{appdir}/MakeMKV.app/Contents/MacOS/makemkvcon"
 
   zap trash: [
+    "~/Library/MakeMKV",
     "~/Library/Preferences/com.makemkv.MakeMKV.plist",
     "~/Library/Saved Application State/com.makemkv.MakeMKV.savedState",
+    "~/Movies/.MakeMKV",
   ]
 end

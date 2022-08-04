@@ -1,16 +1,16 @@
 cask "coteditor" do
-  if MacOS.version <= :yosemite
-    version "3.2.8"
-    sha256 "73dd20d27b75c7b0c46242a465adb3df5b5f0b901f42c5a9a85777a57c4a17d6"
-  elsif MacOS.version <= :el_capitan
+  if MacOS.version <= :el_capitan
     version "3.5.4"
     sha256 "0b2cbf38cc531268e3691f307445e05ae5da64b48ceaf86c4d16b993c9be3e9f"
   elsif MacOS.version <= :mojave
     version "3.9.7"
     sha256 "be34d4f800e73cc8363d8b83e1b257a06176dc85d345d680149b108f51686cf2"
+  elsif MacOS.version <= :catalina
+    version "4.0.9"
+    sha256 "969e891f4a36146c317150806fee01559d177f956734595c73537affc8897e79"
   else
-    version "4.0.4"
-    sha256 "4a27e5f993cf1b661d3523a29df5ae6d0372d8dd4ea43473c776b924a3b66901"
+    version "4.3.2"
+    sha256 "abb88e86b938fea173ee458c5aa393daff6ae3dc3302fc3ed83628f322566623"
   end
 
   url "https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg",
@@ -18,6 +18,16 @@ cask "coteditor" do
   name "CotEditor"
   desc "Plain-text editor for web pages, program source codes and more"
   homepage "https://coteditor.com/"
+
+  livecheck do
+    if MacOS.version >= :big_sur
+      url :url
+      regex(%r{href=.*?/tag/v?(\d+(?:[.-]\d+)+)["' >]}i)
+      strategy :github_latest
+    else
+      skip "version is static on older macOS releases"
+    end
+  end
 
   auto_updates true
 

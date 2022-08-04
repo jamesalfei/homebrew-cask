@@ -1,5 +1,5 @@
 cask "etrecheckpro" do
-  version "6.4.4"
+  version "6.7"
   sha256 :no_check
 
   url "https://cdn.etrecheck.com/EtreCheckPro.zip"
@@ -9,9 +9,10 @@ cask "etrecheckpro" do
 
   livecheck do
     url "https://etrecheck.com/details"
-    strategy :page_match
-    regex(/Changes\sin\sEtreCheckPro\sversion\s(\d+(?:\.\d+)*)/i)
+    regex(/EtreCheckPro\sversion\s(\d+(?:\.\d+)+)/i)
   end
+
+  depends_on macos: ">= :high_sierra"
 
   app "EtreCheckPro.app"
 

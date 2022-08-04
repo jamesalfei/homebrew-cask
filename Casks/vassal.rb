@@ -1,12 +1,19 @@
 cask "vassal" do
-  version "3.5.7"
-  sha256 "6006529023d92c8bb853a473c38205d0a51a079b27c00efa51b25a70d0dec858"
+  arch = Hardware::CPU.intel? ? "x86_64" : "aarch64"
 
-  url "https://github.com/vassalengine/vassal/releases/download/#{version}/VASSAL-#{version}-macos.dmg",
+  version "3.6.7"
+
+  if Hardware::CPU.intel?
+    sha256 "d5c01584a97aaee4aef222b0f07ada24ada823a7a515a79c357084b1ecddd8a2"
+  else
+    sha256 "0b1e00f631aba7b8d79185d8e96065e32af6dae994d8461e1a3fe5f513d9f66e"
+  end
+
+  url "https://github.com/vassalengine/vassal/releases/download/#{version}/VASSAL-#{version}-macos-#{arch}.dmg",
       verified: "github.com/vassalengine/vassal/"
   name "VASSAL"
   desc "Board game engine"
-  homepage "http://www.vassalengine.org/"
+  homepage "https://www.vassalengine.org/"
 
   app "VASSAL.app"
 end

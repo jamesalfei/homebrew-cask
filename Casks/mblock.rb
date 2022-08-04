@@ -1,6 +1,6 @@
 cask "mblock" do
-  version "5.3.0"
-  sha256 "c90258346b41ff399484552fccd6a836af0cae31a113ba97063c8260b02b436d"
+  version "5.4.0"
+  sha256 "cdaae703059821efb8806ce3e6fc9b44d74c5975d67fefb0d2e626565f8d6452"
 
   url "https://dl.makeblock.com/mblock#{version.major}/darwin/V#{version}.pkg",
       verified: "dl.makeblock.com/"
@@ -10,8 +10,7 @@ cask "mblock" do
 
   livecheck do
     url "https://mblock.makeblock.com/en-us/download/"
-    strategy :page_match
-    regex(%r{href=.*?/darwin/V(\d+(?:\.\d+)*)\.pkg}i)
+    regex(/href=.*?V?(\d+(?:\.\d+)+)\.pkg/i)
   end
 
   depends_on macos: ">= :sierra"

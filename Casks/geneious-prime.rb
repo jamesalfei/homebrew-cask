@@ -1,6 +1,6 @@
 cask "geneious-prime" do
-  version "2021.1.1"
-  sha256 "556bd07e1404681ec137296c61aed896aea6b0ab6fb7fb1a326923de62c1e88a"
+  version "2022.2.1"
+  sha256 "d37a945f8f9bc998b8339207993cabbe3583fdc199ef6f4f5c5a9faf715b0426"
 
   url "https://assets.geneious.com/installers/geneious/release/Geneious_Prime_mac64_#{version.dots_to_underscores}_with_jre.dmg"
   name "Geneious Prime"
@@ -9,8 +9,7 @@ cask "geneious-prime" do
 
   livecheck do
     url "https://www.geneious.com/download/"
-    strategy :page_match
-    regex(/Prime\s*(\d+(?:\.\d+)*)/i)
+    regex(/data-version="Prime\s*(\d+(?:\.\d+)+)/i)
   end
 
   app "Geneious Prime.app"

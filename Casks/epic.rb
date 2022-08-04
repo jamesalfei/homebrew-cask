@@ -1,22 +1,22 @@
 cask "epic" do
-  version "88.0.4324.96"
+  arch = Hardware::CPU.intel? ? "" : "m1"
+
+  version "103.0.5060.53"
 
   if Hardware::CPU.intel?
-    url "https://cdn.epicbrowser.com/MacIntel/#{version.major}/epic_#{version}.dmg"
-    sha256 "1aad6e4d478e9eea2bced95c8b6b8217008a5004b6be887b54e9111bbbbacaf3"
+    sha256 "d3e352ae9cd7aa342ff8d9b89f87be9b94e7887c38ac5fb9b92e9e2089a721ba"
   else
-    url "https://cdn.epicbrowser.com/MacArm/#{version.major}/epic_#{version}.dmg"
-    sha256 "60cd26a790c06a5563d159be0b4a5b286959feecd855ac318d53840cb6022628"
+    sha256 "445d5344376c5f586350fb53ed04f7535dd48c48029e0f4a18a5b9be45995b8f"
   end
 
+  url "https://cdn.epicbrowser.com/v100/#{arch}/epic_#{version}.dmg"
   name "Epic Privacy Browser"
   desc "Private, secure web browser"
   homepage "https://www.epicbrowser.com/"
 
   livecheck do
     url "https://epicbrowser.com/thank_you.php"
-    strategy :page_match
-    regex(%r{href=.*?/epic_(\d+(?:\.\d+)*)\.dmg}i)
+    regex(%r{href=.*?/epic[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
   app "Epic.app"

@@ -1,6 +1,6 @@
 cask "prudent" do
-  version "27"
-  sha256 "3583a98db51dc39da16ec4681bdd2ecccd6b96c6b8851718de093f9e61ad338a"
+  version "29"
+  sha256 "375970eadf59bab17e8add0057ea967b0376eb1385889d5b64f84a720e4dd4cb"
 
   url "https://github.com/PrudentMe/main/releases/download/#{version}/Prudent.zip",
       verified: "github.com/PrudentMe/main/"

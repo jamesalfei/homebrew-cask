@@ -1,16 +1,16 @@
 cask "iriunwebcam" do
-  version "2.5"
-  sha256 "490ed74e962a848906eacdac7fadb576a3bfd860ad5d38a3ae40b2720cf915db"
+  version "2.7.3"
+  sha256 "d6d4f5b0a7b5cc442a3915bb21c24f617c060ffc110c6e15541c640f90fd08d7"
 
   url "https://1758658189.rsc.cdn77.org/IriunWebcam-#{version}.pkg",
       verified: "1758658189.rsc.cdn77.org/"
   name "Iriun"
+  desc "Use your phone's camera as a wireless webcam"
   homepage "https://iriun.com/"
 
   livecheck do
-    url "https://iriun.com/"
-    strategy :page_match
-    regex(%r{href=.*?/IriunWebcam-(\d+(?:\.\d+)*)\.pkg}i)
+    url :homepage
+    regex(%r{href=.*?/IriunWebcam[._-]?v?(\d+(?:\.\d+)+)\.pkg}i)
   end
 
   pkg "IriunWebcam-#{version}.pkg"

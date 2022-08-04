@@ -1,6 +1,6 @@
 cask "postico" do
-  version "1.5.17"
-  sha256 "a83e95f0b6ec6086b84ec7c97c159aaca8d2449e9fa59f5d1ee982cfd27e0143"
+  version "1.5.21"
+  sha256 "dfb11623e6539c2a5127a0dc7639baf06d62c774b195117a49b3e0eaf6f70ed6"
 
   url "https://eggerapps-downloads.s3.amazonaws.com/postico-#{version}.zip",
       verified: "eggerapps-downloads.s3.amazonaws.com/"
@@ -12,8 +12,6 @@ cask "postico" do
     url "https://eggerapps.at/postico/download/"
     strategy :header_match
   end
-
-  depends_on macos: ">= :yosemite"
 
   app "Postico.app"
 

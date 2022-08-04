@@ -1,9 +1,17 @@
 cask "eclipse-platform" do
-  version "4.19,202103031800"
-  sha256 "0b19648afda7b5773c0e5f93c1eab101662a5df6680225413e62d084c29d856e"
+  arch = Hardware::CPU.intel? ? "x86_64" : "aarch64"
 
-  url "https://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops#{version.major}/R-#{version.before_comma}-#{version.after_comma}/eclipse-SDK-#{version.before_comma}-macosx-cocoa-x86_64.dmg&r=1"
+  version "4.24,202206070700"
+
+  if Hardware::CPU.intel?
+    sha256 "b33bcf7427eb9b969093b8a6cd3e2fb7e357acbc994cbc4baa95e739ab4425cd"
+  else
+    sha256 "dd8988a3d60aedc8bc21de79bc5ef299037c0da8d23bdc367ecaf9f3799340d5"
+  end
+
+  url "https://www.eclipse.org/downloads/download.php?file=/eclipse/downloads/drops#{version.major}/R-#{version.csv.first}-#{version.csv.second}/eclipse-SDK-#{version.csv.first}-macosx-cocoa-#{arch}.dmg&r=1"
   name "Eclipse SDK"
+  desc "SDK for the Eclipse IDE"
   homepage "https://eclipse.org/"
 
   livecheck do

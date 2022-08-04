@@ -14,7 +14,7 @@ cask "musescore" do
     regex(%r{href=.*?/MuseScore-(\d+(?:\.\d+)*)\.dmg}i)
   end
 
-  depends_on macos: ">= :yosemite"
+  depends_on macos: ">= :mojave"
 
   app "MuseScore #{version.major}.app"
   # shim script (https://github.com/caskroom/homebrew-cask/issues/18809)
@@ -22,7 +22,7 @@ cask "musescore" do
   binary shimscript, target: "mscore"
 
   preflight do
-    IO.write shimscript, <<~EOS
+    File.write shimscript, <<~EOS
       #!/bin/sh
       exec '#{appdir}/MuseScore #{version.major}.app/Contents/MacOS/mscore' "$@"
     EOS

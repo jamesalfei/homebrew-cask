@@ -1,8 +1,8 @@
 cask "devutils" do
-  version "1.9.0,68"
-  sha256 "56d80cb69b08aab13e54afaf9bfff65916182e72edcbbfe2a3ab580177fa4eeb"
+  version "1.15,132"
+  sha256 "364231fe0bc2fff59608c1aeae1cfc952a86890ad3f8c4128ca400b39ed73417"
 
-  url "https://devutils.app/archives/DevUtils-#{version.before_comma}.dmg"
+  url "https://devutils.app/archives/DevUtils-#{version.csv.first}.dmg"
   name "DevUtils"
   desc "Offline toolbox for developers"
   homepage "https://devutils.app/"
@@ -11,6 +11,8 @@ cask "devutils" do
     url "https://devutils.app/archives/appcast.xml"
     strategy :sparkle
   end
+
+  depends_on macos: ">= :high_sierra"
 
   app "DevUtils.app"
 

@@ -1,5 +1,5 @@
 cask "gitup" do
-  version "1.2"
+  version "1.3.2"
   sha256 :no_check
 
   url "https://gitup-builds.s3.amazonaws.com/stable/GitUp.zip",
@@ -21,6 +21,7 @@ cask "gitup" do
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/co.gitup.mac.sfl*",
     "~/Library/Caches/co.gitup.mac",
+    "~/Library/HTTPStorages/co.gitup.mac",
     "~/Library/Preferences/co.gitup.mac.plist",
   ]
 end

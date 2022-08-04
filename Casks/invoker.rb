@@ -1,6 +1,6 @@
 cask "invoker" do
-  version "2.5.0"
-  sha256 "46c0cc2937f05b2da34f46ed2b79f413b6e955d9b004572280efb71082b717cc"
+  version "2.9.0"
+  sha256 "a78d2e38977aaa8c1d37c5af76fa60cb3dbf1b18a0bff281e5b69751c12e3acb"
 
   url "https://invokerdev.fra1.digitaloceanspaces.com/invoker/Invoker-#{version}.dmg",
       verified: "invokerdev.fra1.digitaloceanspaces.com/invoker/"

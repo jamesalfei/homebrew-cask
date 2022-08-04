@@ -1,8 +1,5 @@
 cask "deeper" do
-  if MacOS.version <= :yosemite
-    version "2.0.4"
-    sha256 "70a8ae37e6a62541a03b1b144ff92bac38585ce936b1acc12ce484416db13b8f"
-  elsif MacOS.version <= :el_capitan
+  if MacOS.version <= :el_capitan
     version "2.1.4"
     sha256 "3dc9607644872da14a0b6f20722e36d0cb6cb7ab2528f86de1cf059086cf2848"
   elsif MacOS.version <= :sierra
@@ -17,27 +14,33 @@ cask "deeper" do
   elsif MacOS.version <= :catalina
     version "2.6.0"
     sha256 "302c91c7995364bd02b71613ed440c1480d905637ba02da661cc4e53402643b3"
+  elsif MacOS.version <= :big_sur
+    version "2.7.1"
+    sha256 "e4de32606e76da69805cf3288821117efe5fb4c6e2fa6759e41dd25c6173dc5c"
   else
-    version "2.6.6"
-    sha256 "37d1bd2ff741b6f7587fc4ffc2f928fe27e9c3117649dbb524be367c61ddaa60"
+    version "2.7.8"
+    sha256 "d6e0cb3cb8248f00497fb2dcb3481f2ff71ba05f1499ea2423110e28298babbb"
   end
 
   url "https://www.titanium-software.fr/download/#{MacOS.version.to_s.delete(".")}/Deeper.dmg"
-  appcast "https://www.titanium-software.fr/en/release_deeper.html"
   name "Deeper"
   desc "Tool to enable and disable hidden functions of Finder and other apps"
   homepage "https://www.titanium-software.fr/en/deeper.html"
 
-  # Unusual case: The software will stop working, or is dangerous to run, on the next macOS release.
-  depends_on macos: [
-    :yosemite,
-    :el_capitan,
-    :sierra,
-    :high_sierra,
-    :mojave,
-    :catalina,
-    :big_sur,
-  ]
+  livecheck do
+    url :homepage
+    regex(/>\s*Deeper\s+v?(\d+(?:\.\d+)+)\s+for\s+[\w\s.-]*\s+#{MacOS.version}\s*</i)
+  end
+
+  # Unusual case: The software may stop working, or may be dangerous to run, on the latest macOS release.
+  depends_on macos: "<= :monterey"
 
   app "Deeper.app"
+
+  zap trash: [
+    "~/Library/Caches/com.apple.helpd/Generated/Deeper Help*",
+    "~/Library/Logs/Deeper.log",
+    "~/Library/Preferences/com.titanium.Deeper.plist",
+    "~/Library/Saved Application State/com.titanium.Deeper.savedState",
+  ]
 end

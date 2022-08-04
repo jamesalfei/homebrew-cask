@@ -1,17 +1,21 @@
 cask "vimr" do
-  version "0.34.0-355"
-  sha256 "e4e5db59146993fa01ad9999ff0cab9effe209c6827cf6eabe4a54a92d9f987c"
+  version "0.42.0,20220703.104316"
+  sha256 "be7aa4d205b53f3e35a9fbb37c12b099f7e35c3b9dd895824bb38ea72da6353d"
 
-  url "https://github.com/qvacua/vimr/releases/download/v#{version}/VimR-v#{version}.tar.bz2",
+  url "https://github.com/qvacua/vimr/releases/download/v#{version.csv.first}-#{version.csv.second}/VimR-v#{version.csv.first}.tar.bz2",
       verified: "github.com/qvacua/vimr/"
   name "VimR"
   desc "GUI for the Neovim text editor"
   homepage "http://vimr.org/"
 
   livecheck do
-    url :url
-    strategy :github_latest
-    regex(%r{href=.*?/VimR-v?(\d+(?:\.\d+)*-\d+)\.t}i)
+    url "https://github.com/qvacua/vimr/releases/latest"
+    strategy :page_match do |page|
+      match = page.match(/v?(\d+(?:\.\d+)+)[._-](\d+(?:\.\d+)+)/i)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]}"
+    end
   end
 
   auto_updates true
@@ -22,6 +26,7 @@ cask "vimr" do
 
   zap trash: [
     "~/Library/Caches/com.qvacua.VimR",
+    "~/Library/Preferences/com.qvacua.VimR.menuitems.plist",
     "~/Library/Preferences/com.qvacua.VimR.plist",
     "~/Library/Saved Application State/com.qvacua.VimR.savedState",
     "~/Library/WebKit/com.qvacua.VimR",

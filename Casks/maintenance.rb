@@ -1,8 +1,5 @@
 cask "maintenance" do
-  if MacOS.version <= :yosemite
-    version "2.0.7"
-    sha256 "5c926159c0610fe705b0f23b56672f1c5e46c970f92013839c772147379520f9"
-  elsif MacOS.version <= :el_capitan
+  if MacOS.version <= :el_capitan
     version "2.1.8"
     sha256 "f27f5d0736e80cd80c85dcc5390dfeb893183424fe65b32b08e280c90b22b24c"
   elsif MacOS.version <= :sierra
@@ -17,27 +14,26 @@ cask "maintenance" do
   elsif MacOS.version <= :catalina
     version "2.7.1"
     sha256 "833e658f862f0a58dc6a073c70a67bed071b835167f73fc24e80386a36bfd38b"
+  elsif MacOS.version <= :big_sur
+    version "2.8.2"
+    sha256 "e5f35a36eb1fcf46d599719c8ae2123e232f64b23a7741aaa4bf9ca3c78b76f9"
   else
-    version "2.7.6"
-    sha256 "44cd65d70b4cb59c5d117c54d9ee19ffa51465d8ac8dd436232d84bb9bba3eaf"
+    version "2.9.0"
+    sha256 "9ccf0da8469b5c26f7ed26ef7450790b611f237b61e92ac4b5c8b1b047184330"
   end
 
   url "https://www.titanium-software.fr/download/#{MacOS.version.to_s.delete(".")}/Maintenance.dmg"
-  appcast "https://www.titanium-software.fr/en/maintenance.html"
   name "Maintenance"
   desc "Operating system maintenance and cleaning utility"
   homepage "https://www.titanium-software.fr/en/maintenance.html"
 
-  # Unusual case: The software will stop working, or is dangerous to run, on the next macOS release.
-  depends_on macos: [
-    :yosemite,
-    :el_capitan,
-    :sierra,
-    :high_sierra,
-    :mojave,
-    :catalina,
-    :big_sur,
-  ]
+  livecheck do
+    url :homepage
+    regex(/>\s*Maintenance\s+v?(\d+(?:\.\d+)+)\s+for\s+[\w\s.-]*\s+#{MacOS.version}\s*</i)
+  end
+
+  # Unusual case: The software may stop working, or may be dangerous to run, on the latest macOS release.
+  depends_on macos: "<= :monterey"
 
   app "Maintenance.app"
 end

@@ -8,6 +8,7 @@
   "duplicati": "all",
   "extraterm": "all",
   "freetube": "all",
+  "ghdl": "all",
   "graphsketcher": "all",
   "haptickey": "all",
   "imagemin": "all",
@@ -21,6 +22,8 @@
   "my-budget": "all",
   "nuclear": "all",
   "pock": "all",
+  "protonmail-bridge": "all",
+  "prowlarr": "all",
   "ql-ansilove": "all",
   "profilecreator": "all",
   "qdesktop": "all",
@@ -31,5 +34,6 @@
   "steveschow-gfxcardstatus": "all",
   "themeengine": "all",
   "toggl-track": "all",
+  "universal-android-debloater": "all",
   "xit": "all"
 }

@@ -1,16 +1,15 @@
 cask "data-science-studio" do
-  version "9.0.1"
-  sha256 "51ee4eae7410e7a145d9937714f0ec991a118ca78241ed3056281571921f8292"
+  version "1.3.4"
+  sha256 "d1f96bedfd8b73d30bd1508ca7d4b0c4ea6936abdef2523563b8119b00cc58cc"
 
-  url "https://downloads.dataiku.com/public/studio/#{version}/Data%20Science%20Studio%20#{version}.dmg"
+  url "https://cdn.downloads.dataiku.com/public/launcher/macos/DataScienceStudio-#{version}-mac.zip"
   name "Dataiku Data Science Studio"
   desc "Quick experimentation and operationalization for machine learning at scale"
   homepage "https://www.dataiku.com/"
 
   livecheck do
-    url "https://www.dataiku.com/dss/trynow/mac/"
-    strategy :page_match
-    regex(%r{href=.*?/Data%20Science%20Studio%20(\d+(?:\.\d+)*)\.dmg}i)
+    url "https://cdn.downloads.dataiku.com/public/launcher/macos/latest-mac.yml"
+    strategy :electron_builder
   end
 
   app "DataScienceStudio.app"

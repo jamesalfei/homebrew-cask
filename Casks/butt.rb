@@ -1,6 +1,6 @@
 cask "butt" do
-  version "0.1.30"
-  sha256 "c5d1654c79d756f4bb13cc4d78c47b47b725acef418090ca74f24c08482f83f2"
+  version "0.1.35"
+  sha256 "d4ad589ca95c237f8295e5fad16951dd4a53d5d5b7545dab3555344d9277738f"
 
   url "https://downloads.sourceforge.net/butt/butt-#{version}.dmg",
       verified: "sourceforge.net/butt/"
@@ -9,4 +9,6 @@ cask "butt" do
   homepage "https://danielnoethen.de/butt/"
 
   app "butt.app"
+
+  zap trash: "~/.buttrc"
 end

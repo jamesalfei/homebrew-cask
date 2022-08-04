@@ -1,8 +1,8 @@
 cask "fvim" do
-  version "0.2.348,81a158c"
-  sha256 "6e5ef4c8f9b04dd65e872eef2b3e7b4444fc1f1e797aeea5bae0062b66d5dda7"
+  version "0.3.531,g119a455"
+  sha256 "505f3f3db3cb2841bb8fa3ff19c1c2796ddf4d911118d7737bc064696d6d711b"
 
-  url "https://github.com/yatli/fvim/releases/download/v#{version.before_comma}%2B#{version.after_comma}/fvim-osx.zip"
+  url "https://github.com/yatli/fvim/releases/download/v#{version.csv.first}%2B#{version.csv.second}/fvim-osx-v#{version.csv.first}+#{version.csv.second}.zip"
   name "FVim"
   desc "GUI for the Neovim text editor"
   homepage "https://github.com/yatli/fvim"
@@ -10,7 +10,9 @@ cask "fvim" do
   livecheck do
     url :url
     strategy :github_latest do |page|
-      match = page.match(%r{href=.*?/tag/v?(\d+(?:\.\d+)+)%2B([0-9a-f]+)["' >]}i)
+      match = page.match(%r{href=.*?/tag/v?(\d+(?:\.\d+)+)\+(g?\h+)["' >]}i)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end

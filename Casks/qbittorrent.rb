@@ -1,6 +1,11 @@
 cask "qbittorrent" do
-  version "4.3.5"
-  sha256 "b3e66aedd007caa684734e9d2ef9ae74e6b7477f3b7760c407db55da9ca87df5"
+  if MacOS.version <= :high_sierra
+    version "4.3.2"
+    sha256 "dd38e80710978430694c430276a6b7749ef3533cbd0271075bc9eada484ea36b"
+  else
+    version "4.4.3.1"
+    sha256 "89474c954bfa949e8b9174f087123147ce24d26c2680cd730664da6eebe1f747"
+  end
 
   url "https://downloads.sourceforge.net/qbittorrent/qbittorrent-mac/qbittorrent-#{version}/qbittorrent-#{version}.dmg",
       verified: "sourceforge.net/qbittorrent/"
@@ -11,7 +16,7 @@ cask "qbittorrent" do
   livecheck do
     url "https://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-mac"
     strategy :page_match
-    regex(/qbittorrent-(\d+(?:\.\d+)*)\.dmg/i)
+    regex(/qbittorrent-(\d+(?:\.\d+)+)\.dmg/i)
   end
 
   depends_on macos: ">= :high_sierra"

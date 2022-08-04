@@ -1,16 +1,15 @@
 cask "jetbrains-toolbox" do
-  version "1.20,1.20.8352"
+  arch = Hardware::CPU.intel? ? "" : "-arm64"
+
+  version "1.25,1.25.12627"
 
   if Hardware::CPU.intel?
-    sha256 "03ff8595b8c42397a441376502622a687c66f8281a5c3d458f0c6bee863e736c"
-
-    url "https://download.jetbrains.com/toolbox/jetbrains-toolbox-#{version.after_comma}.dmg"
+    sha256 "0f0ce719cbacfd83d10608a07795b3102a57e7fc1652864098fda599fca5323f"
   else
-    sha256 "60340a04ff154749241f61a4bbe0e8c0e9b21a43a5aa5fa401007a888e00dfcc"
-
-    url "https://download.jetbrains.com/toolbox/jetbrains-toolbox-#{version.after_comma}-arm64.dmg"
+    sha256 "e420c5660d1ff4d9d725c85a7e432f898b7030d478373e8cc6e3798f767d6191"
   end
 
+  url "https://download.jetbrains.com/toolbox/jetbrains-toolbox-#{version.csv.second}#{arch}.dmg"
   name "JetBrains Toolbox"
   desc "JetBrains tools manager"
   homepage "https://www.jetbrains.com/toolbox-app/"
@@ -25,14 +24,23 @@ cask "jetbrains-toolbox" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :mojave"
 
   app "JetBrains Toolbox.app"
 
+  uninstall signal:    ["TERM", "com.jetbrains.toolbox"],
+            launchctl: "com.jetbrains.toolbox"
+
   zap trash: [
-    "~/Library/Saved Application State/com.jetbrains.toolbox.savedState",
-    "~/Library/Logs/JetBrains/Toolbox",
-    "~/Library/Preferences/com.jetbrains.toolbox.renderer.plist",
-    "~/Library/Application Support/JetBrains/Toolbox",
-  ]
+        "~/Library/Application Support/JetBrains/Toolbox",
+        "~/Library/Caches/JetBrains/Toolbox",
+        "~/Library/Logs/JetBrains/Toolbox",
+        "~/Library/Preferences/com.jetbrains.toolbox.renderer.plist",
+        "~/Library/Saved Application State/com.jetbrains.toolbox.savedState",
+      ],
+      rmdir: [
+        "~/Library/Application Support/JetBrains",
+        "~/Library/Caches/JetBrains",
+        "~/Library/Logs/JetBrains",
+      ]
 end

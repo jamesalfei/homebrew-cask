@@ -1,23 +1,24 @@
 cask "figma" do
-  version "98.11.0"
+  arch = Hardware::CPU.intel? ? "mac" : "mac-arm"
+
+  version "116.2.4"
 
   if Hardware::CPU.intel?
-    sha256 "e9899d8dafdb752414c8fe0e070d6f81b32bc713f220618b4fc90b380e345a72"
-
-    url "https://desktop.figma.com/mac/Figma-#{version}.zip"
+    sha256 "60e3db6ef10e328577072338add87fd7a3480604ff1da82935de59557e48ad65"
   else
-    sha256 "85bf1fc63a799b46c0d8e2e041033b54537cca5ee5dcb27af3b6016f080ca7c0"
-
-    url "https://desktop.figma.com/mac-arm/Figma-#{version}.zip"
+    sha256 "4a46d7abd0237626641453b9a126727868a8c55e16eeac18b16022ec4fcecac6"
   end
 
+  url "https://desktop.figma.com/#{arch}/Figma-#{version}.zip"
   name "Figma"
   desc "Collaborative team software"
   homepage "https://www.figma.com/"
 
   livecheck do
-    url "https://desktop.figma.com/mac/RELEASE.json"
-    regex(%r{/Figma[._-]v?(\d+(?:\.\d+)+)\.zip}i)
+    url "https://desktop.figma.com/#{arch}/RELEASE.json"
+    strategy :page_match do |page|
+      JSON.parse(page)["version"]
+    end
   end
 
   auto_updates true
@@ -26,6 +27,9 @@ cask "figma" do
 
   zap trash: [
     "~/Library/Application Support/Figma",
+    "~/Library/Application Support/figma-desktop",
+    "~/Library/Caches/com.figma.Desktop",
+    "~/Library/Caches/com.figma.agent",
     "~/Library/Preferences/com.figma.Desktop.plist",
     "~/Library/Saved Application State/com.figma.Desktop.savedState",
   ]

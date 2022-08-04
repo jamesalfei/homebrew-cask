@@ -1,8 +1,8 @@
 cask "moom" do
-  version "3.2.22,3323"
-  sha256 "b62865325a02c8a5ed6ee8b0ed257e06ddcd5b08451c91aa79273f06af267187"
+  version "3.2.25,3349"
+  sha256 "93e69ccc7f69892aae30a6422fcc0bab386a562e7e14f8cad18a8ceb15650498"
 
-  url "https://manytricks.com/download/_do_not_hotlink_/moom#{version.before_comma.no_dots}.dmg"
+  url "https://manytricks.com/download/_do_not_hotlink_/moom#{version.csv.first.no_dots}.dmg"
   name "Moom"
   desc "Utility to move and zoom windows—on one display"
   homepage "https://manytricks.com/moom/"

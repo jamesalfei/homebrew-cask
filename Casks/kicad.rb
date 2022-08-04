@@ -1,33 +1,27 @@
 cask "kicad" do
-  version "5.1.10-1"
-  sha256 "ba7c6377e0a59bc38905ab1dab773a5f46c5e96af50752b7fe14699f316bd3dd"
+  version "6.0.7-1"
+  sha256 "f23dd7c823b288fc2e207869f5178a5a7451d5381f4414f226be2b1a457ac5f2"
 
-  url "https://kicad-downloads.s3.cern.ch/osx/stable/kicad-unified-#{version}-10_14.dmg",
+  url "https://kicad-downloads.s3.cern.ch/osx/stable/kicad-unified-#{version}.dmg",
       verified: "kicad-downloads.s3.cern.ch/"
-  appcast "https://kicad-downloads.s3.cern.ch/?delimiter=/&prefix=osx/stable/"
   name "KiCad"
   desc "Electronics design automation suite"
   homepage "https://kicad.org/"
 
-  depends_on macos: ">= :mojave"
+  livecheck do
+    url "https://kicad-downloads.s3.cern.ch/?delimiter=/&prefix=osx/stable/"
+    regex(/kicad-unified-(\d+(?:.\d+)*)\.dmg/i)
+  end
 
-  app "KiCad/kicad.app",            target: "KiCad/KiCad.app"
-  app "KiCad/bitmap2component.app", target: "KiCad/bitmap2component.app"
-  app "KiCad/eeschema.app",         target: "KiCad/eeschema.app"
-  app "KiCad/gerbview.app",         target: "KiCad/gerbview.app"
-  app "KiCad/pcb_calculator.app",   target: "KiCad/pcb_calculator.app"
-  app "KiCad/pcbnew.app",           target: "KiCad/pcbnew.app"
-  app "KiCad/pl_editor.app",        target: "KiCad/pl_editor.app"
-  artifact "kicad/help",            target: "/Library/Application Support/kicad/help"
-  artifact "kicad/library",         target: "/Library/Application Support/kicad/library"
-  artifact "kicad/modules",         target: "/Library/Application Support/kicad/modules"
-  artifact "kicad/share",           target: "/Library/Application Support/kicad/share"
-  artifact "kicad/template",        target: "/Library/Application Support/kicad/template"
+  depends_on macos: ">= :catalina"
 
-  uninstall rmdir: [
+  suite "KiCad"
+  artifact "demos", target: "/Library/Application Support/kicad/demos"
+
+  zap trash: [
     "/Library/Application Support/kicad",
-    "#{appdir}/KiCad",
+    "~/Library/Application Support/kicad",
+    "~/Library/Preferences/kicad",
+    "~/Library/Preferences/org.kicad-pcb.*",
   ]
-
-  zap trash: "~/Library/Preferences/kicad"
 end

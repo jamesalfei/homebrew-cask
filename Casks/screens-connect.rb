@@ -1,8 +1,8 @@
 cask "screens-connect" do
-  version "4.9.11,21630"
-  sha256 "0cbda1d6dad262486bfc646e56d60b77e0a64a61accf4c81d29e4c09fd21c037"
+  version "4.11.2,21665"
+  sha256 "7f925e941cad15cb19f4f0facf62507c96e4f4e9e3ae2f1e0d0178ce2096626b"
 
-  url "https://updates.edovia.com/com.edovia.screens.connect.mac/ScreensConnect_#{version.before_comma}b#{version.after_comma}.zip"
+  url "https://updates.edovia.com/com.edovia.screens.connect.mac/ScreensConnect_#{version.csv.first}b#{version.csv.second}.zip"
   name "Screens Connect"
   desc "Remote desktop software"
   homepage "https://edovia.com/en/screens-connect/"

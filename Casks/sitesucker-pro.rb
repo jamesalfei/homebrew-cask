@@ -3,8 +3,8 @@ cask "sitesucker-pro" do
     version "3.2.7"
     sha256 "dd61a113ad86b580e0faf97b4aa86290e038bb3e098f2d19e67fc9e194ce1a3e"
   else
-    version "4.1.1"
-    sha256 "889929b6a8631e5f2aaba4e3d5e2f3a0b7ba34c326dff45b07eb352996a52ca4"
+    version "5.0.1"
+    sha256 "ed822afadc8b0b89c0fe5e3e922fec97768ee292af72e3840cd1303e0271e517"
   end
 
   url "https://ricks-apps.com/osx/sitesucker/archive/#{version.major}.x/#{version.major_minor}.x/#{version}/SiteSucker_Pro_#{version}.dmg"
@@ -14,8 +14,7 @@ cask "sitesucker-pro" do
 
   livecheck do
     url "https://ricks-apps.com/osx/sitesucker/history.html"
-    strategy :page_match
-    regex(/Version\s*(\d+(?:\.\d+)*)/i)
+    regex(/Version\s*(\d+(?:\.\d+)+)/i)
   end
 
   auto_updates true

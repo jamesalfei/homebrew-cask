@@ -1,16 +1,22 @@
 cask "rar" do
-  version "6.0.1"
-  sha256 "a3b2646829d61d01a566d4311d292c3b33d566354689d5630fdada5ff124aab5"
+  arch = Hardware::CPU.intel? ? "x64" : "arm"
 
-  url "https://www.rarlab.com/rar/rarosx-#{version}.tar.gz"
+  version "6.12"
+
+  if Hardware::CPU.intel?
+    sha256 "f607ca12bdc313884c5a6f504fbf662a0511bf39fe04a9b2a694c986cd34bb67"
+  else
+    sha256 "491f345712a02eb26a3b424658c30652e22e2201a0c5c547fb97c25a756a264b"
+  end
+
+  url "https://www.rarlab.com/rar/rarmacos-#{arch}-#{version.no_dots}.tar.gz"
   name "RAR Archiver"
   desc "Archive manager for data compression and backups"
   homepage "https://www.rarlab.com/"
 
   livecheck do
     url "https://www.rarlab.com/download.htm"
-    strategy :page_match
-    regex(%r{href=.*?/rarosx-(\d+(:?\.\d+)*)\.tar\.gz}i)
+    regex(/>s*RAR\s+v?(\d+(:?\.\d+)+)\s+for\s+macOS/i)
   end
 
   binary "rar/rar"

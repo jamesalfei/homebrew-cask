@@ -1,8 +1,8 @@
 cask "rapidweaver" do
-  version "8.8.3,20877"
-  sha256 "ffc901685bb1e60a74ef9c6925626c96c7867b613199f2b6d234e2f847d0b4d9"
+  version "8.9.3,20888"
+  sha256 "cf739d2819de327ca77946d2348735aaad72451d85683f1facb606325e8cf740"
 
-  url "https://github.com/realmacsoftware/RapidWeaver#{version.major}-releases/releases/download/#{version.before_comma}-%28#{version.after_comma}%29/RapidWeaver#{version.major}.zip",
+  url "https://github.com/realmacsoftware/RapidWeaver#{version.major}-releases/releases/download/#{version.csv.first}-%28#{version.csv.second}%29/RapidWeaver#{version.major}.zip",
       verified: "github.com/realmacsoftware/"
   name "RapidWeaver"
   desc "Web design software"

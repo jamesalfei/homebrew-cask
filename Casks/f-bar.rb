@@ -3,24 +3,22 @@ cask "f-bar" do
     version "3.1.1"
     sha256 "dd2cbcc8bfb9244cf952d29354f6cd7f442472ca4ed8a11063c006c9f83b07af"
   else
-    version "5.0.2"
-    sha256 "e3d7ae33185c12a65c377f43ad277b9f1ccc8544dfa74ff26da598749d1a4aec"
+    version "5.0.5"
+    sha256 "2fb891afa0086310fa180d3b40585e1c9763b392f06ad5237995ea7d02aaf8af"
   end
 
   url "https://apps.eastwest.se/fbar/updates/F-Bar_#{version}.zip",
-      verified:   "apps.eastwest.se/",
-      user_agent: :fake
+      verified: "apps.eastwest.se/fbar/"
   name "F-Bar"
   desc "Manage Laravel Forge servers from the menubar"
   homepage "https://laravel-forge-menubar.com/"
 
   livecheck do
-    url "https://apps.eastwest.se/fbar/updates/FBarAppcast.xml"
-    strategy :sparkle, &:short_version
+    url "https://eastwest.se/apps/fbar/download"
+    strategy :header_match
   end
 
   auto_updates true
-  depends_on macos: ">= :yosemite"
 
   app "F-Bar.app"
 

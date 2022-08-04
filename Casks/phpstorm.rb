@@ -1,16 +1,15 @@
 cask "phpstorm" do
-  version "2021.1.3,211.7442.50"
+  arch = Hardware::CPU.intel? ? "" : "-aarch64"
+
+  version "2022.2,222.3345.135"
 
   if Hardware::CPU.intel?
-    sha256 "88df5e4b0933f3795c010bd230cc5f1778fbd432d626981e8d0627886593694e"
-
-    url "https://download.jetbrains.com/webide/PhpStorm-#{version.before_comma}.dmg"
+    sha256 "f12241941a3076f22bb49193829c4412d45b20520a0617c0ee9bf8d94dca4575"
   else
-    sha256 "ded8a97c43dcac8668063059e51537fd8d7a65438ea9e8d07af53afaf48ad6d4"
-
-    url "https://download.jetbrains.com/webide/PhpStorm-#{version.before_comma}-aarch64.dmg"
+    sha256 "797888d4da4c63b89700cede2200808d715597d5fa6cac498d137c367f9192e3"
   end
 
+  url "https://download.jetbrains.com/webide/PhpStorm-#{version.csv.first}#{arch}.dmg"
   name "JetBrains PhpStorm"
   desc "PHP IDE by JetBrains"
   homepage "https://www.jetbrains.com/phpstorm/"
@@ -31,7 +30,7 @@ cask "phpstorm" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "pstorm") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -42,7 +41,7 @@ cask "phpstorm" do
     "~/Library/Application Support/PhpStorm#{version.major_minor}",
     "~/Library/Caches/PhpStorm#{version.major_minor}",
     "~/Library/Logs/PhpStorm#{version.major_minor}",
-    "~/Library/Preferences/PhpStorm#{version.major_minor}",
     "~/Library/Preferences/jetbrains.phpstorm.*.plist",
+    "~/Library/Preferences/PhpStorm#{version.major_minor}",
   ]
 end

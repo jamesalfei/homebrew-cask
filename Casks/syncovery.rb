@@ -1,35 +1,33 @@
 cask "syncovery" do
-  version "9.35b"
+  arch = Hardware::CPU.intel? ? "" : "-Apple"
+
+  version "9.47w"
 
   if Hardware::CPU.intel?
-    sha256 "8544d3589cde2632f572da258a2c8546589d1880256126ca2e322e77c870bed8"
-
-    url "https://www.syncovery.com/release/SyncoveryMac#{version}.dmg"
+    sha256 "51dde7d0d28d90167eea9696a021a7adc153c6b730678b9a11bbd4b05f129ac0"
   else
-    sha256 "79460fa75954fd56280e6132535ade23f81d61538b3ad3d34c6de613e9e1899d"
-
-    url "https://www.syncovery.com/release/SyncoveryMac#{version}-Apple.dmg"
+    sha256 "402861d78da8902888f1bedaaa790bf0d2e10876c1fd060854f096a8fda02427"
   end
 
+  url "https://www.syncovery.com/release/SyncoveryMac#{version}#{arch}.dmg"
   name "Syncovery"
   desc "File synchronization and backup software"
   homepage "https://www.syncovery.com/"
 
   livecheck do
     url "https://www.syncovery.com/download/mac/"
-    strategy :page_match
-    regex(%r{href=.*?/SyncoveryMac(\d+(?:\.\d+)*[a-z]?)\.dmg}i)
+    regex(%r{href=.*?/SyncoveryMac[._-]?v?(\d+(?:\.\d+)+[a-z]?)#{arch}\.dmg}i)
   end
 
   pkg "SyncoveryMac (double-click to install).pkg"
 
   uninstall pkgutil: "com.company.Syncovery*"
 
-  zap trash: "~/Library/Preferences/Syncovery.ini",
-      rmdir: [
-        "~/Library/Application Support/Syncovery",
-        "~/Saved Application State/com.company.Syncovery.savedState",
-        "~/Library/Preferences/Syncovery",
-        "~/Library/Logs/Syncovery",
-      ]
+  zap trash: [
+    "~/Library/Application Support/Syncovery",
+    "~/Library/Logs/Syncovery",
+    "~/Library/Preferences/Syncovery.ini",
+    "~/Library/Preferences/Syncovery",
+    "~/Saved Application State/com.company.Syncovery.savedState",
+  ]
 end

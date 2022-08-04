@@ -1,6 +1,6 @@
 cask "mendeley-reference-manager" do
-  version "2.49.0"
-  sha256 "547dac9e0992df4ecff08ab1064c45a3cdbc91232312d1a0487b0cbe11b88420"
+  version "2.75.0"
+  sha256 "ceb705bd4532085ff5c5ce6922012d135a3134896bddd9931755d99ec50a6090"
 
   url "https://static.mendeley.com/bin/desktop/mendeley-reference-manager-#{version}.dmg"
   name "Mendeley Reference Manager"
@@ -16,8 +16,8 @@ cask "mendeley-reference-manager" do
 
   zap trash: [
     "~/Library/Application Support/Mendeley Reference Manager",
+    "~/Library/Logs/Mendeley Reference Manager",
     "~/Library/Preferences/com.elsevier.mendeley.plist",
     "~/Library/Saved Application State/com.elsevier.mendeley.savedState",
-    "~/Library/Logs/Mendeley Reference Manager",
   ]
 end

@@ -1,8 +1,8 @@
 cask "cctalk" do
-  version "7.8.5.3"
-  sha256 "80ee2150bffeff9e8f4211acfb4c7589231533fabc23aad5cb31ffd456564263"
+  version "7.9.5.6"
+  sha256 "6f9ec965957a8db69632df89fdfdc8bdb90e3971ae3bea67ab69f2fdc30729aa"
 
-  url "https://cc.hjfile.cn/cc/CCtalk.#{version}/8/1/103/CCtalk.#{version}.dmg",
+  url "https://cc.hjfile.cn/cc/#{version}/8/1/103/#{version}.dmg",
       verified: "cc.hjfile.cn/"
   name "CCtalk"
   desc "Real-time interactive education platform"

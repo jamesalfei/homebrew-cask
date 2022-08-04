@@ -1,6 +1,6 @@
 cask "netxms-console" do
-  version "3.8.382"
-  sha256 "b0aed45b3353eb252b5545b5fa35410526ffc9b91a6a676883f33ed4f8fa7dbe"
+  version "4.1.420"
+  sha256 "6e7ac82eb699588cbd2e9f7d3cea7e442a4a991a283f142fe76737a9313637e8"
 
   url "https://netxms.org/download/releases/#{version.major_minor}/nxmc-#{version}.dmg"
   name "NetXMS Management Console"
@@ -9,7 +9,7 @@ cask "netxms-console" do
 
   livecheck do
     url "https://netxms.org/download"
-    regex(%r{href=.*?/nxmc[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
+    regex(/href=.*?nxmc[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
   app "NetXMS Console (#{version}).app"

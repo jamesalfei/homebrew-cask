@@ -1,6 +1,6 @@
 cask "berrycast" do
-  version "0.34.2"
-  sha256 "1db7c9a11f401de0ce7249aa64e5417475c3c8b23bb3654637611b0a0f68e6fa"
+  version "0.36.3"
+  sha256 "615eb55c6319c41a246b6022ce123af60d81572308c9d4fc2719901a1398b630"
 
   url "https://media.berrycast.app/desktop-installer/Berrycast-#{version}-latest.dmg",
       verified: "media.berrycast.app/"
@@ -10,7 +10,6 @@ cask "berrycast" do
 
   livecheck do
     url "https://media.berrycast.app/desktop-installer/v2/latest-mac.yml"
-    strategy :page_match
     regex(/Berrycast[._-]?v?(\d+(?:\.\d+)+)[._-]latest\.dmg/i)
   end
 
@@ -28,7 +27,9 @@ cask "berrycast" do
             ]
 
   zap trash: [
+    "~/Library/Application Support/berrycast-desktop",
     "~/Library/Logs/Berrycast",
+    "~/Library/Logs/berrycast-desktop",
     "~/Library/Preferences/com.openmindt.berrycast.plist",
     "~/Library/Saved Application State/com.openmindt.berrycast.savedState",
   ]

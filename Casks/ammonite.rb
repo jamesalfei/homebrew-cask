@@ -1,8 +1,8 @@
 cask "ammonite" do
-  version "1.22,523"
-  sha256 "967a90c455a4ad05ac674d9e26f9f57bdaa09bd3079e3d2b47f7db30af9c3184"
+  version "1.23.1,589"
+  sha256 "830fba369f3fece384b25bf3eab335e052f23fc6c4aec58a2f2febc79db6480a"
 
-  url "https://www.soma-zone.com/download/files/Ammonite-#{version.before_comma}.tar.bz2"
+  url "https://www.soma-zone.com/download/files/Ammonite-#{version.csv.first}.tar.xz"
   name "Ammonite"
   desc "Tag visualizer and search utility"
   homepage "https://www.soma-zone.com/Ammonite/"
@@ -13,4 +13,9 @@ cask "ammonite" do
   end
 
   app "Ammonite.app"
+
+  zap trash: [
+    "~/Library/Logs/Ammonite",
+    "~/Library/Preferences/com.soma-zone.Ammonite.plist",
+  ]
 end

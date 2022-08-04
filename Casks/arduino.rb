@@ -1,6 +1,6 @@
 cask "arduino" do
-  version "1.8.15"
-  sha256 "bd198718a38dd49e5a826cb4df902653141081a7aa132f483a5daf37ff3741b6"
+  version "1.8.19"
+  sha256 "1d5f4aa4c82c8cf8d858c413928be55963ccd1203552d8dc07f4ca123f814c01"
 
   url "https://downloads.arduino.cc/arduino-#{version}-macosx.zip"
   name "Arduino"
@@ -18,5 +18,6 @@ cask "arduino" do
   zap trash: [
     "~/Library/Arduino15",
     "~/Library/Preferences/cc.arduino.Arduino.plist",
+    "~/Library/Saved Application State/cc.arduino.Arduino.savedState",
   ]
 end

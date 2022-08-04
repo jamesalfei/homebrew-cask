@@ -1,6 +1,6 @@
 cask "nheko" do
-  version "0.8.2"
-  sha256 "e7605f3eccb8a81661efe43c9a9aa4d8678201212584d23fa4e8e9ad13b64c59"
+  version "0.10.0"
+  sha256 "b7b7af96f6feb9e25986d9ade0aace797bf605957cfdf638be3e06026a02476c"
 
   url "https://github.com/Nheko-Reborn/nheko/releases/download/v#{version}/nheko-v#{version}.dmg",
       verified: "github.com/Nheko-Reborn/nheko/"

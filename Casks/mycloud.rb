@@ -1,12 +1,17 @@
 cask "mycloud" do
-  version :latest
+  version "22.24.4"
   sha256 :no_check
 
-  url "https://desktop-client-installer-server-mac.prod.mdl.swisscom.ch/myCloud%20Desktop%20installer.pkg",
-      verified: "desktop-client-installer-server-mac.prod.mdl.swisscom.ch/"
+  url "https://filehostdesktopmac.mycloud.ch/myCloudDesktop.dmg"
   name "Swisscom myCloud Desktop"
   desc "Swiss cloud storage desktop app"
   homepage "https://desktop.mycloud.ch/"
+
+  livecheck do
+    skip "No version information available"
+  end
+
+  depends_on macos: ">= :el_capitan"
 
   # pkg cannot be installed automatically
   installer manual: "myCloud Desktop installer.pkg"

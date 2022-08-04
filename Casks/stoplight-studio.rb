@@ -1,18 +1,16 @@
 cask "stoplight-studio" do
-  version "2.3.0,5757.git-ca3ccc8"
+  arch = Hardware::CPU.intel? ? "mac" : "mac-arm64"
+
+  version "2.8.1,7959.git-777e356"
 
   if Hardware::CPU.intel?
-    sha256 "0cc6ea5228e9f15d8f3ce9a0627ba7e7fee243b1ae71073ee1a9b4edd72cf8ec"
-
-    url "https://github.com/stoplightio/studio/releases/download/v#{version.before_comma}-stable.#{version.after_comma}/stoplight-studio-mac.dmg",
-        verified: "github.com/stoplightio/studio/"
+    sha256 "8a933c3b633e12da3b8a85e43b004223a3c00ee348a0817d0348ecaf5a586c54"
   else
-    sha256 "c5a3cc25a01611e44801c39d89b836a3b6af29b647ffb5f272c5578dfa6972cd"
-
-    url "https://github.com/stoplightio/studio/releases/download/v#{version.before_comma}-stable.#{version.after_comma}/stoplight-studio-mac-arm64.dmg",
-        verified: "github.com/stoplightio/studio/"
+    sha256 "d0b50a7da3798b7b797dcb46a1bf2cddcee06269f6ab363724e64bdd3ddf82a0"
   end
 
+  url "https://github.com/stoplightio/studio/releases/download/v#{version.csv.first}-stable.#{version.csv.second}/stoplight-studio-#{arch}.dmg",
+      verified: "github.com/stoplightio/studio/"
   name "Stoplight Studio"
   desc "Editor for designing and documenting APIs"
   homepage "https://stoplight.io/studio/"
@@ -20,7 +18,9 @@ cask "stoplight-studio" do
   livecheck do
     url "https://github.com/stoplightio/studio/releases/latest"
     strategy :page_match do |page|
-      match = page.match(%r{href=.*?/v?(\d+(?:\.\d+)+)[._-]stable[._-]([^/]+)/stoplight[._-]studio[._-]mac\.dmg}i)
+      match = page.match(%r{href=.*?/v?(\d+(?:\.\d+)+)[._-]stable[._-]([^/]+)/stoplight[._-]studio[._-]#{arch}\.dmg}i)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end

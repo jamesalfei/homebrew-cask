@@ -1,6 +1,6 @@
 cask "lbry" do
-  version "0.50.2"
-  sha256 "2cf075701cd61478f1ddd8786913550fe4a1837d9ecf422c684de392c46753b4"
+  version "0.53.4"
+  sha256 "06da7802b3fad9023e759288a854a7447e0f3f87e4094b7552e856a8cb49e918"
 
   url "https://github.com/lbryio/lbry-desktop/releases/download/v#{version}/LBRY_#{version}.dmg",
       verified: "github.com/lbryio/lbry-desktop/"
@@ -11,7 +11,10 @@ cask "lbry" do
   livecheck do
     url :url
     strategy :github_latest
+    regex(%r{href=.*?/lbry-desktop/releases/tag/v?(\d+(?:\.\d+)+)["' >]}i)
   end
+
+  depends_on macos: ">= :mojave"
 
   app "LBRY.app"
   # shim scripts (https://github.com/Homebrew/homebrew-cask/issues/18809)
@@ -21,12 +24,12 @@ cask "lbry" do
   binary shim_lbryfirst, target: "lbry-first"
 
   preflight do
-    IO.write shim_lbrynet, <<~EOS
+    File.write shim_lbrynet, <<~EOS
       #!/bin/sh
       exec '#{appdir}/LBRY.app/Contents/Resources/static/daemon/lbrynet' "$@"
     EOS
 
-    IO.write shim_lbryfirst, <<~EOS
+    File.write shim_lbryfirst, <<~EOS
       #!/bin/sh
       exec '#{appdir}/LBRY.app/Contents/Resources/static/lbry-first/lbry-first' "$@"
     EOS

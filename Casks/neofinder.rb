@@ -1,8 +1,8 @@
 cask "neofinder" do
-  version "7.8"
-  sha256 "bccb4e0d3ad94dbfc4d353194b25409c292808e1208e956e754619b7d8b8c7b5"
+  version "8.1.2"
+  sha256 "6183e92e6f00e9b9ed9bc68f6fbfc289107b444825109371f947c7bb1e18647f"
 
-  url "https://www.wfs-apps.de/updates/neofinder.#{version}.zip",
+  url "https://www.wfs-apps.de/updates/neofinder-mac.#{version}.zip",
       verified: "wfs-apps.de/"
   name "NeoFinder"
   desc "Digital media asset manager"
@@ -13,5 +13,16 @@ cask "neofinder" do
     strategy :sparkle
   end
 
+  depends_on macos: ">= :el_capitan"
+
   app "NeoFinder.app"
+
+  zap trash: [
+    "~/Library/Application Support/CrashReporter/NeoFinder_*",
+    "~/Library/Application Support/NeoFinder",
+    "~/Library/Caches/de.wfs-apps.neofinder",
+    "~/Library/Caches/de.wfs-apps.neofinder.quicklaunch.cache",
+    "~/Library/Preferences/de.wfs-apps.neofinder.plist",
+    "~/Library/Preferences/de.wfs-apps.neofinder.statusBar.plist",
+  ]
 end

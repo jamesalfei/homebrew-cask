@@ -1,15 +1,15 @@
 cask "chronoagent" do
-  version "1.9.9"
+  version "2.1.0"
   sha256 :no_check
 
   url "https://downloads.econtechnologies.com/CA_Mac_Download.dmg"
   name "ChronoAgent"
+  desc "Remote file sharing for ChronoSync"
   homepage "https://www.econtechnologies.com/"
 
   livecheck do
     url "https://www.econtechnologies.com/downloads/downloads.html"
-    strategy :page_match
-    regex(/ChronoAgent\s*text.*?Version\s*(\d+(?:\.\d+)*)</mi)
+    regex(/>\s*ChronoAgent.*?Version\s+(\d+(?:\.\d+)+)[\s<]+/i)
   end
 
   pkg "Install.pkg"

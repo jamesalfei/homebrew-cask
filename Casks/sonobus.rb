@@ -1,6 +1,6 @@
 cask "sonobus" do
-  version "1.4.5"
-  sha256 "2afc1da573aa4a9755c61a483c09e1bc1c56ac498ef3be90bd1ad43b62d213db"
+  version "1.5.1"
+  sha256 "49712ce5726b21ffff6bed1070c65eb0cc4d70ba748a96deac62b487a72a9a92"
 
   url "https://sonobus.net/releases/sonobus-#{version}-mac.dmg"
   name "SonoBus"
@@ -9,18 +9,17 @@ cask "sonobus" do
 
   livecheck do
     url :homepage
-    strategy :page_match
-    regex(%r{href="releases/.*?-(\d+(?:\.\d+)*)-mac\.dmg}i)
+    regex(%r{href=.*?/sonobus[._-]v?(\d+(?:\.\d+)+)[._-]mac\.dmg}i)
   end
 
   pkg "SonoBus Installer.pkg"
 
   uninstall pkgutil: [
     "net.sonobus.pkg.aax",
+    "net.sonobus.pkg.app",
+    "net.sonobus.pkg.au",
     "net.sonobus.pkg.vst2",
     "net.sonobus.pkg.vst3",
-    "net.sonobus.pkg.au",
-    "net.sonobus.pkg.app",
   ]
 
   zap trash: [

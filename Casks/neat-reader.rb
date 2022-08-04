@@ -1,6 +1,6 @@
 cask "neat-reader" do
-  version "7.0.6"
-  sha256 "9cbef1dd7a704e5d1204fcba1b4aa6e5723ab4c50efb08ce8b98e6b70b8c97ca"
+  version "8.1.3"
+  sha256 "d8d76bc7c9e1254f61f47fefe865d631a2f98dfe897b079187ab2294b2496c0e"
 
   url "https://neat-reader-release.oss-cn-hongkong.aliyuncs.com/NeatReader-#{version}.dmg",
       verified: "neat-reader-release.oss-cn-hongkong.aliyuncs.com/"
@@ -10,7 +10,7 @@ cask "neat-reader" do
 
   livecheck do
     url "https://www.neat-reader.com/download/start-download?target=mac"
-    regex(/name=["']?deviceVersion["']?\s*value=["']?(\d+(?:\.\d+)*)["' >]/i)
+    regex(/name=["']?deviceVersion["']?\s*value=["']?(\d+(?:\.\d+)+)["' >]/i)
   end
 
   app "NeatReader.app"

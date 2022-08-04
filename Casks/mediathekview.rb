@@ -1,17 +1,25 @@
 cask "mediathekview" do
-  version "13.7.1"
-  sha256 "4e9cc25d62b6fe4420da6b881c41d067beef6f4c3beeae47a9ce66331a97f14c"
+  arch = Hardware::CPU.intel? ? "mac" : "mac-as"
 
-  url "https://download.mediathekview.de/stabil/MediathekView-#{version}-mac.dmg"
+  version "13.9.1"
+
+  if Hardware::CPU.intel?
+    sha256 "4529bbed37b3736623b5083e99088866bfec98973383df2553c27175738072a9"
+  else
+    sha256 "4eb0e2de15f1852b66ac16b84b6fdba1c3dfc18e19a646763c4e636a7c7932b0"
+  end
+
+  url "https://download.mediathekview.de/stabil/MediathekView-#{version}-#{arch}.dmg"
   name "MediathekView"
   desc "Manages online multimedia libs of German, Austrian and Swiss public broadcasters"
   homepage "https://mediathekview.de/"
 
   livecheck do
     url "https://download.mediathekview.de/stabil/"
-    strategy :page_match
-    regex(%r{href=.*?/MediathekView-(\d+(?:\.\d+)*)-mac\.dmg}i)
+    regex(%r{href=.*?/MediathekView-(\d+(?:\.\d+)+)-#{arch}\.dmg}i)
   end
 
   app "MediathekView.app"
+
+  zap trash: "~/Library/Caches/MediathekView"
 end

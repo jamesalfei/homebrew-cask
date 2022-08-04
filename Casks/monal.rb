@@ -1,8 +1,8 @@
 cask "monal" do
-  version "5.0,716"
+  version "5.3.0,797"
   sha256 :no_check
 
-  url "https://monal.im/macOS/Monal-macOS.tar.gz"
+  url "https://monal.im/macOS/Monal-macOS.zip"
   name "Monal"
   desc "Tool to securely connect to chat servers"
   homepage "https://monal.im/"
@@ -15,4 +15,6 @@ cask "monal" do
   depends_on macos: ">= :catalina"
 
   app "Monal.app"
+
+  zap trash: "~/Library/Group Containers/group.monal"
 end

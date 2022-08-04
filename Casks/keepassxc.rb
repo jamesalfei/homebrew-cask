@@ -1,14 +1,14 @@
 cask "keepassxc" do
-  version "2.6.4"
+  arch = Hardware::CPU.intel? ? "x86_64" : "arm64"
 
+  version "2.7.1"
+
+  url "https://github.com/keepassxreboot/keepassxc/releases/download/#{version}/KeePassXC-#{version}-#{arch}.dmg",
+      verified: "github.com/keepassxreboot/keepassxc/"
   if Hardware::CPU.intel?
-    url "https://github.com/keepassxreboot/keepassxc/releases/download/#{version}/KeePassXC-#{version}-x86_64.dmg",
-        verified: "github.com/keepassxreboot/keepassxc/"
-    sha256 "639fdfe0379dc3f00f1bd6a72c974cfddae0d4c8ddb66f7297d0b01b1a582ede"
+    sha256 "473f994698ec082f16bb20b4824dadbfb744f53a01b737b4016f6cc45f403b83"
   else
-    url "https://github.com/keepassxreboot/keepassxc/releases/download/#{version}/KeePassXC-#{version}-2-arm64.dmg",
-        verified: "github.com/keepassxreboot/keepassxc/"
-    sha256 "49c28e3f6341710b24d4415186ec0a52f6c0af5e72c0fc7548ddd7999d2eaa4d"
+    sha256 "97e7c57b4695cf4a558186cd36b89605ec6d6dec8791f7add043a3a387089f01"
   end
 
   name "KeePassXC"
@@ -26,13 +26,15 @@ cask "keepassxc" do
   app "KeePassXC.app"
   binary "#{appdir}/KeePassXC.app/Contents/MacOS/keepassxc-cli"
 
+  uninstall quit: "org.keepassxc.keepassxc"
+
   zap trash: [
     "~/.keepassxc",
+    "~/Library/Application Support/CrashReporter/KeePassXC_*.plist",
     "~/Library/Application Support/keepassxc",
     "~/Library/Caches/org.keepassx.keepassxc",
+    "~/Library/Logs/DiagnosticReports/KeePassXC_*.crash",
     "~/Library/Preferences/org.keepassx.keepassxc.plist",
     "~/Library/Saved Application State/org.keepassx.keepassxc.savedState",
-    "~/Library/Logs/DiagnosticReports/KeePassXC_*.crash",
-    "~/Library/Application Support/CrashReporter/KeePassXC_*.plist",
   ]
 end

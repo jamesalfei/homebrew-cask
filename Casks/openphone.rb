@@ -1,6 +1,6 @@
 cask "openphone" do
-  version "3.1.7"
-  sha256 "8466b4730490f17c91db9b4fb2ac3d6640e5c8414b674ccdbd9d78ebf468b2b1"
+  version "3.5.1"
+  sha256 "e5be4e2a56fe3495f491c468171b390be6423f8becd831283daf5bd56e8dedf0"
 
   url "https://download.openphone.co/OpenPhone-#{version}.dmg"
   name "OpenPhone"
@@ -13,4 +13,10 @@ cask "openphone" do
   end
 
   app "OpenPhone.app"
+
+  zap trash: [
+    "~/Library/Application Support/OpenPhone",
+    "~/Library/Preferences/ca.illusive.openphone.plist",
+    "~/Library/Saved Application State/ca.illusive.openphone.savedState",
+  ]
 end

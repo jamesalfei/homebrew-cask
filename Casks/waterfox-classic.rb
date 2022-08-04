@@ -1,16 +1,17 @@
 cask "waterfox-classic" do
-  version "2021.04.2"
-  sha256 "bac0697007218978a87889c0bdf6b1e386d8235f3703eff505ce4ce062fac0bb"
+  version "2022.08"
+  sha256 "9960899abd24d1802640d1be98d099a5ecf49c9cf18a59f1a98962234b7f92f8"
 
-  url "https://cdn.waterfox.net/releases/osx64/installer/Waterfox%20Classic%20#{version}%20Setup.dmg"
+  url "https://github.com/WaterfoxCo/Waterfox-Classic/releases/download/#{version}-classic/Waterfox.Classic.#{version}.Setup.dmg",
+      verified: "github.com/WaterfoxCo/Waterfox-Classic/"
   name "Waterfox Classic"
   desc "Web browser"
-  homepage "https://www.waterfox.net/"
+  homepage "https://classic.waterfox.net/"
 
   livecheck do
-    url "https://www.waterfox.net/download/"
+    url "https://github.com/WaterfoxCo/Waterfox-Classic/releases/"
     strategy :page_match
-    regex(%r{href=.*?/Waterfox%20Classic%20(\d+(?:\.\d+)*)%20Setup\.dmg}i)
+    regex(/Waterfox[._-]Classic[._-]v?(\d+(?:\.\d+)+)[._-]Setup\.dmg/i)
   end
 
   app "Waterfox Classic.app"

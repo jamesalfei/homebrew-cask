@@ -1,12 +1,12 @@
 cask "wickrme" do
-  version "5.77.12"
-  sha256 "da3d171582fb9192561d3ac95be9aa6b111a26027fc91dd414d185fb5828798e"
+  version "5.102.9"
+  sha256 "495c6577a595cb03aab62a7932937ee51f001e49281cfb7137a13060515549b3"
 
   url "https://s3.amazonaws.com/static.wickr.com/downloads/mac/me/WickrMe-#{version}.dmg",
       verified: "s3.amazonaws.com/static.wickr.com/"
   name "Wickr Me"
   desc "Desktop client for Wickr Me"
-  homepage "https://wickr.com/products/personal/"
+  homepage "https://wickr.com/me/"
 
   livecheck do
     url "https://me-download.wickr.com/api/multiVerify/me/undefined/"
@@ -20,4 +20,6 @@ cask "wickrme" do
   depends_on macos: ">= :high_sierra"
 
   app "WickrMe.app"
+
+  zap trash: "~/Library/Preferences/com.wickr-llc.WickrMe.plist"
 end

@@ -1,8 +1,8 @@
 cask "toolreleases" do
-  version "1.4.1,44"
-  sha256 "eba1793512ad2f4c57a40cab862ce94f79ed2fff7510da3fa45c5b7502e6d274"
+  version "1.5.0,59"
+  sha256 "2097bafa9cfe648c259e5c81f98137e3e38217838deccfe262460773807dd8df"
 
-  url "https://github.com/DeveloperMaris/ToolReleases/releases/download/v#{version.before_comma}/ToolReleases_v#{version.before_comma}.b#{version.after_comma}.zip"
+  url "https://github.com/DeveloperMaris/ToolReleases/releases/download/v#{version.csv.first}/ToolReleases_v#{version.csv.first}.b#{version.csv.second}.zip"
   name "ToolReleases"
   desc "Utility to notify about the latest Apple tool releases (including Beta releases)"
   homepage "https://github.com/DeveloperMaris/ToolReleases"
@@ -11,16 +11,22 @@ cask "toolreleases" do
     url "https://github.com/DeveloperMaris/ToolReleases/releases/latest"
     strategy :page_match do |page|
       match = page.match(%r{href=.*?/ToolReleases_v?(\d+(?:\.\d+)*)\.b(\d+)\.zip}i)
+      next if match.blank?
+
       "#{match[1]},#{match[2]}"
     end
   end
 
+  auto_updates true
   depends_on macos: ">= :big_sur"
 
   app "ToolReleases.app"
 
   uninstall login_item: "ToolReleases",
-            quit:       "com.developermaris.ToolReleases"
+            quit:       [
+              "com.developermaris.ToolReleases",
+              "com.apple.systemevents",
+            ]
 
   zap trash: [
     "~/Library/Caches/com.developermaris.ToolReleases",

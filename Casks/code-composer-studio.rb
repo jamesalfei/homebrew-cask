@@ -1,15 +1,15 @@
 cask "code-composer-studio" do
-  version "10.3.1.00003"
-  sha256 "02a78731bd617d7e29ab306e70f2faaf9cabfcc53402dc7d5f5649f048be535d"
+  version "12.0.0.00009"
+  sha256 "b69a0ba01d07605ca06ccaba8cd2c6ba9136f2091ec15afaeac135111f917f95"
 
-  url "https://software-dl.ti.com/ccs/esd/CCSv10/CCS_#{version.major_minor_patch.dots_to_underscores}/exports/ccs_installer_osx_#{version}.dmg"
+  url "https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-J1VdearkvK/#{version.major_minor_patch}/ccs_installer_osx_#{version}.dmg"
   name "Code Composer Studio (CCS)"
   desc "Integrated development environment"
   homepage "https://www.ti.com/tool/CCSTUDIO"
 
   livecheck do
     url :homepage
-    regex(%r{href=.*?/ccs_installer_osx_(\d+(?:\.\d+)*)\.dmg}i)
+    regex(/href=.*?ccs[._-]installer[._-]osx[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
   installer script: {

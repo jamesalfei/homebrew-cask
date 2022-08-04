@@ -1,22 +1,29 @@
 cask "anaconda" do
-  version "2021.05"
-  sha256 "0407bee87eeecad521f1e38eb607b0a85babef4c1b47516dc5c090e152eba5d5"
+  arch = Hardware::CPU.intel? ? "x86_64" : "arm64"
 
-  url "https://repo.anaconda.com/archive/Anaconda3-#{version}-MacOSX-x86_64.sh"
+  version "2022.05"
+
+  if Hardware::CPU.intel?
+    sha256 "1a10c06660ebe1204e538b4e9d810142441af9dfd74b077eee2761ec6e675f39"
+  else
+    sha256 "a12119931945a9a1453993582259cc67318a9a75a15731e5ccc15365e7f88a36"
+  end
+
+  url "https://repo.anaconda.com/archive/Anaconda3-#{version}-MacOSX-#{arch}.sh"
   name "Continuum Analytics Anaconda"
   desc "Distribution of the Python and R programming languages for scientific computing"
   homepage "https://www.anaconda.com/"
 
   livecheck do
     url "https://repo.anaconda.com/archive/"
-    regex(/Anaconda3-(\d+(?:\.\d+)*)-MacOSX-x86_64\.sh/i)
+    regex(/Anaconda3-(\d+(?:\.\d+)+)-MacOSX-#{arch}\.sh/i)
   end
 
   auto_updates true
   container type: :naked
 
   installer script: {
-    executable: "Anaconda3-#{version}-MacOSX-x86_64.sh",
+    executable: "Anaconda3-#{version}-MacOSX-#{arch}.sh",
     args:       ["-b", "-p", "#{HOMEBREW_PREFIX}/anaconda3"],
     sudo:       true,
   }

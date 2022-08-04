@@ -1,12 +1,16 @@
 cask "resilio-sync" do
-  version "2.7.2"
-  sha256 "be40c064b28284630b47a887923d815256af550acd85722960bafea7c2722c52"
+  version "2.7.3"
+  sha256 "a5114ff04ca4f3a82079802c1683c1418880ac0a068a743885ca33b349296d6a"
 
   url "https://download-cdn.resilio.com/#{version}/osx/Resilio-Sync.dmg"
-  appcast "https://help.resilio.com/hc/en-us/articles/206216855-Sync-#{version.major}-x-change-log"
   name "Resilio Sync"
   desc "File sync and share software"
   homepage "https://www.resilio.com/"
+
+  livecheck do
+    url "https://download-cdn.resilio.com/stable/osx/version.txt"
+    regex(/(\d+(?:\.\d+)*)/i)
+  end
 
   auto_updates true
 

@@ -1,19 +1,23 @@
 cask "android-studio" do
-  version "4.2.1.0,202.7351085"
-  sha256 "d993eab5751c2bac5caa7f3b2aa0bb6e8c20477ce67f9ed1b8d87ad6172c92da"
+  arch = Hardware::CPU.intel? ? "mac" : "mac_arm"
 
-  url "https://dl.google.com/dl/android/studio/install/#{version.before_comma}/android-studio-ide-#{version.after_comma}-mac.dmg",
-      verified: "google.com/dl/android/studio/"
+  version "2021.2.1.16"
+
+  if Hardware::CPU.intel?
+    sha256 "df46f2199fcf4c7e6b882ba16151ea1d2dd48a15f5c87d30224f1b5401d2b648"
+  else
+    sha256 "d4e06bcc6f614cd4b261fc6034529edb205b31b0e56824490a91350c3640806a"
+  end
+
+  url "https://redirector.gvt1.com/edgedl/android/studio/install/#{version}/android-studio-#{version}-#{arch}.dmg",
+      verified: "redirector.gvt1.com/edgedl/android/studio/"
   name "Android Studio"
   desc "Tools for building Android applications"
   homepage "https://developer.android.com/studio/"
 
   livecheck do
     url :homepage
-    strategy :page_match do |page|
-      match = page.match(%r{href=.*?/(\d+(?:\.\d+)*)/android-studio-ide-(\d+(?:\.\d+)*)-mac\.dmg}i)
-      "#{match[1]},#{match[2]}"
-    end
+    regex(/android[._-]studio[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
   end
 
   auto_updates true
@@ -21,16 +25,15 @@ cask "android-studio" do
   app "Android Studio.app"
 
   zap trash: [
-    "~/Library/Android/sdk",
-    "~/Library/Application Support/AndroidStudio#{version.major_minor}",
-    "~/Library/Caches/AndroidStudio#{version.major_minor}",
-    "~/Library/Logs/AndroidStudio#{version.major_minor}",
-    "~/Library/Preferences/AndroidStudio#{version.major_minor}",
-    "~/Library/Preferences/com.android.Emulator.plist",
-    "~/Library/Preferences/com.google.android.studio.plist",
-    "~/Library/Saved Application State/com.google.android.studio.savedState",
-    "~/.android",
-  ],
+        "~/.android",
+        "~/Library/Android/sdk",
+        "~/Library/Application Support/Google/AndroidStudio#{version.major_minor}",
+        "~/Library/Caches/Google/AndroidStudio#{version.major_minor}",
+        "~/Library/Logs/Google/AndroidStudio#{version.major_minor}",
+        "~/Library/Preferences/com.android.Emulator.plist",
+        "~/Library/Preferences/com.google.android.studio.plist",
+        "~/Library/Saved Application State/com.google.android.studio.savedState",
+      ],
       rmdir: [
         "~/AndroidStudioProjects",
         "~/Library/Android",

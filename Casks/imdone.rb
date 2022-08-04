@@ -1,6 +1,6 @@
 cask "imdone" do
-  version "1.17.6"
-  sha256 "6087dbfd5332f2ce818fddb600712572892abffbdf177b5154ac6267691e4c51"
+  version "1.29.5"
+  sha256 "9efa92e35ce27e8c3d72dd0d5038314df19dc76102c3165582c7fa49edd420ef"
 
   url "https://imdone.io/downloads/imdone-#{version}.dmg"
   name "imdone"
@@ -16,8 +16,8 @@ cask "imdone" do
 
   zap trash: [
     "~/Library/Application Support/imdone",
+    "~/Library/Logs/imdone",
     "~/Library/Preferences/io.imdone.app.plist",
     "~/Library/Saved Application State/io.imdone.app.savedState",
-    "~/Library/Logs/imdone",
   ]
 end

@@ -1,6 +1,6 @@
 cask "hackintool" do
-  version "3.5.7"
-  sha256 "ac5aa4cd877367c7d3f34b3cb12a47fb50661dc5363258183b6087ac1679d4fa"
+  version "3.8.7"
+  sha256 "4b51ae15bd82ac04dd0e3a94c15310d52c1a2153cb8be8a872ed5f9967052110"
 
   url "https://github.com/headkaze/Hackintool/releases/download/#{version}/Hackintool.zip"
   name "Hackintool"
@@ -12,9 +12,9 @@ cask "hackintool" do
   app "Hackintool.app"
 
   zap trash: [
-    "~/Library/Cookies/com.Headsoft.Hackintool.binarycookies",
-    "~/Library/Caches/com.Headsoft.Hackintool",
     "~/Library/Caches/com.apple.helpd/Generated/com.Headsoft.Hackintool.help*",
+    "~/Library/Caches/com.Headsoft.Hackintool",
+    "~/Library/Cookies/com.Headsoft.Hackintool.binarycookies",
     "~/Library/Preferences/com.Headsoft.Hackintool.plist",
   ]
 end

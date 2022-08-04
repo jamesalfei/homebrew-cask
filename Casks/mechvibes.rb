@@ -8,5 +8,17 @@ cask "mechvibes" do
   desc "Play mechanical keyboard sounds as you type"
   homepage "https://mechvibes.com/"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   app "Mechvibes.app"
+
+  zap trash: [
+        "~/Library/Application Support/Mechvibes",
+        "~/Library/Preferences/com.electron.mechvibes.plist",
+        "~/Library/Saved Application State/com.electron.mechvibes.savedState",
+      ],
+      rmdir: "~/mechvibes_custom"
 end

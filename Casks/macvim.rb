@@ -1,6 +1,6 @@
 cask "macvim" do
-  version "171"
-  sha256 "f7137ec22d2f3a3e149abdacb4a3c6f6ab626eaf574f63600bd36d1cfd9bd5f0"
+  version "173"
+  sha256 "fe3b743135f47722c712b5dbcaf7deb3fce17f02168dfeff204d6ae2ac240fc3"
 
   url "https://github.com/macvim-dev/macvim/releases/download/snapshot-#{version}/MacVim.dmg"
   name "MacVim"
@@ -9,7 +9,7 @@ cask "macvim" do
 
   livecheck do
     url :url
-    strategy :git
+    regex(/^snapshot[._-]v?(\d+(?:\.\d+)*)$/i)
   end
 
   auto_updates true

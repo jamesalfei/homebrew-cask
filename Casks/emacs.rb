@@ -1,6 +1,6 @@
 cask "emacs" do
-  version "27.2-2"
-  sha256 "a5f5efe3ce8e3c2ef1c0e1aaf6ab9197ee93ad22e80c2742710338fad27bad8b"
+  version "28.1-4"
+  sha256 "157650d761a1a2d8a77b41036f8a204018bca9e3b30efc18184d91f2e46aa341"
 
   url "https://emacsformacosx.com/emacs-builds/Emacs-#{version}-universal.dmg"
   name "Emacs"
@@ -9,11 +9,14 @@ cask "emacs" do
 
   livecheck do
     url "https://emacsformacosx.com/atom/release"
-    strategy :page_match
-    regex(%r{href=.*?/Emacs-(\d+(?:\.\d+)*(?:-\d+)?)-universal\.dmg}i)
+    regex(%r{href=.*?/Emacs[._-]v?(\d+(?:\.\d+)*(?:-\d+)?)[._-]universal\.dmg}i)
   end
 
-  conflicts_with formula: "emacs"
+  conflicts_with cask:    [
+                   "homebrew/cask-versions/emacs-nightly",
+                   "homebrew/cask-versions/emacs-pretest",
+                 ],
+                 formula: "emacs"
 
   app "Emacs.app"
   binary "#{appdir}/Emacs.app/Contents/MacOS/Emacs", target: "emacs"

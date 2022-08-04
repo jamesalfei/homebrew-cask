@@ -1,21 +1,16 @@
 cask "webcatalog" do
-  version "33.1.0"
+  version "43.4.1"
+  sha256 "ed4272f3d61db40d94a366bf58d4d6ae0c549f920a8a91752b4e98f2add01a87"
 
-  if Hardware::CPU.intel?
-    sha256 "5c50f4cfb2c00d09048e2586a67284d5ab2893820d74ae4d5a3c372b42758272"
-
-    url "https://github.com/webcatalog/webcatalog-app/releases/download/v#{version}/WebCatalog-#{version}.dmg",
-        verified: "github.com/webcatalog/webcatalog-app/"
-  else
-    sha256 "c96f7f67ee040bd5cdde1958ced304e78885c0129868616b9873366708ba3ac5"
-
-    url "https://github.com/webcatalog/webcatalog-app/releases/download/v#{version}/WebCatalog-#{version}-arm64.dmg",
-        verified: "github.com/webcatalog/webcatalog-app/"
-  end
-
+  url "https://cdn-2.webcatalog.io/webcatalog/WebCatalog-#{version}-universal.dmg"
   name "WebCatalog"
   desc "Tool to run web apps like desktop apps"
-  homepage "https://webcatalog.app/"
+  homepage "https://webcatalog.io/"
+
+  livecheck do
+    url "https://cdn-2.webcatalog.io/webcatalog/latest-mac.yml"
+    strategy :electron_builder
+  end
 
   auto_updates true
 

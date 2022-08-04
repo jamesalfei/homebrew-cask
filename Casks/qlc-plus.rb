@@ -1,15 +1,15 @@
 cask "qlc-plus" do
-  version "4.12.3"
-  sha256 "31c0779de17719bb4b6acb6e14ffd83f3475baec5f3e75911d6ea55943e33988"
+  version "4.12.5"
+  sha256 "23d76cfa302d19f074250431efe372930cc61a69065da734f32dc39659920553"
 
   url "https://qlcplus.org/downloads/#{version}/QLC+_#{version}.dmg"
   name "Q Light Controller+"
+  desc "Control DMX or analog lighting systems"
   homepage "https://qlcplus.org/"
 
   livecheck do
     url "https://github.com/mcallegari/qlcplus"
-    strategy :git
-    regex(/^QLC\+_(\d+(?:\.\d+)*)$/)
+    regex(/^QLC\+[._-]v?(\d+(?:\.\d+)+)$/i)
   end
 
   app "QLC+.app"

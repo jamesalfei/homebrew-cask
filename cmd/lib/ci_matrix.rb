@@ -8,24 +8,70 @@ module CiMatrix
   MAX_JOBS = 256
 
   RUNNERS = {
-    { symbol: :catalina, name: "macos-10.15" } => 0.9,
-    { symbol: :big_sur,  name: "macos-11.0" }  => 0.1,
+    { symbol: :big_sur,  name: "macos-11" } => 0.9,
+    { symbol: :monterey, name: "macos-12" } => 0.1,
   }.freeze
 
-  def self.random_runner
-    @random_runner ||= RUNNERS.max_by { |(_, weight)| rand ** (1.0 / weight) }.first
+  # This string uses regex syntax and is intended to be interpolated into
+  # `Regexp` literals, so the backslashes must be escaped to be preserved.
+  DEPENDS_ON_MACOS_ARRAY_MEMBER = '\\s*"?:([^\\s",]+)"?,?\\s*'
+
+  def self.filter_runners(cask_content)
+    # Retrieve arguments from `depends_on macos:`
+    args = case cask_content
+    when /depends_on macos: \[((?:#{DEPENDS_ON_MACOS_ARRAY_MEMBER})+)\]/o
+      Regexp.last_match(1).scan(/#{DEPENDS_ON_MACOS_ARRAY_MEMBER}/o).flatten.map(&:to_sym)
+    when /depends_on macos: "?:([^\s"]+)"?/
+      [*Regexp.last_match(1).to_sym]
+    when /depends_on macos: "([=<>]=\s:?\S+)"/
+      [*Regexp.last_match(1)]
+    when /depends_on macos:/
+      # In this case, `depends_on macos:` is present but wasn't matched by the
+      # previous regexes. We want this to visibly fail so we can address the
+      # shortcoming instead of quietly defaulting to `RUNNERS`.
+      odie "Unhandled `depends_on macos` argument"
+    end
+    return RUNNERS if args.nil?
+
+    # Preform same checks as `brew install` would
+    required_macos = if args.count > 1
+      { versions: args, comparator: "==" }
+    elsif MacOSVersions::SYMBOLS.key?(args.first)
+      { versions: [args.first], comparator: "==" }
+    elsif /^\s*(?<comparator><|>|[=<>]=)\s*:?(?<version>\S+)\s*$/ =~ args.first
+      { versions: [version.to_sym], comparator: comparator }
+    else # rubocop:disable Lint/DuplicateBranch
+      { versions: [args.first], comparator: "==" }
+    end
+
+    # Filter
+    filtered_runners = RUNNERS.select do |runner, _|
+      required_macos[:versions].any? do |v|
+        MacOS::Version.from_symbol(runner[:symbol]).public_send(required_macos[:comparator], v)
+      end
+    end
+    return filtered_runners unless filtered_runners.empty?
+
+    RUNNERS
+  end
+
+  def self.random_runner(avalible_runners = RUNNERS)
+    avalible_runners.reject { |_, weight| weight.zero? }
+                    .max_by { |(_, weight)| rand ** (1.0 / weight) }
+                    .first
   end
 
   def self.runners(path)
     cask_content = path.read
+    filtered_runners = filter_runners(cask_content)
 
     if cask_content.match?(/\bMacOS\s*\.version\b/m) &&
-       RUNNERS.keys.any? { |runner| cask_content.include?(runner[:symbol].inspect) }
+       filtered_runners.keys.any? { |runner| cask_content.include?(runner[:symbol].inspect) }
       # If the cask depends on `MacOS.version`, test it on every possible macOS version.
-      RUNNERS.keys
+      filtered_runners.keys
     else
       # Otherwise, select a runner based on weighted random sample.
-      [random_runner]
+      [random_runner(filtered_runners)]
     end
   end
 

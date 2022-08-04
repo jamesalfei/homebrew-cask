@@ -1,6 +1,6 @@
 cask "unite" do
-  version "4.1.0.1"
-  sha256 "554b2353dd28db494739a4c1dade75da1733f5329f68ef377bb3a42169219c13"
+  version "4.1.3"
+  sha256 "d4411bc9ffe5be32be94ae90aff1ef47e21df540c406abbe81f790790aedeebc"
 
   url "https://bzgdownloads.s3.amazonaws.com/Unite/Unite+#{version}.zip",
       verified: "bzgdownloads.s3.amazonaws.com/Unite/"
@@ -19,9 +19,9 @@ cask "unite" do
   app "Unite.app"
 
   zap trash: [
-    "~/Library/Application Support/Unite",
-    "~/Library/Application Support/com.BZG.unite.*",
-    "~/Library/Preferences/com.BZG.unite.*",
-  ],
+        "~/Library/Application Support/Unite",
+        "~/Library/Application Support/com.BZG.unite.*",
+        "~/Library/Preferences/com.BZG.unite.*",
+      ],
       rmdir: "/Users/Shared/Unite"
 end

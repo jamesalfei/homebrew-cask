@@ -1,6 +1,6 @@
 cask "julia" do
-  version "1.6.1"
-  sha256 "ed359fbc76ca5917113dae836d2db3feeeaca0758238549380c19b95697ffee1"
+  version "1.7.3"
+  sha256 "67799ec06cf57bca80a8a1c6e5a170485d3bfc0461b217699b0730da37d0656f"
 
   url "https://julialang-s3.julialang.org/bin/mac/x64/#{version.major_minor}/julia-#{version}-mac64.dmg"
   name "Julia"
@@ -8,13 +8,15 @@ cask "julia" do
   homepage "https://julialang.org/"
 
   livecheck do
-    url "https://github.com/JuliaLang/julia"
-    strategy :git
-    regex(/^v?(\d+(?:\.\d+)*)$/)
+    url "https://julialang.org/downloads/"
+    regex(/href=.*?julia[._-]v?(\d+(?:\.\d+)+)[._-]mac64\.dmg/i)
   end
 
   app "Julia-#{version.major_minor}.app"
   binary "#{appdir}/Julia-#{version.major_minor}.app/Contents/Resources/julia/bin/julia"
 
-  zap trash: "~/.julia"
+  zap trash: [
+    "~/.julia",
+    "~/Library/Preferences/julia.plist",
+  ]
 end

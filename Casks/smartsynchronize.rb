@@ -1,8 +1,15 @@
 cask "smartsynchronize" do
-  version "4.2.0"
-  sha256 "28d1255b9b4479ded49e3d5b4100db70c65e8a5b1ddaab1f7c35c07cb6a4c743"
+  arch = Hardware::CPU.intel? ? "x86_64" : "aarch64"
 
-  url "https://www.syntevo.com/downloads/smartsynchronize/smartsynchronize-macos-#{version.dots_to_underscores}.dmg"
+  version "4.3.1"
+
+  if Hardware::CPU.intel?
+    sha256 "a35c74d2f0965a4471888bde7e962569f85bd62a6707dd6ab0dff4e99265a287"
+  else
+    sha256 "27aa45524cfc673e566d2a2eb7ba382cfb436d13a08e69a7f35466cffe2b2857"
+  end
+
+  url "https://www.syntevo.com/downloads/smartsynchronize/smartsynchronize-#{arch}-#{version.dots_to_underscores}.dmg"
   name "SmartSynchronize"
   desc "File and directory compare tool"
   homepage "https://www.syntevo.com/smartsynchronize/"
@@ -10,7 +17,9 @@ cask "smartsynchronize" do
   livecheck do
     url "https://www.syntevo.com/smartsynchronize/download/"
     strategy :page_match do |page|
-      v = page[%r{href=.*?/smartsynchronize-macos-(\d+(?:_\d+)*)\.dmg}i, 1]
+      v = page[/smartsynchronize[._-]#{arch}[._-]v?(\d+(?:_\d+)+)\.dmg/i, 1]
+      next if v.blank?
+
       v.tr("_", ".")
     end
   end

@@ -1,15 +1,16 @@
 cask "the-battle-for-wesnoth" do
-  version "1.14.16"
-  sha256 "b5206a4f5cef3fa3d59f503913c8407950ebb03e4ccd8580ad2b3cb2ffd7976d"
+  version "1.16.5"
+  sha256 "eb504e61263c2da3beb757296159664eff6534e83acd51b085519e47c0690874"
 
   url "https://downloads.sourceforge.net/wesnoth/Wesnoth_#{version}.dmg",
       verified: "sourceforge.net/wesnoth/"
   name "The Battle for Wesnoth"
+  desc "Fantasy-themed turn-based strategy game"
   homepage "https://wesnoth.org/"
 
   livecheck do
-    url "https://sourceforge.net/projects/wesnoth/files/latest/download&user_agent=Intel%20Mac%20OS%20X"
-    strategy :header_match
+    url :homepage
+    regex(/href=.*?Wesnoth[._-]v?(\d+\.\d*[02468](?:\.\d+)*[a-z]?)\.dmg/i)
   end
 
   app "The Battle for Wesnoth.app"

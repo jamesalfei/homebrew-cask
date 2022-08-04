@@ -1,14 +1,15 @@
 cask "pycharm-ce" do
-  version "2021.1.2,211.7442.45"
+  arch = Hardware::CPU.intel? ? "" : "-aarch64"
+
+  version "2022.2,222.3345.131"
 
   if Hardware::CPU.intel?
-    sha256 "a3683ba863792143b4f6fd8efc43d12e4888101428942d868d7ced940dd5738e"
-    url "https://download.jetbrains.com/python/pycharm-community-#{version.before_comma}.dmg"
+    sha256 "98010c6fb4156df9d3e2c6dac8620c1d0b6529bdc01ff091e731c5bea503ce58"
   else
-    sha256 "366d3dbbf75f7ac9315a5b344f4c0a95d88f3faaae273cc9bd16fb23ade471b4"
-    url "https://download.jetbrains.com/python/pycharm-community-#{version.before_comma}-aarch64.dmg"
+    sha256 "aa9d00a852ca03eebdb6c2ecbd9180f4a75a1bc253d3d7fad969c8e52f0218ea"
   end
 
+  url "https://download.jetbrains.com/python/pycharm-community-#{version.csv.first}#{arch}.dmg"
   name "Jetbrains PyCharm Community Edition"
   name "PyCharm CE"
   desc "IDE for Python programming - Community Edition"
@@ -30,7 +31,7 @@ cask "pycharm-ce" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "charm") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -39,8 +40,10 @@ cask "pycharm-ce" do
 
   zap trash: [
     "~/Library/Application Support/PyCharm#{version.major_minor}",
-    "~/Library/Caches/PyCharmCE#{version.major_minor}",
+    "~/Library/Caches/JetBrains/PyCharmCE#{version.major_minor}",
     "~/Library/Caches/PyCharm#{version.major_minor}",
+    "~/Library/Caches/PyCharmCE#{version.major_minor}",
+    "~/Library/Logs/JetBrains/PyCharmCE#{version.major_minor}",
     "~/Library/Logs/PyCharm#{version.major_minor}",
     "~/Library/Logs/PyCharmCE#{version.major_minor}",
     "~/Library/Preferences/PyCharm#{version.major_minor}",

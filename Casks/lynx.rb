@@ -1,15 +1,24 @@
 cask "lynx" do
-  version "6.6.6"
+  version "7.6.8.0"
   sha256 :no_check
 
-  url "https://download.saharasupport.com/lynx/production/macx/Lynx-install.dmg"
-  appcast "https://downloads.saharasupport.com/lynx/production/macx/version.txt"
-  name "Lynx by Clevertouch"
-  homepage "https://download.saharasupport.com/"
+  url "https://downloads.lynxcloud.app/lynx-whiteboard/releases/macx/lynx-whiteboard.pkg"
+  name "LYNX Whiteboard by Clevertouch"
+  desc "Cross platform presentation and productivity app"
+  homepage "https://www.lynxcloud.app/"
+
+  livecheck do
+    url "https://downloads.lynxcloud.app/lynx-whiteboard/releases/macx/version.txt"
+    regex(/(\d+(?:\.\d+)+)/i)
+  end
 
   auto_updates true
+  depends_on macos: ">= :catalina"
 
-  pkg "Lynx.pkg"
+  pkg "lynx-whiteboard.pkg"
 
-  uninstall pkgutil: "uk.co.cleverproducts.lynx"
+  uninstall pkgutil: [
+    "com.clevertouch.lynx",
+    "uk.co.clevertouch.Lynx",
+  ]
 end

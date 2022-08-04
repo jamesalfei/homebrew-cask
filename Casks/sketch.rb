@@ -1,33 +1,33 @@
 cask "sketch" do
-  version "72.4,124482"
-  sha256 "a60c937913b53a9180fadd19cbbb262f16d439f3207083e41fb56f0988b2c5dc"
+  version "90,149415"
+  sha256 "9ab78fe01480f3f9e683dfbfa57b56e34e28178f47384aa01cf185dd6f0b8de3"
 
-  url "https://download.sketchapp.com/sketch-#{version.before_comma}-#{version.after_comma}.zip"
+  url "https://download.sketch.com/sketch-#{version.csv.first}-#{version.csv.second}.zip"
   name "Sketch"
   desc "Digital design and prototyping platform"
-  homepage "https://www.sketchapp.com/"
+  homepage "https://www.sketch.com/"
 
   livecheck do
-    url "https://download.sketchapp.com/sketch-versions.xml"
+    url "https://download.sketch.com/sketch-versions.xml"
     strategy :sparkle
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :big_sur"
 
   app "Sketch.app"
 
   zap trash: [
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.bohemiancoding.sketch3.sfl*",
     "~/Library/Application Support/com.bohemiancoding.sketch3",
+    "~/Library/Autosave Information/com.bohemiancoding.sketch3.plist",
     "~/Library/Caches/com.bohemiancoding.sketch3",
     "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.bohemiancoding.sketch3",
+    "~/Library/Cookies/com.bohemiancoding.sketch3.binarycookies",
+    "~/Library/HTTPStorages/com.bohemiancoding.sketch3.binarycookies",
     "~/Library/Logs/com.bohemiancoding.sketch3",
     "~/Library/Preferences/com.bohemiancoding.sketch3.LSSharedFileList.plist",
     "~/Library/Preferences/com.bohemiancoding.sketch3.plist",
-    "~/Library/Cookies/com.bohemiancoding.sketch3.binarycookies",
-    "~/Library/HTTPStorages/com.bohemiancoding.sketch3.binarycookies",
     "~/Library/Saved Application State/com.bohemiancoding.sketch3.savedState",
-    "~/Library/Autosave Information/com.bohemiancoding.sketch3.plist",
   ]
 end

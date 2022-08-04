@@ -1,15 +1,15 @@
 cask "swiftformat-for-xcode" do
-  version "0.48.4"
-  sha256 "b8d4c77059ca460a76e994ca6df562676fa486382fa73003420d9bcd5fb9e234"
+  version "0.49.14"
+  sha256 "88cacb17b4319e498e3d07fc6cbb902799c987787d94eef7fa97871aa228eadb"
 
-  url "https://github.com/nicklockwood/SwiftFormat/archive/#{version}.zip"
+  url "https://github.com/nicklockwood/SwiftFormat/releases/download/#{version}/SwiftFormat.for.Xcode.app.zip"
   name "SwiftFormat for Xcode"
   desc "Xcode Extension for reformatting Swift code"
   homepage "https://github.com/nicklockwood/SwiftFormat"
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :mojave"
 
-  app "SwiftFormat-#{version}/EditorExtension/SwiftFormat for Xcode.app"
+  app "SwiftFormat for Xcode.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.charcoaldesign.SwiftFormat-for-Xcode",

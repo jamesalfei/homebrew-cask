@@ -1,6 +1,6 @@
 cask "mudlet" do
-  version "4.11.3"
-  sha256 "01fa7bda395bbb2deb6d8bfee627740c21dd4e0e39993895cabb64935d2398f5"
+  version "4.16.0"
+  sha256 "49c73c2607316f93ea80ac1ea291e6e0303861154ba133c73e84badbe8f4b8b6"
 
   url "https://www.mudlet.org/wp-content/files/Mudlet-#{version}.dmg"
   name "Mudlet"
@@ -9,10 +9,15 @@ cask "mudlet" do
 
   livecheck do
     url "https://github.com/Mudlet/Mudlet"
-    strategy :git
   end
 
   depends_on macos: ">= :high_sierra"
 
   app "Mudlet.app"
+
+  zap trash: [
+    "~/Library/Preferences/org.mudlet.mudlet.plist",
+    "~/Library/Saved Application State/org.mudlet.mudlet.savedState",
+    "~/mudlet-data",
+  ]
 end

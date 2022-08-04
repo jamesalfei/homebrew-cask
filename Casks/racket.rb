@@ -1,24 +1,22 @@
 cask "racket" do
-  version "8.1"
+  arch = Hardware::CPU.intel? ? "x86_64" : "aarch64"
+
+  version "8.5"
 
   if Hardware::CPU.intel?
-    sha256 "0bf505f01f1a852fedf7a1fe5972535bc272f62f92940118158ea08452ce2b7b"
-
-    url "https://mirror.racket-lang.org/installers/#{version}/racket-#{version}-x86_64-macosx-cs.dmg"
+    sha256 "8569951152d4f75a2146c40858772ea89db7e9162a2459c6a674994b5584b77f"
   else
-    sha256 "abc6334ab5f1c8bbdcc94e3877a7ce32f2ffff207415f8c44d9cae4ea402cf86"
-
-    url "https://mirror.racket-lang.org/installers/#{version}/racket-#{version}-aarch64-macosx-cs.dmg"
+    sha256 "2c5893faccd33e2c8c4c48012b6b36a821f0006c3953736b37b879910ac94529"
   end
 
+  url "https://mirror.racket-lang.org/installers/#{version}/racket-#{version}-#{arch}-macosx-cs.dmg"
   name "Racket"
   desc "Modern programming language in the Lisp/Scheme family"
   homepage "https://racket-lang.org/"
 
   livecheck do
     url "https://download.racket-lang.org/all-versions.html"
-    strategy :page_match
-    regex(/racket-v?(\d+(?:\.\d+)*)/i)
+    regex(/racket[._-]v?(\d+(?:\.\d+)+)/i)
   end
 
   suite "Racket v#{version}"
@@ -55,12 +53,12 @@ cask "racket" do
   manpage "#{appdir}/Racket v#{version}/man/man1/setup-plt.1"
 
   zap trash: [
-    "~/Library/Racket",
     "~/Library/Caches/Racket",
     "~/Library/Preferences/org.racket-lang.DrRacket.plist",
     "~/Library/Preferences/org.racket-lang.prefs.rktd",
-    "~/Library/Preferences/PLT-autosave-toc-save.rktd",
     "~/Library/Preferences/PLT-autosave-toc.rktd",
+    "~/Library/Preferences/PLT-autosave-toc-save.rktd",
+    "~/Library/Racket",
     "~/Library/Saved Application State/org.racket-lang.DrRacket.savedState",
     "~/Library/Saved Application State/org.racket-lang.DrRacketBC.savedState",
     "~/Library/Saved Application State/org.racket-lang.GRacket3m.savedState",

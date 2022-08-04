@@ -1,19 +1,13 @@
 cask "iina-plus" do
-  version "0.5.16,21051222"
-  sha256 "f7e5a3f8d0b0061f03b836f327d30cf9f3c84720ed6a3c3193e96cdfe24495a0"
+  version "0.6.17"
+  sha256 "68be6cc9b4e7849c2b2472db2a30e61dd05bdc2ff7f4a0c1b12e1fa428a5cb18"
 
-  url "https://github.com/xjbeta/iina-plus/releases/download/#{version.before_comma}(#{version.after_comma})/iina+.#{version.before_comma}.dmg"
+  url "https://github.com/xjbeta/iina-plus/releases/download/#{version}/IINA+.#{version}.dmg"
   name "IINA+"
   desc "Extra danmaku support for iina (iina 弹幕支持)"
   homepage "https://github.com/xjbeta/iina-plus"
 
-  livecheck do
-    url "https://github.com/xjbeta/iina-plus/releases/latest"
-    strategy :page_match do |page|
-      match = page.match(/(\d+(?:\.\d+)*)\((\d+)\)/i)
-      "#{match[1]},#{match[2]}"
-    end
-  end
+  auto_updates true
 
   app "iina+.app"
 

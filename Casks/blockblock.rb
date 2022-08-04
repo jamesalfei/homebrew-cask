@@ -18,8 +18,8 @@ cask "blockblock" do
       sudo:       true,
     }
   else
-    version "2.0.4"
-    sha256 "152c8b7b49a0cf35c63b6ae8d16e4f9caa7f1be158c62089d17c77babd7205da"
+    version "2.1.4"
+    sha256 "8c12d13c9327701245ccdfee6217296baf4086ae359e025c98c4980a7ce466ee"
 
     url "https://github.com/objective-see/BlockBlock/releases/download/v#{version}/BlockBlock_#{version}.zip",
         verified: "github.com/objective-see/BlockBlock/"
@@ -41,5 +41,10 @@ cask "blockblock" do
   desc "Monitors common persistence locations"
   homepage "https://objective-see.com/products/blockblock.html"
 
-  zap trash: "~/Library/Preferences/com.objectiveSee.BlockBlock.plist"
+  zap trash: [
+    "~/Library/Caches/com.objective-see.blockblock.helper",
+    "~/Library/HTTPStorages/com.objective-see.blockblock.helper",
+    "~/Library/Preferences/com.objectiveSee.BlockBlock.plist",
+    "~/Library/Preferences/com.objective-see.blockblock.helper.plist",
+  ]
 end

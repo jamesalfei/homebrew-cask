@@ -1,12 +1,13 @@
 cask "pycharm" do
-  version "2021.1.2,211.7442.45"
+  arch = Hardware::CPU.intel? ? "" : "-aarch64"
 
+  version "2022.2,222.3345.131"
+
+  url "https://download.jetbrains.com/python/pycharm-professional-#{version.csv.first}#{arch}.dmg"
   if Hardware::CPU.intel?
-    sha256 "053911e24c9e19b597e84076e52601b6fc5e2efae8d195b2c43ea8fd01aa5261"
-    url "https://download.jetbrains.com/python/pycharm-professional-#{version.before_comma}.dmg"
+    sha256 "606b373498b47682941ddf06493161685f33f51bf2b9a405b3535d2b3f99853f"
   else
-    sha256 "27f18b4de875a61137d41144c8f523b3c0fab9f8de6d730bfb77cfd2cd56c755"
-    url "https://download.jetbrains.com/python/pycharm-professional-#{version.before_comma}-aarch64.dmg"
+    sha256 "6a75dcbc0976d995ebb55ede81bd7ebab4fc97bac3259f21d7314744a5ff794d"
   end
 
   name "PyCharm"
@@ -30,7 +31,7 @@ cask "pycharm" do
 
   uninstall_postflight do
     ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "charm") }.each do |path|
-      if File.exist?(path) &&
+      if File.readable?(path) &&
          File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
         File.delete(path)
       end
@@ -38,12 +39,13 @@ cask "pycharm" do
   end
 
   zap trash: [
-    "~/Library/Application Support/PyCharm#{version.major_minor}",
     "~/Library/Application Support/JetBrains/PyCharm#{version.major_minor}",
-    "~/Library/Caches/PyCharm#{version.major_minor}",
-    "~/Library/Logs/PyCharm#{version.major_minor}",
-    "~/Library/Preferences/PyCharm#{version.major_minor}",
+    "~/Library/Application Support/PyCharm#{version.major_minor}",
+    "~/Library/Caches/JetBrains/PyCharm#{version.major_minor}",
+    "~/Library/Logs/JetBrains/PyCharm#{version.major_minor}",
+    "~/Library/Preferences/com.jetbrains.pycharm.plist",
     "~/Library/Preferences/jetbrains.pycharm.*.plist",
+    "~/Library/Preferences/PyCharm#{version.major_minor}",
     "~/Library/Saved Application State/com.jetbrains.pycharm.savedState",
   ]
 end

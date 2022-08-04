@@ -1,18 +1,15 @@
 cask "vlc" do
-  version "3.0.14"
+  arch = Hardware::CPU.intel? ? "intel64" : "arm64"
+
+  version "3.0.17.3"
 
   if Hardware::CPU.intel?
-    sha256 "a5628b5f7e69ce18dd13ca724f67c7c4381c0ed22862fcb2064d00227f42f42f"
-
-    url "https://get.videolan.org/vlc/#{version}/macosx/vlc-#{version}-intel64.dmg"
-
+    sha256 "cca267f2c51ae568e02f3b4d8a6adba87b2bde5f011a2b87c595c102d89f11d8"
   else
-    sha256 "8d0b897ba5a9366f1482d84fea4e67eec42c47711df18f80ae596872ac881365"
-
-    url "https://get.videolan.org/vlc/#{version}/macosx/vlc-#{version}-arm64.dmg"
-
+    sha256 "cdee78a660c88758cbaa3424948dfbdb7c969824be1becfcbbe2aef725655200"
   end
 
+  url "https://download.videolan.org/vlc/#{version}/macosx/vlc-#{version}-#{arch}.dmg"
   name "VLC media player"
   desc "Multimedia player"
   homepage "https://www.videolan.org/vlc/"
@@ -31,7 +28,7 @@ cask "vlc" do
   binary shimscript, target: "vlc"
 
   preflight do
-    IO.write shimscript, <<~EOS
+    File.write shimscript, <<~EOS
       #!/bin/sh
       exec '#{appdir}/VLC.app/Contents/MacOS/VLC' "$@"
     EOS

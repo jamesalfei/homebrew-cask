@@ -1,6 +1,6 @@
 cask "owncloud" do
-  version "2.8.2.4246"
-  sha256 "50131244a9ab16ae49bf0633d56ecfe5b858b9c5cd3718645b9c77d869f875d0"
+  version "2.10.1.7187"
+  sha256 "f467e67f7994a7836e5ba370f588e1161c34b103e70f5b9911d3a534531460ca"
 
   url "https://download.owncloud.com/desktop/ownCloud/stable/#{version}/mac/ownCloud-#{version}.pkg"
   name "ownCloud"
@@ -12,6 +12,7 @@ cask "owncloud" do
     regex(%r{href=.*?/owncloud[._-]v?(\d+(?:\.\d+)+)\.pkg}i)
   end
 
+  auto_updates true
   depends_on macos: ">= :sierra"
 
   pkg "ownCloud-#{version}.pkg"

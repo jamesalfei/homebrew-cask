@@ -1,5 +1,5 @@
 cask "memory" do
-  version "2021.05,297"
+  version "2022.05,389"
   sha256 :no_check
 
   url "https://memorymacapp.s3.amazonaws.com/Memory.zip",
@@ -17,4 +17,11 @@ cask "memory" do
   depends_on macos: ">= :high_sierra"
 
   app "Memory.app"
+
+  zap trash: [
+    "~/Library/Application Support/Memory",
+    "~/Library/Caches/com.timeapp.devlpmp.Timely-Mac-Tracker",
+    "~/Library/Logs/Memory",
+    "~/Library/Preferences/com.timeapp.devlpmp.Timely-Mac-Tracker.plist",
+  ]
 end

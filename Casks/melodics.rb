@@ -1,8 +1,8 @@
 cask "melodics" do
-  version "2.1.6079,A2A93732-8BA6-41EC-87BA-1C345A1C022B"
-  sha256 "6c9c3579742c271a7aeee3864fcd04cfd29f9ae18648fdf56bf2a426cb1ed562"
+  version "2.1.8341,1437AAFB-242A-46BE-9A32-7CF71590074D"
+  sha256 "97193633a5c84920212862c56b3f3d92f0511b922391fe0056b3c96214f04519"
 
-  url "https://web-cdn.melodics.com/download/#{version.after_comma}.zip"
+  url "https://web-cdn.melodics.com/download/#{version.csv.second}.zip"
   name "Melodics"
   desc "Helps you learn to play your instrument"
   homepage "https://melodics.com/"
@@ -17,4 +17,12 @@ cask "melodics" do
   depends_on macos: ">= :high_sierra"
 
   app "Melodics.app"
+
+  zap trash: [
+    "~/Library/Application Support/Melodics",
+    "~/Library/Caches/Melodics",
+    "~/Library/Preferences/com.melodics.Melodics.plist",
+    "~/Library/Preferences/com.melodics.Melodics.updates.plist",
+    "~/Library/Saved Application State/com.melodics.melodics.savedState",
+  ]
 end

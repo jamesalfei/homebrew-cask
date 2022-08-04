@@ -9,7 +9,6 @@ cask "radio-silence" do
 
   livecheck do
     url "https://radiosilenceapp.com/update"
-    strategy :page_match
     regex(%r{href=.*?/Radio_Silence_(\d+(?:\.\d+)*)\.pkg}i)
   end
 
@@ -19,10 +18,10 @@ cask "radio-silence" do
   # See https://github.com/Homebrew/homebrew-cask/pull/1802#issuecomment-34171151
 
   uninstall early_script: {
-    executable:   "/sbin/kextunload",
-    args:         ["-b", "com.radiosilenceapp.nke.filter"],
-    must_succeed: false,
-  },
+              executable:   "/sbin/kextunload",
+              args:         ["-b", "com.radiosilenceapp.nke.filter"],
+              must_succeed: false,
+            },
             quit:         "com.radiosilenceapp.client",
             kext:         "com.radiosilenceapp.nke.filter",
             pkgutil:      "com.radiosilenceapp.*",

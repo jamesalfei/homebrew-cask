@@ -7,5 +7,10 @@ cask "eiskaltdcpp" do
   desc "Filesharing using Direct Connect and ADC protocols"
   homepage "https://sourceforge.net/projects/eiskaltdcpp/"
 
+  livecheck do
+    url "https://sourceforge.net/projects/eiskaltdcpp/rss?path=/macOS"
+    regex(%r{url=.*?/EiskaltDC%2B%2B[._-]v?(\d+(?:\.\d+)+)(?:-[^"']+?)?\.dmg}i)
+  end
+
   app "EiskaltDC++.app"
 end

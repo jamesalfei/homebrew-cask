@@ -1,15 +1,25 @@
 cask "tidal" do
-  version "2.26.1"
+  arch = Hardware::CPU.intel? ? "" : ".arm64"
+
+  if Hardware::CPU.intel?
+    version "2.30.0"
+  else
+    version "2.32.0"
+  end
+
   sha256 :no_check
 
-  url "https://download.tidal.com/desktop/TIDAL.dmg"
+  url "https://download.tidal.com/desktop/TIDAL#{arch}.dmg"
   name "TIDAL"
   desc "Music streaming service with high fidelity sound and hi-def video quality"
   homepage "https://tidal.com/"
 
   livecheck do
-    skip "unversioned URL"
+    url :url
+    strategy :extract_plist
   end
+
+  auto_updates true
 
   app "TIDAL.app"
 

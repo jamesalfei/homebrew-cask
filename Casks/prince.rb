@@ -1,6 +1,6 @@
 cask "prince" do
-  version "14.2"
-  sha256 "b6ba20b26e5451118727ab595bf5a0ea9342aa5923ac29e7edfd7e84407348d8"
+  version "14.3"
+  sha256 "82e8c33b41dbf616817bc1c3ba96595b330c0ca0e6df5a6b2f31b1905389a828"
 
   url "https://www.princexml.com/download/prince-#{version}-macos.zip"
   name "Prince"
@@ -9,7 +9,6 @@ cask "prince" do
 
   livecheck do
     url "https://www.princexml.com/download/"
-    strategy :page_match
     regex(%r{href=.*?/prince-(\d+(?:\.\d+)*)-macos\.zip}i)
   end
 
@@ -18,7 +17,7 @@ cask "prince" do
   binary shimscript, target: "prince"
 
   preflight do
-    IO.write shimscript, <<~EOS
+    File.write shimscript, <<~EOS
       #!/bin/sh
       exec '#{staged_path}/prince-#{version}-macos/lib/prince/bin/prince' --prefix '#{staged_path}/prince-#{version}-macos/lib/prince' "$@"
     EOS

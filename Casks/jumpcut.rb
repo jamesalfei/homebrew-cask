@@ -1,6 +1,6 @@
 cask "jumpcut" do
-  version "0.74"
-  sha256 "01b0ded737f6a51c9b643ee3b312ae066e4dac31633b91dc04ff97ef840c18a7"
+  version "0.82"
+  sha256 "4e580ee8558a804a78397bbb5d86b8ea6fed5064aa517250cc836d8cb88ae69e"
 
   url "https://github.com/snark/jumpcut/releases/download/v#{version}/Jumpcut-#{version}.tar.bz2",
       verified: "github.com/snark/jumpcut/"
@@ -11,4 +11,6 @@ cask "jumpcut" do
   depends_on macos: ">= :el_capitan"
 
   app "Jumpcut.app"
+
+  zap trash: "~/Library/Preferences/net.sf.Jumpcut.plist"
 end

@@ -1,6 +1,6 @@
 cask "hiarcs-chess-explorer" do
-  version "1.10.1"
-  sha256 "0032c0306dedc5cdc839cc4cda87fc2d7518b0cb2989d2040e1a929c63e600a2"
+  version "1.12.1"
+  sha256 "d5b7e06bbc7ef59e99a09858ab241553ebed829406f4fdc7b139f6e064e9edc9"
 
   url "https://www.hiarcs.com/hce/HIARCS-Chess-Explorer-Installer-v#{version}.pkg"
   name "(Deep) HIARCS Chess Explorer"
@@ -12,7 +12,7 @@ cask "hiarcs-chess-explorer" do
     regex(%r{href=.*?/HIARCS-Chess-Explorer-Installer[._-]v?(\d+(?:\.\d+)+)\.pkg}i)
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :high_sierra"
 
   pkg "HIARCS-Chess-Explorer-Installer-v#{version}.pkg"
 

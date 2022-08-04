@@ -1,6 +1,6 @@
 cask "cryptonomic-galleon" do
-  version "1.1.21b"
-  sha256 "8f270e4cd191f94491fba176bb89932cbe9951c9f9e0ef5a234a2b90c9b265d3"
+  version "1.3.3b"
+  sha256 "144dcbe87dcfda18860e794f0f4c4afb2aca9596f4cb07c0e3117c2a269fa230"
 
   url "https://cryptonomic-wallet.nyc3.digitaloceanspaces.com/release_#{version}/Galleon-#{version.delete_suffix("b")}.dmg",
       verified: "cryptonomic-wallet.nyc3.digitaloceanspaces.com"
@@ -11,7 +11,7 @@ cask "cryptonomic-galleon" do
   livecheck do
     url "https://github.com/Cryptonomic/Deployments/wiki/Galleon%3A-Releases"
     strategy :page_match
-    regex(/Galleon\s*(\d+(?:\.\d+)*\w)/i)
+    regex(/Galleon\s*(\d+(?:\.\d+)+\w)/i)
   end
 
   app "Galleon.app"

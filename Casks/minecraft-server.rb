@@ -1,8 +1,8 @@
 cask "minecraft-server" do
-  version "1.16.5,1b557e7b033b583cd9f66746b7a9ab1ec1673ced"
-  sha256 "58f329c7d2696526f948470aa6fd0b45545039b64cb75015e64c12194b373da6"
+  version "1.19.1,8399e1211e95faa421c1507b322dbeae86d604df"
+  sha256 "f15b93c25ac7343ae8db6e7883a97f11777baaee924e7a3c7aeed826b155b233"
 
-  url "https://launcher.mojang.com/v#{version.major}/objects/#{version.after_comma}/server.jar",
+  url "https://launcher.mojang.com/v#{version.major}/objects/#{version.csv.second}/server.jar",
       verified: "launcher.mojang.com/"
   name "Minecraft Server"
   desc "Run a Minecraft multiplayer server"
@@ -48,7 +48,7 @@ cask "minecraft-server" do
   zap trash: config_dir
 
   caveats do
-    depends_on_java
+    depends_on_java "16+"
     <<~EOS
       Configuration files are located in
 

@@ -1,16 +1,16 @@
 cask "nova" do
-  version "6.2"
-  sha256 "77b8591065a8f596a260a88f76a8bc1757ce71272723c4bf8fbd466e2dcade2d"
+  version "9.4"
+  sha256 "249a3fe550d10598309a922c728e6957a2c32de6337fb57bec1401fde6407640"
 
-  url "https://download-cdn.panic.com/nova/Nova%20#{version}.zip",
-      verified: "https://download-cdn.panic.com/nova/"
+  url "https://download-keycdn.panic.com/nova/Nova%20#{version}.zip",
+      verified: "download-keycdn.panic.com/nova/"
   name "Panic Nova"
   desc "Native code editor"
   homepage "https://nova.app/"
 
   livecheck do
-    url :homepage
-    regex(%r{href=.*?/Nova(?:\s*|%20)?(\d+(?:\.\d+)*)\.zip}i)
+    url "https://circle.panic.com/api/v1/appcast/nova/"
+    strategy :sparkle, &:short_version
   end
 
   auto_updates true
@@ -18,11 +18,19 @@ cask "nova" do
 
   app "Nova.app"
   binary "#{appdir}/Nova.app/Contents/SharedSupport/nova"
+  artifact "#{appdir}/Nova.app/Contents/Resources/nova_completions.txt",
+           target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_nova"
+
+  uninstall delete: [
+    "/Library/LaunchDaemons/com.panic.NovaPrivilegedHelper.plist",
+    "/Library/PrivilegedHelperTools/com.panic.NovaPrivilegedHelper",
+    "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_nova",
+  ]
 
   zap trash: [
     "~/Library/Application Scripts/com.panic.Nova.NovaQuickLookPreview",
     "~/Library/Application Scripts/com.panic.Nova.NovaQuickLookThumbnail",
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.panic.nova.sfl2",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.panic.nova.sfl*",
     "~/Library/Caches/com.panic.Nova",
     "~/Library/Containers/com.panic.Nova.NovaQuickLookPreview",
     "~/Library/Containers/com.panic.Nova.NovaQuickLookThumbnail",

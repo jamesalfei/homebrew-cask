@@ -1,6 +1,6 @@
 cask "slidepilot" do
-  version "1.6.2"
-  sha256 "c07fe39b99e60a1c336ba038edb387ca51495da1acd7f7911cce3bb02553d1fc"
+  version "1.8.0"
+  sha256 "bc8bf077a504cdb2d09d7adee313e408d40063e66e2c0d8722c6678e4ee5cc20"
 
   url "https://slidepilotapp.com/updates/SlidePilot-#{version}.zip"
   name "SlidePilot"
@@ -9,8 +9,7 @@ cask "slidepilot" do
 
   livecheck do
     url "https://slidepilotapp.com/updates/versions.xml"
-    strategy :page_match
-    regex(/SlidePilot-(\d+(?:\.\d+)*)\.zip/i)
+    regex(/SlidePilot-(\d+(?:\.\d+)+)\.zip/i)
   end
 
   auto_updates true

@@ -1,6 +1,6 @@
 cask "envkey" do
-  version "1.4.19"
-  sha256 "c98dca849a4d74f8109ff0123602fe86d70df5222266dd254512a18fb5581fa0"
+  version "1.4.27"
+  sha256 "62bd5bf5ea721c1b31ac799c862b4f8ccec3dd47aa195e6fadf67a970066ff70"
 
   url "https://github.com/envkey/envkey-app/releases/download/darwin-x64-prod-v#{version}/EnvKey-#{version}-mac.zip",
       verified: "github.com/envkey/envkey-app/"
@@ -10,8 +10,7 @@ cask "envkey" do
 
   livecheck do
     url :url
-    strategy :git
-    regex(/^darwin-x64-prod-v(\d+(?:\.\d+)*)$/i)
+    regex(/^darwin-x64-prod[._-]v?(\d+(?:\.\d+)+)$/i)
   end
 
   app "EnvKey.app"

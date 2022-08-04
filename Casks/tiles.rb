@@ -1,8 +1,8 @@
 cask "tiles" do
-  version "1.2.1,c0cd2df5"
-  sha256 "34a6dd09b0f1df4ac6116395bb403b090516faa612162bf4f80bbc1e832813fc"
+  version "1.3.0,6c7491b2"
+  sha256 "c88ec00075f9c0504f793ec354be9752c700717deefe2164a67d6daeb90ff48d"
 
-  url "https://updates.sempliva.com/tiles/Tiles-#{version.after_comma}.dmg"
+  url "https://updates.sempliva.com/tiles/Tiles-#{version.csv.second}.dmg"
   name "Sempliva Tiles"
   desc "Window manager"
   homepage "https://www.sempliva.com/tiles/"

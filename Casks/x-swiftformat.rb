@@ -1,6 +1,6 @@
 cask "x-swiftformat" do
-  version "1.1.1"
-  sha256 "9d086661b9a1b096114dcac67b6664c3d63a3dced1294949fe9bfa3094f895b1"
+  version "1.2"
+  sha256 "00862e3f761217e4dfa7d8ac042bc085c530eb1375bccca7f765896f0c523b21"
 
   url "https://github.com/ruiaureliano/X-SwiftFormat/releases/download/#{version}/x-swiftformat_#{version}.zip"
   name "X-SwiftFormat"
@@ -12,8 +12,8 @@ cask "x-swiftformat" do
   app "X-SwiftFormat.app"
 
   zap trash: [
-    "~/Library/Preferences/com.ruiaureliano.xswiftformat.plist",
     "~/Library/Caches/com.ruiaureliano.xswiftformat",
     "~/Library/Containers/com.ruiaureliano.xswiftformat",
+    "~/Library/Preferences/com.ruiaureliano.xswiftformat.plist",
   ]
 end

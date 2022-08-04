@@ -1,12 +1,19 @@
 cask "eqmac" do
-  version "0.3.7"
-  sha256 "3285aa75f8735e89d8bd2ffa5be1d859b6cc7b9d9f0dc5864142aaf3a0ffa470"
+  version "1.5.0"
+  sha256 "56ea5d4852d57df7060596167c0701be187b5fa4e53ada19fbc3133132bf1e0a"
 
   url "https://github.com/bitgapp/eqMac/releases/download/v#{version}/eqMac.pkg",
       verified: "github.com/bitgapp/eqMac/"
   name "eqMac"
   desc "System-wide audio equalizer"
   homepage "https://eqmac.app/"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  auto_updates true
 
   pkg "eqMac.pkg"
 

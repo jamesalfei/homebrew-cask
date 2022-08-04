@@ -1,6 +1,6 @@
 cask "xbar" do
-  version "2.0.42-beta"
-  sha256 "0f5c9c1b7d4e134a8ec622bcb3ae369167cbf4c16fd483368ec156eeefb33659"
+  version "2.1.7-beta"
+  sha256 "0a7ea7c40e4d4e2ecce0dae3c9c3773d459ddf5af86744f70c44b9f9901bc73f"
 
   url "https://github.com/matryer/xbar/releases/download/v#{version}/xbar.v#{version}.dmg",
       verified: "github.com/matryer/xbar/"
@@ -12,6 +12,8 @@ cask "xbar" do
     url "https://xbarapp.com/dl"
     strategy :header_match
   end
+
+  depends_on macos: ">= :high_sierra"
 
   app "xbar.app"
 

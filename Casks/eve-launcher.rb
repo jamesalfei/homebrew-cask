@@ -1,6 +1,6 @@
 cask "eve-launcher" do
-  version "1902445"
-  sha256 "55268a99ddcbe60f9a8fc87dae34b7ff1de09e0ef80df32554421716bb9b59f6"
+  version "2068569"
+  sha256 "65c67ab1fa1e016363b14b303d5979cb61c051ee97d1763e0abfee6592085d23"
 
   url "https://binaries.eveonline.com/EveLauncher-#{version}.dmg"
   name "Eve Online"
@@ -13,7 +13,7 @@ cask "eve-launcher" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :mojave"
 
   app "EVE Launcher.app"
 

@@ -1,11 +1,16 @@
 cask "meetingbar" do
-  version "3.4.0"
-  sha256 "9223fa95d0ffd5fff77e41935dcbc088d3e5775f3b54585c1b6ec3881bfaa483"
+  version "4.0.6"
+  sha256 "f55fbec0b5479bd2dffdcce047410ea4c29577795ad638937e1e24332309bce7"
 
   url "https://github.com/leits/MeetingBar/releases/download/v#{version}/MeetingBar.dmg"
   name "MeetingBar"
   desc "Shows the next meeting in the menu bar"
   homepage "https://github.com/leits/MeetingBar"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
 
   depends_on macos: ">= :catalina"
 

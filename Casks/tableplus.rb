@@ -1,8 +1,8 @@
 cask "tableplus" do
-  version "3.12.8,368"
-  sha256 "1b4297f63634d5caefb58a46533620f7c38f85bc0ea301136c03df5b18541b08"
+  version "4.8.2,436"
+  sha256 "d3ed1c3f315ed873bcdff77f8db971fd90aae6be32d43bf9774e14f80b6916a1"
 
-  url "https://download.tableplus.com/macos/#{version.after_comma}/TablePlus.dmg"
+  url "https://download.tableplus.com/macos/#{version.csv.second}/TablePlus.dmg"
   name "TablePlus"
   desc "Native GUI tool for relational databases"
   homepage "https://tableplus.com/"

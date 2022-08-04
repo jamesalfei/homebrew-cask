@@ -1,6 +1,6 @@
 cask "tableau-reader" do
-  version "2021.1.2"
-  sha256 "89791fb1dbcecca8136e015de699899e0985f89eec91d8c64b8df68e775184da"
+  version "2022.2.0"
+  sha256 "fe09d1964fe4ac5dca05089873abbcc05bb1ef059e0e2fd3bd5d4bf34a12c712"
 
   url "https://downloads.tableau.com/tssoftware/TableauReader-#{version.dots_to_hyphens}.dmg"
   name "Tableau Reader"
@@ -10,7 +10,7 @@ cask "tableau-reader" do
   livecheck do
     url "https://www.tableau.com/downloads/reader/mac"
     strategy :header_match do |headers|
-      headers["location"][/-(\d+-\d+-\d+)\.dmg/i, 1].tr("-", ".")
+      headers["location"][/-(\d+(?:-\d+)+)\.dmg/i, 1].tr("-", ".")
     end
   end
 

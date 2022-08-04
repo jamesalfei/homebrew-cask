@@ -1,6 +1,6 @@
 cask "knotes" do
-  version "2.10.0"
-  sha256 "4ecb335996b73a1ad905c453a4c311a2e288df391ece9614b7c840d41c6096c2"
+  version "2.11.2"
+  sha256 "c78d19930c904ce19313c4ca981aa1141c9a7264a23fc3eb49aa7d3a5cb4e4b1"
 
   url "https://knotes2.s3-ap-northeast-1.amazonaws.com/download/mac/Knotes-#{version}.dmg",
       verified: "knotes2.s3-ap-northeast-1.amazonaws.com/"
@@ -9,9 +9,8 @@ cask "knotes" do
   homepage "https://knotesapp.com/"
 
   livecheck do
-    url "https://knotesapp.com/"
-    strategy :page_match
-    regex(%r{href=.*?/Knotes-(\d+(?:\.\d+)*)\.dmg}i)
+    url :homepage
+    regex(%r{href=.*?/Knotes[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
   app "Knotes.app"

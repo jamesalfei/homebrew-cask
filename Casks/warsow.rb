@@ -4,11 +4,11 @@ cask "warsow" do
 
   url "https://warsow.net/warsow-#{version}.dmg"
   name "Warsow"
+  desc "First-person shooter game"
   homepage "https://www.warsow.net/"
 
   livecheck do
     url "https://www.warsow.net/bundles/client.bundle.js"
-    strategy :page_match
     regex(%r{href=.*?/warsow-(\d+(?:\.\d+)*)\.dmg}i)
   end
 

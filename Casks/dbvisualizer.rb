@@ -1,6 +1,6 @@
 cask "dbvisualizer" do
-  version "12.0.6"
-  sha256 "40d44beab6fed302ca903c55db53d37c1f2671ee2cf50ac8c391ce3f5f84508b"
+  version "13.0.4"
+  sha256 "498f24d5add6fec44197461c66ec16ccabeb9da40a931dd2426533a30c1a418e"
 
   url "https://www.dbvis.com/product_download/dbvis-#{version}/media/dbvis_macos_#{version.dots_to_underscores}_jre.dmg"
   name "DbVisualizer"
@@ -8,8 +8,8 @@ cask "dbvisualizer" do
   homepage "https://www.dbvis.com/"
 
   livecheck do
-    url "https://www.dbvis.com/download/#{version.major_minor}"
-    regex(/Latest\s*Version:\s*(\d+(?:\.\d+)*)/i)
+    url "https://www.dbvis.com/download"
+    regex(/Latest\s*Version:\s*(\d+(?:\.\d+)+)/i)
   end
 
   app "DbVisualizer.app"

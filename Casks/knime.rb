@@ -1,13 +1,18 @@
 cask "knime" do
-  version "4.3.2"
-  sha256 "54559ae2c8dc86169b45c3c4ded2e384baecae18e573a22f9dfdb9de378e65c8"
+  version "4.6.1"
+  sha256 "570a3cd6f2da36acb9dcf99e6612e10ff3f52a4d78be1369525b49a5c181599f"
 
   url "https://download.knime.org/analytics-platform/macosx/knime_#{version}.app.macosx.cocoa.x86_64.dmg",
       verified: "download.knime.org/analytics-platform/macosx/"
-  appcast "https://www.knime.com/downloads/download-knime"
   name "KNIME Analytics Platform"
   desc "Software to create and productionize data science"
   homepage "https://www.knime.com/"
+
+  livecheck do
+    url "https://download.knime.org/analytics-platform/macosx/knime-latest-app.macosx.cocoa.x86_64.dmg"
+    strategy :header_match
+    regex(/knime[._-]v?(\d+(?:\.\d+)+).*?\.dmg/i)
+  end
 
   depends_on macos: ">= :high_sierra"
 

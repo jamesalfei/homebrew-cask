@@ -10,20 +10,19 @@ cask "ptpwebcam" do
 
   livecheck do
     url :url
-    strategy :git
-    regex(/^v(\d+(?:\.\d+)*)$/)
+    regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
   pkg "PTP_Webcam-v#{version}.pkg"
 
   uninstall pkgutil:   [
-    "org.ptpwebcam.pkg.EnableChrome",
-    "org.ptpwebcam.pkg.EnableSkype",
-    "org.ptpwebcam.pkg.EnableTeams",
-    "org.ptpwebcam.pkg.EnableZoom",
-    "org.ptpwebcam.pkg.PTPWebcam",
-    "org.ptpwebcam.pkg.RemoveEOSWebcam",
-  ],
+              "org.ptpwebcam.pkg.EnableChrome",
+              "org.ptpwebcam.pkg.EnableSkype",
+              "org.ptpwebcam.pkg.EnableTeams",
+              "org.ptpwebcam.pkg.EnableZoom",
+              "org.ptpwebcam.pkg.PTPWebcam",
+              "org.ptpwebcam.pkg.RemoveEOSWebcam",
+            ],
             launchctl: [
               "org.ptpwebcam.PtpWebcamAgent",
               "org.ptpwebcam.PtpWebcamAssistant",

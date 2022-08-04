@@ -1,6 +1,6 @@
 cask "morpheus" do
-  version "2.2.2"
-  sha256 "968cadb06fbc1d5520d84d116d4c5bd94aaf881d3ed48bc7197b6b003a02a384"
+  version "2.2.5.2"
+  sha256 "ce23be8d9d64f3462873c69166e5b8662ed52a2b418d2a15451e7dc79e22430c"
 
   url "https://imc.zih.tu-dresden.de/morpheus/packages/mac/Morpheus-#{version}.dmg",
       verified: "imc.zih.tu-dresden.de/morpheus/"
@@ -10,7 +10,6 @@ cask "morpheus" do
 
   livecheck do
     url "https://imc.zih.tu-dresden.de/morpheus/packages/mac/"
-    strategy :page_match
     regex(/href=.*?Morpheus[._-](\d+(?:\.\d+)*)\.dmg/i)
   end
 

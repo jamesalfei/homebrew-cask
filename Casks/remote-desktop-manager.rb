@@ -1,6 +1,6 @@
 cask "remote-desktop-manager" do
-  version "2021.1.5.0"
-  sha256 "ddfda57689c00f2396a33a1a6c264c13dc8940cf456d0855ad4724aaf41ac39d"
+  version "2022.2.9.0"
+  sha256 "a2456f7cdb250a37acd60cae67016a9b31521997173a8707c823000f082a4411"
 
   url "https://cdn.devolutions.net/download/Mac/Devolutions.RemoteDesktopManager.Mac.#{version}.dmg",
       verified: "devolutions.net/"
@@ -18,8 +18,8 @@ cask "remote-desktop-manager" do
   app "Remote Desktop Manager.app"
 
   zap trash: [
-    "~/Library/Application Support/Remote Desktop Manager",
     "~/Library/Application Support/com.devolutions.remotedesktopmanager",
+    "~/Library/Application Support/Remote Desktop Manager",
     "~/Library/Caches/com.devolutions.remotedesktopmanager",
     "~/Library/Preferences/com.devolutions.remotedesktopmanager.plist",
     "~/Library/Saved Application State/com.devolutions.remotedesktopmanager.savedState",
